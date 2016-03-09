@@ -18,14 +18,20 @@ public class MyActivity extends Activity {
         textView2 = (TextView) findViewById(R.id.textView2);
 
         try {
-            AES d = new AES();
+            /*AES d = new AES();
 
             System.out.println("Encrypted string:" + d.encrypt("Hello"));
             String encryptedText = d.encrypt("Hello");
-            System.out.println("Decrypted string:" + d.decrypt(encryptedText));
+            System.out.println("Decrypted string:" + d.decrypt(encryptedText));*/
 
-            textView1.setText("Encrypted string:" + d.encrypt("Hello"));
-            textView2.setText("Decrypted string:" + d.decrypt(encryptedText));
+            MCrypt mcrypt = new MCrypt();
+
+            String encrypted = MCrypt.bytesToHex(mcrypt.encrypt("KEK") );
+
+            String decrypted = new String(mcrypt.decrypt(encrypted));
+
+            textView1.setText("Encrypted string:" + encrypted);
+            textView2.setText("Decrypted string:" + decrypted);
         }
         catch (Exception e)
         {
