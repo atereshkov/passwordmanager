@@ -3,6 +3,7 @@ package com.tereshkoff.passwordmanager;
 import android.app.Activity;
 import android.os.Bundle;
 import android.view.Menu;
+import android.view.MenuItem;
 import android.widget.TextView;
 
 public class MyActivity extends Activity {
@@ -54,6 +55,10 @@ public class MyActivity extends Activity {
         getMenuInflater().inflate(R.menu.main, menu);
 
         return true;
+    }
+
+    public void onExitClick(MenuItem item){
+        finish();
     }
 
 }
