@@ -24,14 +24,30 @@ public class MyActivity extends Activity {
             String encryptedText = d.encrypt("Hello");
             System.out.println("Decrypted string:" + d.decrypt(encryptedText));*/
 
-            MCrypt mcrypt = new MCrypt();
+            // =====
+
+            /*MCrypt mcrypt = new MCrypt();
 
             String encrypted = MCrypt.bytesToHex(mcrypt.encrypt("KEK") );
 
             String decrypted = new String(mcrypt.decrypt(encrypted));
 
             textView1.setText("Encrypted string:" + encrypted);
-            textView2.setText("Decrypted string:" + decrypted);
+            textView2.setText("Decrypted string:" + decrypted);*/
+
+            String message = "MESSAGE";
+            String password = "PASSWORD";
+
+            AESEncrypter encrypter = new AESEncrypter(password);
+            String encrypted = encrypter.encrypt(message);
+            String decrypted = encrypter.decrypt(encrypted);
+
+            System.out.println("Encrypt(\"" + message + "\", \"" + password + "\") = \"" + encrypted + "\"");
+            System.out.println("Decrypt(\"" + encrypted + "\", \"" + password + "\") = \"" + decrypted + "\"");
+
+            textView1.setText("Encrypt(\"" + message + "\", \"" + password + "\") = \"" + encrypted + "\"");
+            textView2.setText("Decrypt(\"" + encrypted + "\", \"" + password + "\") = \"" + decrypted + "\"");
+
         }
         catch (Exception e)
         {
