@@ -1,4 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="app_name">Менеджер паролей</string>
+    <string name="menu_item_stop">Стоп</string>
+    <string name="menu_item_start">Старт</string>
+    <string name="menu_item_settings">Настройки</string>
+    <string name="menu_item_about">О приложении</string>
+    <string name="menu_item_exit">Выход</string>
 </resources>

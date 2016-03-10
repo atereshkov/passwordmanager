@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item
+            android:id="@+id/start"
+            android:orderInCategory="1"
+            android:title="@string/menu_item_start"
+            android:showAsAction="always"
+            android:actionMenuTextColor="@color/menu_item_white"/>
+
+    <item
+            android:id="@+id/stop"
+            android:orderInCategory="1"
+            android:title="@string/menu_item_stop"
+            android:showAsAction="always"
+            android:actionMenuTextColor="@color/menu_item_white"/>
+
+    <item
+            android:id="@+id/settings"
+            android:orderInCategory="1"
+            android:title="@string/menu_item_settings"
+            android:showAsAction="never"/>
+
+
+    <item
+            android:id="@+id/about"
+            android:orderInCategory="1"
+            android:title="@string/menu_item_about"
+            android:showAsAction="never"/>
+
+    <item
+            android:id="@+id/exit"
+            android:orderInCategory="1"
+            android:title="@string/menu_item_exit"
+            android:showAsAction="never"/>
+
+</menu>

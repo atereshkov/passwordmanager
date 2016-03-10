@@ -2,6 +2,7 @@ package com.tereshkoff.passwordmanager;
 
 import android.app.Activity;
 import android.os.Bundle;
+import android.view.Menu;
 import android.widget.TextView;
 
 public class MyActivity extends Activity {
@@ -46,8 +47,13 @@ public class MyActivity extends Activity {
 
         }
 
-
-
-
     }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        getMenuInflater().inflate(R.menu.main, menu);
+
+        return true;
+    }
+
 }
