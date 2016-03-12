@@ -1,11 +1,13 @@
 package com.tereshkoff.passwordmanager;
 
 import android.app.Activity;
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.ListView;
 import android.widget.TextView;
+import com.tereshkoff.passwordmanager.login.LoginActivity;
 
 public class MyActivity extends Activity {
 
@@ -49,6 +51,9 @@ public class MyActivity extends Activity {
         {
 
         }
+
+        Intent intent = new Intent(this, LoginActivity.class);
+        startActivity(intent);
 
     }
 
