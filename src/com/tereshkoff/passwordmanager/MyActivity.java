@@ -5,8 +5,11 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.ImageButton;
 import android.widget.ListView;
 import android.widget.TextView;
+import android.widget.Toast;
 import com.tereshkoff.passwordmanager.login.LoginActivity;
 
 import android.support.design.widget.FloatingActionButton;
@@ -17,6 +20,7 @@ public class MyActivity extends Activity {
     private TextView textView1;
     private TextView textView2;
     private ListView listView1;
+    private ImageButton floatButton;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -25,6 +29,7 @@ public class MyActivity extends Activity {
 
         textView1 = (TextView) findViewById(R.id.textView1);
         textView2 = (TextView) findViewById(R.id.textView2);
+        floatButton = (ImageButton) findViewById(R.id.imageButton);
 
         try {
            /* AES d = new AES();
@@ -58,6 +63,13 @@ public class MyActivity extends Activity {
         Intent intent = new Intent(this, LoginActivity.class);
         startActivity(intent);
 
+        floatButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Toast.makeText(getApplicationContext(),
+                        "Button is clicked", Toast.LENGTH_LONG).show();
+            }
+        });
 
     }
 
