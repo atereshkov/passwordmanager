@@ -25,4 +25,8 @@
 <resources>
     <color name="action_bar">#45668e</color>
     <color name="menu_item_white">#FFFFFF</color>
+    <color name="material_blue_500">#5677fc</color>
+    <color name="primary">#45668e</color>
+    <color name="primary_pressed">#45668e</color>
+    <color name="ripple">#45668e</color>
 </resources>

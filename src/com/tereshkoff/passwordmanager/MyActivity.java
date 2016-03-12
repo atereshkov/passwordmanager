@@ -4,12 +4,14 @@ import android.app.Activity;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.ListView;
 import android.widget.TextView;
 
 public class MyActivity extends Activity {
 
     private TextView textView1;
     private TextView textView2;
+    private ListView listView1;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
