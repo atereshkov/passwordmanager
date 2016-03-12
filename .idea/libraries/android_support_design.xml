@@ -1,0 +1,10 @@
+<component name="libraryTable">
+  <library name="android-support-design">
+    <CLASSES>
+      <root url="jar://$PROJECT_DIR$/libs/android-support-design.jar!/" />
+      <root url="jar://$PROJECT_DIR$/libs/android-support-v7-appcompat.jar!/" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES />
+  </library>
+</component>

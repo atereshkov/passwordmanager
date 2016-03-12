@@ -9,6 +9,9 @@ import android.widget.ListView;
 import android.widget.TextView;
 import com.tereshkoff.passwordmanager.login.LoginActivity;
 
+import android.support.design.widget.FloatingActionButton;
+import android.support.v7.app.AppCompatActivity;
+
 public class MyActivity extends Activity {
 
     private TextView textView1;
@@ -54,6 +57,7 @@ public class MyActivity extends Activity {
 
         Intent intent = new Intent(this, LoginActivity.class);
         startActivity(intent);
+
 
     }
 
