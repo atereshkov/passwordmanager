@@ -19,7 +19,7 @@
     <EditText
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:id="@+id/usernameEditText"/>
+            android:id="@+id/usernameEditText2"/>
     <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -31,21 +31,20 @@
             android:layout_height="wrap_content"
             android:inputType="textPassword"
             android:ems="10"
-            android:id="@+id/passwordEditText"/>
+            android:id="@+id/passwordEditText2"/>
     <Button
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Login"
-            android:id="@+id/loginButton" android:layout_gravity="center_horizontal"/>
+            android:text="Create Account"
+            android:id="@+id/signupButton" android:layout_gravity="center_horizontal"/>
 
-    <TextView android:id="@+id/link_signup"
+    <TextView android:id="@+id/link_login"
               android:layout_width="fill_parent"
               android:layout_height="wrap_content"
-              android:layout_marginTop="20dp"
+              android:layout_marginTop="10dp"
               android:layout_marginBottom="24dp"
-              android:text="No account yet? Create one"
+              android:text="Already a member? Login"
               android:gravity="center"
               android:textSize="16dip"/>
-
 
 </LinearLayout>

@@ -8,6 +8,7 @@ import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.TextView;
 import android.widget.Toast;
 import com.tereshkoff.passwordmanager.R;
 
@@ -19,6 +20,7 @@ public class LoginActivity extends Activity {
     private EditText usernameEditText;
     private EditText passwordEditText;
     private Button loginButton;
+    private TextView signupLink;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -28,12 +30,22 @@ public class LoginActivity extends Activity {
         usernameEditText = (EditText) findViewById(R.id.usernameEditText);
         passwordEditText = (EditText) findViewById(R.id.passwordEditText);
         loginButton = (Button) findViewById(R.id.loginButton);
+        signupLink = (TextView) findViewById(R.id.link_signup);
 
         loginButton.setOnClickListener(new View.OnClickListener() {
 
             @Override
             public void onClick(View v) {
                 login();
+            }
+        });
+
+        signupLink.setOnClickListener(new View.OnClickListener() {
+
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(getApplicationContext(), SignupActivity.class);
+                startActivityForResult(intent, REQUEST_SIGNUP);
             }
         });
 

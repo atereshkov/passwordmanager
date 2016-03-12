@@ -30,6 +30,7 @@
         </activity>
 
         <activity android:name=".login.LoginActivity" android:theme="@style/AppTheme" />
+        <activity android:name=".login.SignupActivity" android:theme="@style/AppTheme" />
 
     </application>
 </manifest>
