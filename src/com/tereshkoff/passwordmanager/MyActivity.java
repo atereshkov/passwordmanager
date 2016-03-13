@@ -6,19 +6,12 @@ import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
-import android.widget.ImageButton;
-import android.widget.ListView;
-import android.widget.TextView;
-import android.widget.Toast;
+import android.widget.*;
 import com.tereshkoff.passwordmanager.login.LoginActivity;
-
-import android.support.design.widget.FloatingActionButton;
-import android.support.v7.app.AppCompatActivity;
+import com.tereshkoff.passwordmanager.models.*;
 
 public class MyActivity extends Activity {
 
-    private TextView textView1;
-    private TextView textView2;
     private ListView listView1;
     private ImageButton floatButton;
 
@@ -27,9 +20,8 @@ public class MyActivity extends Activity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.main);
 
-        textView1 = (TextView) findViewById(R.id.textView1);
-        textView2 = (TextView) findViewById(R.id.textView2);
         floatButton = (ImageButton) findViewById(R.id.imageButton);
+        listView1 = (ListView) findViewById(R.id.listView1);
 
         try {
            /* AES d = new AES();
@@ -70,6 +62,14 @@ public class MyActivity extends Activity {
                         "Button is clicked", Toast.LENGTH_LONG).show();
             }
         });
+
+        GroupsList groupsList = new GroupsList();
+        groupsList.add(new Group("Kek"));
+        groupsList.add(new Group("SKKS"));
+
+        GroupAdapter groupAdapter = new GroupAdapter(this, android.R.layout.simple_list_item_1, groupsList.getGroups());
+
+        listView1.setAdapter(groupAdapter);
 
     }
 
