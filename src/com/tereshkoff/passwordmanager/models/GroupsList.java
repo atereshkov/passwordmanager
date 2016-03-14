@@ -13,7 +13,7 @@ public class GroupsList {
 
     public GroupsList()
     {
-
+        //read and parse groups from file
     }
 
     public void add(Group group)

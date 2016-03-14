@@ -13,6 +13,11 @@ public class PasswordList {
 
     }
 
+    public void add(Password password)
+    {
+        passwordList.add(password);
+    }
+
     public PasswordList(String name, List<Password> passwordList)
     {
         this.passwordList = passwordList;
