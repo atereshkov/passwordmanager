@@ -66,14 +66,18 @@ public class MyActivity extends Activity {
         });
 
         JsonFilesWorker.createFile("database.json");
-
         GroupsList groupsList = JsonParser.getGroupsList(JsonFilesWorker.readFile("/PWManager/", "database.json"));
-        //groupsList.add(new Group("Kek"));
-        //groupsList.add(new Group("SKKS"));
 
         GroupAdapter groupAdapter = new GroupAdapter(this, android.R.layout.simple_list_item_1, groupsList.getGroups());
-
         listView1.setAdapter(groupAdapter);
+
+        listView1.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            public void onItemClick(AdapterView<?> parent, View view,
+                                    int position, long id) {
+                Toast.makeText(getApplicationContext(), parent.getItemAtPosition(position).toString(), Toast.LENGTH_SHORT).show();
+            }
+        });
+
     }
 
     // (Environment.getExternalStorageDirectory().getAbsolutePath());
