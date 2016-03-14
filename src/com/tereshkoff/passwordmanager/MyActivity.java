@@ -75,6 +75,11 @@ public class MyActivity extends Activity {
             public void onItemClick(AdapterView<?> parent, View view,
                                     int position, long id) {
                 Toast.makeText(getApplicationContext(), parent.getItemAtPosition(position).toString(), Toast.LENGTH_SHORT).show();
+
+                /*Intent intent = new Intent(getApplicationContext(), PasswordActivity.class);
+                intent.putExtra("passwordList", groupsList.getGroupByName(parent.getItemAtPosition(position).toString()));
+                startActivity(intent);*/
+
             }
         });
 

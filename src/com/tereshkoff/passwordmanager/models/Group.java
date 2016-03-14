@@ -9,7 +9,10 @@ public class Group {
         this.name = name;
     }
 
-    public Group(String name, PasswordList passwordList) {
+    public Group() { }
+
+    public Group(String name, PasswordList passwordList)
+    {
         this.name = name;
         this.passwordList = passwordList;
     }
@@ -25,5 +28,9 @@ public class Group {
     @Override
     public String toString() {
         return name;
+    }
+
+    public PasswordList getPasswordList() {
+        return passwordList;
     }
 }
