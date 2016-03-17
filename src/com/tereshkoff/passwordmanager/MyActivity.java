@@ -1,9 +1,10 @@
 package com.tereshkoff.passwordmanager;
 
 import android.app.Activity;
-import android.app.ActivityGroup;
 import android.content.Intent;
 import android.os.Bundle;
+import android.support.v4.app.FragmentActivity;
+import android.support.v4.app.FragmentTabHost;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -13,10 +14,12 @@ import com.tereshkoff.passwordmanager.login.LoginActivity;
 import com.tereshkoff.passwordmanager.models.*;
 
 
-public class MyActivity extends ActivityGroup {
+public class MyActivity extends FragmentActivity {
 
     private ListView listView1;
     private ImageButton floatButton;
+
+    private FragmentTabHost mTabHost;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -85,20 +88,13 @@ public class MyActivity extends ActivityGroup {
             }
         });*/
 
-        TabHost tabHost = (TabHost) findViewById(android.R.id.tabhost);
-        tabHost.setup(this.getLocalActivityManager());
+        mTabHost = (FragmentTabHost)findViewById(android.R.id.tabhost);
+        mTabHost.setup(this, getSupportFragmentManager(), android.R.id.tabcontent);
 
-        TabHost.TabSpec tabSpec;
-
-        tabSpec = tabHost.newTabSpec("tag1");
-        tabSpec.setIndicator("Все пароли");
-        tabSpec.setContent(new Intent(this, OneTabActivity.class));
-        tabHost.addTab(tabSpec);
-
-        tabSpec = tabHost.newTabSpec("tag2");
-        tabSpec.setIndicator("Группы");
-        tabSpec.setContent(new Intent(this, TwoTabActivity.class));
-        tabHost.addTab(tabSpec);
+        mTabHost.addTab(mTabHost.newTabSpec("tab1").setIndicator("Tab1"),
+                OneTabActivity.class, null);
+        mTabHost.addTab(mTabHost.newTabSpec("tab2").setIndicator("Tab2"),
+                TwoTabActivity.class, null);
 
 
     }
