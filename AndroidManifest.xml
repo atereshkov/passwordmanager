@@ -30,6 +30,8 @@
         <activity android:name=".login.LoginActivity" android:theme="@style/AppTheme" />
         <activity android:name=".login.SignupActivity" android:theme="@style/AppTheme" />
         <activity android:name=".models.PasswordActivity" android:theme="@style/AppTheme" />
+        <activity android:name=".OneTabActivity" android:theme="@style/AppTheme" />
+        <activity android:name=".TwoTabActivity" android:theme="@style/AppTheme" />
 
     </application>
 

@@ -1,8 +1,10 @@
 package com.tereshkoff.passwordmanager;
 
 import android.app.Activity;
+import android.app.ActivityGroup;
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -11,7 +13,7 @@ import com.tereshkoff.passwordmanager.login.LoginActivity;
 import com.tereshkoff.passwordmanager.models.*;
 
 
-public class MyActivity extends Activity {
+public class MyActivity extends ActivityGroup {
 
     private ListView listView1;
     private ImageButton floatButton;
@@ -21,8 +23,8 @@ public class MyActivity extends Activity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.main);
 
-        floatButton = (ImageButton) findViewById(R.id.imageButton);
-        listView1 = (ListView) findViewById(R.id.listView1);
+        //floatButton = (ImageButton) findViewById(R.id.imageButton);
+        //listView1 = (ListView) findViewById(R.id.listView1);
 
         try {
            /* AES d = new AES();
@@ -56,7 +58,7 @@ public class MyActivity extends Activity {
         Intent intent = new Intent(this, LoginActivity.class);
         startActivity(intent);
 
-        floatButton.setOnClickListener(new View.OnClickListener() {
+        /*floatButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 //Toast.makeText(getApplicationContext(), "Button is clicked!", Toast.LENGTH_LONG).show();
@@ -81,7 +83,23 @@ public class MyActivity extends Activity {
                 //startActivity(intent);
 
             }
-        });
+        });*/
+
+        TabHost tabHost = (TabHost) findViewById(android.R.id.tabhost);
+        tabHost.setup(this.getLocalActivityManager());
+
+        TabHost.TabSpec tabSpec;
+
+        tabSpec = tabHost.newTabSpec("tag1");
+        tabSpec.setIndicator("Все пароли");
+        tabSpec.setContent(new Intent(this, OneTabActivity.class));
+        tabHost.addTab(tabSpec);
+
+        tabSpec = tabHost.newTabSpec("tag2");
+        tabSpec.setIndicator("Группы");
+        tabSpec.setContent(new Intent(this, TwoTabActivity.class));
+        tabHost.addTab(tabSpec);
+
 
     }
 
