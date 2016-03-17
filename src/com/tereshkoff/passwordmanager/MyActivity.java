@@ -59,7 +59,7 @@ public class MyActivity extends Activity {
         floatButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                //Toast.makeText(getApplicationContext(), "Button is clicked", Toast.LENGTH_LONG).show();
+                //Toast.makeText(getApplicationContext(), "Button is clicked!", Toast.LENGTH_LONG).show();
                 Toast.makeText(getApplicationContext(),
                         JsonFilesWorker.readFile("/PWManager/", "database.json"), Toast.LENGTH_LONG).show();
             }
@@ -76,9 +76,9 @@ public class MyActivity extends Activity {
                                     int position, long id) {
                 Toast.makeText(getApplicationContext(), parent.getItemAtPosition(position).toString(), Toast.LENGTH_SHORT).show();
 
-                /*Intent intent = new Intent(getApplicationContext(), PasswordActivity.class);
-                intent.putExtra("passwordList", groupsList.getGroupByName(parent.getItemAtPosition(position).toString()));
-                startActivity(intent);*/
+                //Intent intent = new Intent(getApplicationContext(), PasswordActivity.class);
+                //intent.putExtra("passwordList", groupsList.getGroupByName(parent.getItemAtPosition(position).toString()));
+                //startActivity(intent);
 
             }
         });

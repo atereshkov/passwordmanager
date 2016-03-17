@@ -28,6 +28,7 @@
     <color name="material_blue_500">#5677fc</color>
     <color name="primary">#45668e</color>
     <color name="primary_pressed">#45668e</color>
+    <color name="primary_wh">#6A84A4</color>
     <color name="ripple">#45668e</color>
 
     <color name="primary_darker">#CC1D1D</color>
@@ -42,5 +43,6 @@
     <color name="base">#AAAAAA</color>
     <color name="iron">#CCCCCC</color>
     <color name="white">#FFFFFF</color>
+    <color name="btnfab">#21B684</color>
 
 </resources>

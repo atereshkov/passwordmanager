@@ -102,7 +102,6 @@ public class JsonFilesWorker {
         }
 
         return text.toString();
-
     }
 
 }

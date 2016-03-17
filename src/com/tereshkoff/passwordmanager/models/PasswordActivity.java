@@ -17,8 +17,8 @@ public class PasswordActivity extends Activity {
 
         pwListView = (ListView) findViewById(R.id.pwListView);
 
-        //PasswordAdapter passwordAdapter = new PasswordAdapter(this, android.R.layout.simple_list_item_1, null);
-        //pwListView.setAdapter(passwordAdapter);
+        PasswordAdapter passwordAdapter = new PasswordAdapter(this, android.R.layout.simple_list_item_1, null);
+        pwListView.setAdapter(passwordAdapter);
 
     }
 }
