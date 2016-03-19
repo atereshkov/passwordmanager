@@ -38,4 +38,25 @@ public class GroupsList {
     {
         return groups;
     }
+
+    public void save()
+    {
+
+    }
+
+    public PasswordList getAllPasswords()
+    {
+        PasswordList passwordList = new PasswordList();
+
+        for(Group group : groups)
+        {
+            for(Password password : group.getPasswordList().getPasswordList())
+            {
+                passwordList.add(password);
+            }
+        }
+
+        return passwordList;
+    }
+
 }

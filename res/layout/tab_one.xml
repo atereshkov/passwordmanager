@@ -4,10 +4,23 @@
               android:layout_width="match_parent"
               android:layout_height="match_parent">
 
-    <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:textAppearance="?android:attr/textAppearanceLarge"
-            android:text="Tab one"
-            android:id="@+id/textView2" android:layout_gravity="center_horizontal"/>
+    <RelativeLayout android:layout_width="fill_parent" android:layout_height="fill_parent">
+        <ListView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/listView1" android:layout_gravity="center_horizontal"/>
+        <ImageButton
+                android:layout_width="65dp"
+                android:layout_height="65dp"
+                android:id="@+id/imageButton"
+                android:background="@drawable/oval"
+                android:elevation="10dp"
+                android:layout_alignParentBottom="true"
+                android:layout_alignParentRight="true"
+                android:layout_alignParentEnd="true"
+                android:layout_marginBottom="22dp"
+                android:layout_marginRight="22dp"
+                android:src="@drawable/gray_add"/>
+    </RelativeLayout>
+
 </LinearLayout>

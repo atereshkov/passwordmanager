@@ -7,18 +7,17 @@ import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.TextView;
 import com.tereshkoff.passwordmanager.R;
+import org.w3c.dom.Text;
 
 import java.util.List;
 
-public class PasswordAdapter extends ArrayAdapter<Password> {
+public class PasswordsAdapter extends ArrayAdapter<Password> {
 
-    public PasswordAdapter(Context context, int textViewResourceId)
-    {
+    public PasswordsAdapter(Context context, int textViewResourceId) {
         super(context, textViewResourceId);
     }
 
-    public PasswordAdapter(Context context, int resource, List<Password> items)
-    {
+    public PasswordsAdapter(Context context, int resource, List<Password> items) {
         super(context, resource, items);
     }
 
@@ -38,16 +37,20 @@ public class PasswordAdapter extends ArrayAdapter<Password> {
         if (p != null)
         {
             TextView tt1 = (TextView) v.findViewById(R.id.pwDescr);
+            TextView tt2 = (TextView) v.findViewById(R.id.pwPrice); // change
 
             if (tt1 != null)
             {
                 tt1.setText(p.getUsername());
             }
+
+            if (tt2 != null)
+            {
+                tt2.setText(p.getPassword());
+            }
         }
 
         return v;
     }
-
-
 
 }

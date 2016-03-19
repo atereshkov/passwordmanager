@@ -18,6 +18,7 @@ public class TwoTabActivity extends Fragment {
 
     private ListView listView1;
     private ImageButton floatButton;
+    GroupsList groupsList;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -36,7 +37,7 @@ public class TwoTabActivity extends Fragment {
         });
 
         JsonFilesWorker.createFile("database.json");
-        GroupsList groupsList = JsonParser.getGroupsList(JsonFilesWorker.readFile("/PWManager/", "database.json"));
+        groupsList = JsonParser.getGroupsList(JsonFilesWorker.readFile("/PWManager/", "database.json"));
 
         GroupAdapter groupAdapter = new GroupAdapter(getActivity(), android.R.layout.simple_list_item_1, groupsList.getGroups());
         listView1.setAdapter(groupAdapter);
