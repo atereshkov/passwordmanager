@@ -26,7 +26,7 @@ public class SignupActivity extends Activity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.signup_activity);
 
-        usernameEditText2 = (EditText) findViewById(R.id.usernameEditText2);
+        //usernameEditText2 = (EditText) findViewById(R.id.usernameEditText2);
         passwordEditText2 = (EditText) findViewById(R.id.passwordEditText2);
         signupButton = (Button) findViewById(R.id.signupButton);
         loginLink = (TextView) findViewById(R.id.link_login);
@@ -64,7 +64,7 @@ public class SignupActivity extends Activity {
         progressDialog.setMessage("Creating Account...");
         progressDialog.show();
 
-        String name = usernameEditText2.getText().toString();
+        //String name = usernameEditText2.getText().toString();
         String password = passwordEditText2.getText().toString();
 
         // TODO: Implement your own signup logic here.
@@ -97,16 +97,8 @@ public class SignupActivity extends Activity {
     public boolean validate() {
         boolean valid = true;
 
-        String name = usernameEditText2.getText().toString();
+        //String name = usernameEditText2.getText().toString();
         String password = passwordEditText2.getText().toString();
-
-        if (name.isEmpty() || name.length() < 3) {
-            usernameEditText2.setError("at least 3 characters");
-            valid = false;
-        } else {
-            usernameEditText2.setError(null);
-        }
-
 
         if (password.isEmpty() || password.length() < 4 || password.length() > 10) {
             passwordEditText2.setError("between 4 and 10 alphanumeric characters");

@@ -30,7 +30,6 @@ public class TwoTabActivity extends Fragment {
         floatButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                //Toast.makeText(getApplicationContext(), "Button is clicked!", Toast.LENGTH_LONG).show();
                 Toast.makeText(getActivity(),
                         JsonFilesWorker.readFile("/PWManager/", "database.json"), Toast.LENGTH_LONG).show();
             }

@@ -27,7 +27,7 @@ public class LoginActivity extends Activity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.login_layout);
 
-        usernameEditText = (EditText) findViewById(R.id.usernameEditText);
+        //usernameEditText = (EditText) findViewById(R.id.usernameEditText);
         passwordEditText = (EditText) findViewById(R.id.passwordEditText);
         loginButton = (Button) findViewById(R.id.loginButton);
         signupLink = (TextView) findViewById(R.id.link_signup);
@@ -67,7 +67,7 @@ public class LoginActivity extends Activity {
         progressDialog.setMessage("Authenticating...");
         progressDialog.show();
 
-        String email = usernameEditText.getText().toString();
+       // String email = usernameEditText.getText().toString();
         String password = passwordEditText.getText().toString();
 
         // TODO: Implement your own authentication logic here.
@@ -115,16 +115,10 @@ public class LoginActivity extends Activity {
     public boolean validate() {
         boolean valid = true;
 
-        String username = usernameEditText.getText().toString();
+        //String username = usernameEditText.getText().toString();
         String password = passwordEditText.getText().toString();
 
         //if (username.isEmpty() || !android.util.Patterns.EMAIL_ADDRESS.matcher(username).matches()) {
-        if (username.isEmpty()) {
-            usernameEditText.setError("enter a valid email address");
-            valid = false;
-        } else {
-            usernameEditText.setError(null);
-        }
 
         if (password.isEmpty() || password.length() < 4 || password.length() > 10) {
             passwordEditText.setError("between 4 and 10 alphanumeric characters");

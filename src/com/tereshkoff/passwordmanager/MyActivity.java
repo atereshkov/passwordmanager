@@ -61,39 +61,12 @@ public class MyActivity extends FragmentActivity {
         Intent intent = new Intent(this, LoginActivity.class);
         startActivity(intent);
 
-        /*floatButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                //Toast.makeText(getApplicationContext(), "Button is clicked!", Toast.LENGTH_LONG).show();
-                Toast.makeText(getApplicationContext(),
-                        JsonFilesWorker.readFile("/PWManager/", "database.json"), Toast.LENGTH_LONG).show();
-            }
-        });
-
-        JsonFilesWorker.createFile("database.json");
-        GroupsList groupsList = JsonParser.getGroupsList(JsonFilesWorker.readFile("/PWManager/", "database.json"));
-
-        GroupAdapter groupAdapter = new GroupAdapter(this, android.R.layout.simple_list_item_1, groupsList.getGroups());
-        listView1.setAdapter(groupAdapter);
-
-        listView1.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-            public void onItemClick(AdapterView<?> parent, View view,
-                                    int position, long id) {
-                Toast.makeText(getApplicationContext(), parent.getItemAtPosition(position).toString(), Toast.LENGTH_SHORT).show();
-
-                //Intent intent = new Intent(getApplicationContext(), PasswordActivity.class);
-                //intent.putExtra("passwordList", groupsList.getGroupByName(parent.getItemAtPosition(position).toString()));
-                //startActivity(intent);
-
-            }
-        });*/
-
         mTabHost = (FragmentTabHost)findViewById(android.R.id.tabhost);
         mTabHost.setup(this, getSupportFragmentManager(), android.R.id.tabcontent);
 
-        mTabHost.addTab(mTabHost.newTabSpec("tab1").setIndicator("Tab1"),
+        mTabHost.addTab(mTabHost.newTabSpec("tab1").setIndicator("Все пароли"),
                 OneTabActivity.class, null);
-        mTabHost.addTab(mTabHost.newTabSpec("tab2").setIndicator("Tab2"),
+        mTabHost.addTab(mTabHost.newTabSpec("tab2").setIndicator("По группам"),
                 TwoTabActivity.class, null);
 
 
