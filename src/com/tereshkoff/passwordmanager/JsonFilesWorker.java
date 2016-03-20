@@ -2,9 +2,13 @@ package com.tereshkoff.passwordmanager;
 
 import android.os.Environment;
 import android.util.Log;
+import com.tereshkoff.passwordmanager.models.Group;
 import com.tereshkoff.passwordmanager.models.GroupsList;
+import com.tereshkoff.passwordmanager.models.PasswordList;
+import org.json.JSONException;
+import org.json.simple.JSONArray;
+import org.json.simple.JSONObject;
 import java.io.*;
-import java.text.ParseException;
 
 public class JsonFilesWorker {
 
@@ -70,6 +74,46 @@ public class JsonFilesWorker {
             e.printStackTrace();
         }
 
+    }
+
+    @SuppressWarnings("unchecked")
+    public static void saveToFile(String filename, GroupsList groupsList) throws IOException
+    {
+        File direct = new File(Environment.getExternalStorageDirectory().getAbsolutePath()+ "/PWManager/");
+        File file = new File(direct, filename);
+
+        JSONObject obj = new JSONObject();
+        JSONArray groups = new JSONArray();
+
+        for (Group gr : groupsList.getGroups())
+        {
+            PasswordList passwordList = gr.getPasswordList();
+
+            JSONObject group = new JSONObject();
+            JSONArray pwArray = new JSONArray();
+
+            for (int j = 0; j < passwordList.getPasswordList().size(); j++)
+            {
+                JSONObject pw = new JSONObject();
+                pw.put("username", passwordList.getPasswordList().get(j).getUsername());
+                pw.put("password", passwordList.getPasswordList().get(j).getPassword());
+                pwArray.add(pw);
+            }
+
+            group.put("passwords", pwArray);
+            group.put("name", gr.getName());
+            groups.add(group);
+
+        }
+        obj.put("groups", groups);
+
+        //FileWriter fileWriter = new FileWriter(file);
+        //fileWriter.write(obj.toJSONString());
+
+        FileWriter fw = new FileWriter(file);
+        BufferedWriter bw = new BufferedWriter(fw);
+        bw.write(obj.toString());
+        bw.close();
     }
 
     public GroupsList getGroupsFromFile(String str)

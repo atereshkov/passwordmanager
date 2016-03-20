@@ -61,7 +61,7 @@ public class MyActivity extends FragmentActivity {
         Intent intent = new Intent(this, LoginActivity.class);
         startActivity(intent);
 
-        mTabHost = (FragmentTabHost)findViewById(android.R.id.tabhost);
+        mTabHost = (FragmentTabHost)findViewById(android.R.id.tabhost); // https://code.google.com/p/android/issues/detail?id=78772
         mTabHost.setup(this, getSupportFragmentManager(), android.R.id.tabcontent);
 
         mTabHost.addTab(mTabHost.newTabSpec("tab1").setIndicator("Все пароли"),

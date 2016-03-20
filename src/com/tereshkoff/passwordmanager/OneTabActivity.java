@@ -13,6 +13,8 @@ import android.widget.Toast;
 import com.tereshkoff.passwordmanager.models.GroupsList;
 import com.tereshkoff.passwordmanager.models.PasswordsAdapter;
 
+import java.io.IOException;
+
 public class OneTabActivity extends Fragment {
 
     private ListView listView1;
@@ -31,6 +33,14 @@ public class OneTabActivity extends Fragment {
         JsonFilesWorker.createFile("database.json");
 
         groupsList = JsonParser.getGroupsList(JsonFilesWorker.readFile("/PWManager/", "database.json"));
+
+        try {
+            JsonFilesWorker.saveToFile("test.json", groupsList);
+        }
+        catch (IOException e)
+        {
+            e.printStackTrace();
+        }
 
         PasswordsAdapter groupAdapter = new PasswordsAdapter(getActivity(), android.R.layout.simple_list_item_1,
                 groupsList.getAllPasswords().getPasswordList());
