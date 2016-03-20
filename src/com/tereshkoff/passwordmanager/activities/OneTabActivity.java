@@ -1,8 +1,7 @@
-package com.tereshkoff.passwordmanager;
+package com.tereshkoff.passwordmanager.activities;
 
-
-import android.app.Activity;
 import android.os.Bundle;
+import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -11,10 +10,15 @@ import android.widget.AdapterView;
 import android.widget.ImageButton;
 import android.widget.ListView;
 import android.widget.Toast;
-import com.tereshkoff.passwordmanager.models.GroupAdapter;
+import com.tereshkoff.passwordmanager.JsonFilesWorker;
+import com.tereshkoff.passwordmanager.JsonParser;
+import com.tereshkoff.passwordmanager.R;
 import com.tereshkoff.passwordmanager.models.GroupsList;
+import com.tereshkoff.passwordmanager.adapters.PasswordsAdapter;
 
-public class TwoTabActivity extends Fragment {
+import java.io.IOException;
+
+public class OneTabActivity extends Fragment {
 
     private ListView listView1;
     private ImageButton floatButton;
@@ -23,23 +27,26 @@ public class TwoTabActivity extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        View V = inflater.inflate(R.layout.tab_two, container, false);
+        // Inflate the layout for this fragment
+        View V = inflater.inflate(R.layout.tab_one, container, false);
 
         floatButton = (ImageButton) V.findViewById(R.id.imageButton);
         listView1 = (ListView) V.findViewById(R.id.listView1);
 
-        floatButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Toast.makeText(getActivity(),
-                        JsonFilesWorker.readFile("/PWManager/", "database.json"), Toast.LENGTH_LONG).show();
-            }
-        });
-
         JsonFilesWorker.createDefaultBase("database.json");
+
         groupsList = JsonParser.getGroupsList(JsonFilesWorker.readFile("/PWManager/", "database.json"));
 
-        GroupAdapter groupAdapter = new GroupAdapter(getActivity(), android.R.layout.simple_list_item_1, groupsList.getGroups());
+        try {
+            JsonFilesWorker.saveToFile("test.json", groupsList);
+        }
+        catch (IOException e)
+        {
+            e.printStackTrace();
+        }
+
+        PasswordsAdapter groupAdapter = new PasswordsAdapter(getActivity(), android.R.layout.simple_list_item_1,
+                groupsList.getAllPasswords().getPasswordList());
         listView1.setAdapter(groupAdapter);
 
         listView1.setOnItemClickListener(new AdapterView.OnItemClickListener() {
@@ -57,4 +64,8 @@ public class TwoTabActivity extends Fragment {
         return V;
     }
 
+    @Override
+    public void onCreate(@Nullable Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+    }
 }

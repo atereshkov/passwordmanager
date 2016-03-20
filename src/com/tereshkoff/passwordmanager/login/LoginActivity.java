@@ -32,6 +32,8 @@ public class LoginActivity extends Activity {
         loginButton = (Button) findViewById(R.id.loginButton);
         signupLink = (TextView) findViewById(R.id.link_signup);
 
+        passwordEditText.requestFocus();
+
         loginButton.setOnClickListener(new View.OnClickListener() {
 
             @Override

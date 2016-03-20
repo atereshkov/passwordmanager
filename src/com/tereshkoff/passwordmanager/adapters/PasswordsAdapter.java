@@ -1,4 +1,4 @@
-package com.tereshkoff.passwordmanager.models;
+package com.tereshkoff.passwordmanager.adapters;
 
 import android.content.Context;
 import android.view.LayoutInflater;
@@ -6,18 +6,19 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.TextView;
-import android.widget.Toast;
 import com.tereshkoff.passwordmanager.R;
+import com.tereshkoff.passwordmanager.models.Password;
+import org.w3c.dom.Text;
 
 import java.util.List;
 
-public class GroupAdapter extends ArrayAdapter<Group> {
+public class PasswordsAdapter extends ArrayAdapter<Password> {
 
-    public GroupAdapter(Context context, int textViewResourceId) {
+    public PasswordsAdapter(Context context, int textViewResourceId) {
         super(context, textViewResourceId);
     }
 
-    public GroupAdapter(Context context, int resource, List<Group> items) {
+    public PasswordsAdapter(Context context, int resource, List<Password> items) {
         super(context, resource, items);
     }
 
@@ -29,27 +30,25 @@ public class GroupAdapter extends ArrayAdapter<Group> {
         if (v == null) {
             LayoutInflater vi;
             vi = LayoutInflater.from(getContext());
-            v = vi.inflate(R.layout.group_item, null);
+            v = vi.inflate(R.layout.password_item, null);
         }
 
-        Group p = getItem(position);
+        Password p = getItem(position);
 
         if (p != null)
         {
-            TextView tt1 = (TextView) v.findViewById(R.id.tvDescr);
-            TextView tt2 = (TextView) v.findViewById(R.id.tvPrice);
+            TextView tt1 = (TextView) v.findViewById(R.id.pwDescr);
+            TextView tt2 = (TextView) v.findViewById(R.id.pwPrice); // change
 
             if (tt1 != null)
             {
-                tt1.setText(p.getName());
+                tt1.setText(p.getUsername());
             }
 
             if (tt2 != null)
             {
-                if (p.getPasswordList() != null)
-                    tt2.setText(p.getPasswordList().getCount().toString());
+                tt2.setText(p.getPassword());
             }
-
         }
 
         return v;
