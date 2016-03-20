@@ -36,7 +36,7 @@ public class TwoTabActivity extends Fragment {
             }
         });
 
-        JsonFilesWorker.createFile("database.json");
+        JsonFilesWorker.createDefaultBase("database.json");
         groupsList = JsonParser.getGroupsList(JsonFilesWorker.readFile("/PWManager/", "database.json"));
 
         GroupAdapter groupAdapter = new GroupAdapter(getActivity(), android.R.layout.simple_list_item_1, groupsList.getGroups());

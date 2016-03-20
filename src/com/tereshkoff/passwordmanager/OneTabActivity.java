@@ -30,7 +30,7 @@ public class OneTabActivity extends Fragment {
         floatButton = (ImageButton) V.findViewById(R.id.imageButton);
         listView1 = (ListView) V.findViewById(R.id.listView1);
 
-        JsonFilesWorker.createFile("database.json");
+        JsonFilesWorker.createDefaultBase("database.json");
 
         groupsList = JsonParser.getGroupsList(JsonFilesWorker.readFile("/PWManager/", "database.json"));
 

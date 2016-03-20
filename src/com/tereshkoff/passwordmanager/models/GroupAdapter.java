@@ -37,11 +37,19 @@ public class GroupAdapter extends ArrayAdapter<Group> {
         if (p != null)
         {
             TextView tt1 = (TextView) v.findViewById(R.id.tvDescr);
+            TextView tt2 = (TextView) v.findViewById(R.id.tvPrice);
 
             if (tt1 != null)
             {
                 tt1.setText(p.getName());
             }
+
+            if (tt2 != null)
+            {
+                if (p.getPasswordList() != null)
+                    tt2.setText(p.getPasswordList().getCount().toString());
+            }
+
         }
 
         return v;

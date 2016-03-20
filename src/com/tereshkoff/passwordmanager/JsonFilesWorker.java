@@ -12,7 +12,7 @@ import java.io.*;
 
 public class JsonFilesWorker {
 
-    public static void createFile(String filename)
+    public static void createDefaultBase(String filename)
     {
         File direct = new File(Environment.getExternalStorageDirectory().getAbsolutePath()+ "/PWManager/");
 
@@ -29,29 +29,14 @@ public class JsonFilesWorker {
             pw.println("{\n" +
                     "  \"groups\": [\n" +
                     "  {\n" +
-                    "    \"name\": \"FirstGroup\",\n" +
+                    "    \"name\": \"Социальные сети\",\n" +
                     "    \"passwords\": [\n" +
-                    "      {\n" +
-                    "        \"username\": \"Campbell\",\n" +
-                    "        \"password\": \"ZXFasdfsd\"\n" +
-                    "      },\n" +
-                    "      {\n" +
-                    "        \"username\": \"Hall\",\n" +
-                    "        \"password\": \"2134fZXFas\"\n" +
-                    "      },\n" +
-                    "      {\n" +
-                    "        \"username\": \"Valentine\",\n" +
-                    "        \"password\": \"4643fZx11\"\n" +
-                    "      }\n" +
+                    "\t\n" +
                     "    ]\n" +
                     "  },\n" +
                     "  {\n" +
-                    "    \"name\": \"SecondGroup\",\n" +
+                    "    \"name\": \"Электронная почта\",\n" +
                     "    \"passwords\": [\n" +
-                    "      {\n" +
-                    "        \"username\": \"Marshall\",\n" +
-                    "        \"password\": \"2314532ZX\"\n" +
-                    "      },\n" +
                     "      {\n" +
                     "        \"username\": \"Weiss\",\n" +
                     "        \"password\": \"sdfssd11312\"\n" +
@@ -60,6 +45,36 @@ public class JsonFilesWorker {
                     "        \"username\": \"Williams\",\n" +
                     "        \"password\": \"4e324234\"\n" +
                     "      }\n" +
+                    "    ]\n" +
+                    "  },\n" +
+                    "  {\n" +
+                    "    \"name\": \"Веб-сайты\",\n" +
+                    "    \"passwords\": [\n" +
+                    "      \n" +
+                    "    ]\n" +
+                    "  },\n" +
+                    "  {\n" +
+                    "    \"name\": \"Компьютер\",\n" +
+                    "    \"passwords\": [\n" +
+                    "      \n" +
+                    "    ]\n" +
+                    "  },\n" +
+                    "  {\n" +
+                    "    \"name\": \"PIN-коды\",\n" +
+                    "    \"passwords\": [\n" +
+                    "      \n" +
+                    "    ]\n" +
+                    "  },\n" +
+                    "  {\n" +
+                    "    \"name\": \"Wi-Fi\",\n" +
+                    "    \"passwords\": [\n" +
+                    "      \n" +
+                    "    ]\n" +
+                    "  },\n" +
+                    "  {\n" +
+                    "    \"name\": \"Прочее\",\n" +
+                    "    \"passwords\": [\n" +
+                    "      \n" +
                     "    ]\n" +
                     "  }\n" +
                     "  ]\n" +

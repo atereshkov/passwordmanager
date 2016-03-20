@@ -7,6 +7,7 @@ public class PasswordList {
 
     private List<Password> passwordList = new ArrayList<Password>();
     private String name;
+    //private Integer count;
 
     public PasswordList()
     {
@@ -30,5 +31,9 @@ public class PasswordList {
 
     public String getName() {
         return name;
+    }
+
+    public Integer getCount() {
+        return passwordList.size();
     }
 }
