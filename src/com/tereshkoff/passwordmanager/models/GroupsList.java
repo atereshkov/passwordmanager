@@ -2,8 +2,10 @@ package com.tereshkoff.passwordmanager.models;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.io.Serializable;
 
-public class GroupsList {
+@SuppressWarnings("serial")
+public class GroupsList implements Serializable {
 
     List<Group> groups = new ArrayList<Group>();
 

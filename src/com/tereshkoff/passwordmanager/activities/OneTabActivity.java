@@ -1,5 +1,6 @@
 package com.tereshkoff.passwordmanager.activities;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
@@ -36,6 +37,18 @@ public class OneTabActivity extends Fragment {
         JsonFilesWorker.createDefaultBase("database.json");
 
         groupsList = JsonParser.getGroupsList(JsonFilesWorker.readFile("/PWManager/", "database.json"));
+
+        floatButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                //Toast.makeText(getActivity(), JsonFilesWorker.readFile("/PWManager/", "database.json"), Toast.LENGTH_LONG).show();
+
+                Intent addPasswordIntent = new Intent(getActivity(), AddPasswordActivity.class);
+                addPasswordIntent.putExtra("groupsList", groupsList);
+                startActivity(addPasswordIntent);
+
+            }
+        });
 
         try {
             JsonFilesWorker.saveToFile("test.json", groupsList);

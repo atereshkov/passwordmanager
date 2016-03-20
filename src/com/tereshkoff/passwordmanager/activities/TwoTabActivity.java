@@ -1,6 +1,7 @@
 package com.tereshkoff.passwordmanager.activities;
 
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
@@ -35,6 +36,8 @@ public class TwoTabActivity extends Fragment {
             public void onClick(View v) {
                 Toast.makeText(getActivity(),
                         JsonFilesWorker.readFile("/PWManager/", "database.json"), Toast.LENGTH_LONG).show();
+                Intent intent = new Intent(getActivity(), AddPasswordActivity.class);
+                startActivity(intent);
             }
         });
 
