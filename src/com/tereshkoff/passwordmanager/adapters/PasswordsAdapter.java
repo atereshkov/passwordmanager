@@ -14,12 +14,15 @@ import java.util.List;
 
 public class PasswordsAdapter extends ArrayAdapter<Password> {
 
+    private List<Password> items;
+
     public PasswordsAdapter(Context context, int textViewResourceId) {
         super(context, textViewResourceId);
     }
 
     public PasswordsAdapter(Context context, int resource, List<Password> items) {
         super(context, resource, items);
+        this.items = items;
     }
 
     @Override
@@ -37,8 +40,8 @@ public class PasswordsAdapter extends ArrayAdapter<Password> {
 
         if (p != null)
         {
-            TextView tt1 = (TextView) v.findViewById(R.id.pwDescr);
-            TextView tt2 = (TextView) v.findViewById(R.id.pwPrice); // change
+            TextView tt1 = (TextView) v.findViewById(R.id.pwTitle);
+            TextView tt2 = (TextView) v.findViewById(R.id.pwPass); // change
 
             if (tt1 != null)
             {
@@ -52,6 +55,13 @@ public class PasswordsAdapter extends ArrayAdapter<Password> {
         }
 
         return v;
+    }
+
+    public void refreshEvents(List<Password> items)
+    {
+        this.items.clear();
+        this.items.addAll(items);
+        notifyDataSetChanged();
     }
 
 }

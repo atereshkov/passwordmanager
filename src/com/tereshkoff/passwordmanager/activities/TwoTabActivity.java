@@ -11,6 +11,7 @@ import android.widget.AdapterView;
 import android.widget.ImageButton;
 import android.widget.ListView;
 import android.widget.Toast;
+import com.tereshkoff.passwordmanager.Constants;
 import com.tereshkoff.passwordmanager.JsonFilesWorker;
 import com.tereshkoff.passwordmanager.JsonParser;
 import com.tereshkoff.passwordmanager.R;
@@ -34,16 +35,15 @@ public class TwoTabActivity extends Fragment {
         floatButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Toast.makeText(getActivity(),
-                        JsonFilesWorker.readFile("/PWManager/", "database.json"), Toast.LENGTH_LONG).show();
-                Intent intent = new Intent(getActivity(), AddPasswordActivity.class);
+
+                Intent intent = new Intent(getActivity(), AddGroupActivity.class);
                 startActivity(intent);
             }
         });
 
         //JsonFilesWorker.createDefaultBase("database.json");
 
-        groupsList = JsonParser.getGroupsList(JsonFilesWorker.readFile("/PWManager/", "database.json"));
+        groupsList = JsonParser.getGroupsList(JsonFilesWorker.readFile(Constants.PWDIRECTORY, Constants.DAFAULT_DBFILE_NAME));
 
         GroupAdapter groupAdapter = new GroupAdapter(getActivity(), android.R.layout.simple_list_item_1, groupsList.getGroups());
         listView1.setAdapter(groupAdapter);

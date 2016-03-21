@@ -73,6 +73,7 @@ public class AddPasswordActivity extends Activity{
         intent.putExtra("groupsList", groupsList);
 
         setResult(RESULT_OK, intent);
+
         finish();
 
     }

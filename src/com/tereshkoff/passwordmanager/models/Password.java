@@ -15,7 +15,7 @@ public class Password implements Serializable {
         this.username = username;
     }
 
-    public Password(String password, Group group, String username)
+    public Password(String username, Group group, String password)
     {
         this.password = password;
         this.group = group;

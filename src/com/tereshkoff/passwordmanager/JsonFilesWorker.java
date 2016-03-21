@@ -14,7 +14,7 @@ public class JsonFilesWorker {
 
     public static void createDefaultBase(String filename)
     {
-        File direct = new File(Environment.getExternalStorageDirectory().getAbsolutePath()+ "/PWManager/");
+        File direct = new File(Environment.getExternalStorageDirectory().getAbsolutePath()+ Constants.PWDIRECTORY);
 
         if(!direct.exists())
         {
@@ -94,7 +94,7 @@ public class JsonFilesWorker {
     @SuppressWarnings("unchecked")
     public static void saveToFile(String filename, GroupsList groupsList) throws IOException
     {
-        File direct = new File(Environment.getExternalStorageDirectory().getAbsolutePath()+ "/PWManager/");
+        File direct = new File(Environment.getExternalStorageDirectory().getAbsolutePath()+ Constants.PWDIRECTORY);
         File file = new File(direct, filename);
 
         JSONObject obj = new JSONObject();

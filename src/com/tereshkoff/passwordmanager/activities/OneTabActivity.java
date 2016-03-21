@@ -11,6 +11,7 @@ import android.widget.AdapterView;
 import android.widget.ImageButton;
 import android.widget.ListView;
 import android.widget.Toast;
+import com.tereshkoff.passwordmanager.Constants;
 import com.tereshkoff.passwordmanager.JsonFilesWorker;
 import com.tereshkoff.passwordmanager.JsonParser;
 import com.tereshkoff.passwordmanager.R;
@@ -25,10 +26,11 @@ public class OneTabActivity extends Fragment {
     private ImageButton floatButton;
     GroupsList groupsList;
 
+    PasswordsAdapter groupAdapter;
+
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        // Inflate the layout for this fragment
         View V = inflater.inflate(R.layout.tab_one, container, false);
 
         floatButton = (ImageButton) V.findViewById(R.id.imageButton);
@@ -36,7 +38,7 @@ public class OneTabActivity extends Fragment {
 
         //JsonFilesWorker.createDefaultBase("database.json");
 
-        groupsList = JsonParser.getGroupsList(JsonFilesWorker.readFile("/PWManager/", "database.json"));
+        groupsList = JsonParser.getGroupsList(JsonFilesWorker.readFile(Constants.PWDIRECTORY, Constants.DAFAULT_DBFILE_NAME));
 
         floatButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -58,7 +60,7 @@ public class OneTabActivity extends Fragment {
             e.printStackTrace();
         }
 
-        PasswordsAdapter groupAdapter = new PasswordsAdapter(getActivity(), android.R.layout.simple_list_item_1,
+        groupAdapter = new PasswordsAdapter(getActivity(), android.R.layout.simple_list_item_1,
                 groupsList.getAllPasswords().getPasswordList());
         listView1.setAdapter(groupAdapter);
 
@@ -90,16 +92,23 @@ public class OneTabActivity extends Fragment {
         //String name = data.getExtra("groupsList");
 
         groupsList = (GroupsList) data.getExtras().getSerializable("groupsList");
+
         if (data != null)
         {
             Toast.makeText(getActivity(), "Пароль успешно добавлен!", Toast.LENGTH_SHORT).show();
-        }
 
-        try {
-            JsonFilesWorker.saveToFile("database.json", groupsList);
-        } catch (IOException e)
-        {
-            e.printStackTrace();
+            try
+            {
+                JsonFilesWorker.saveToFile(Constants.DAFAULT_DBFILE_NAME, groupsList);
+            }
+            catch (IOException e)
+            {
+                e.printStackTrace();
+            }
+
+            groupsList = JsonParser.getGroupsList(JsonFilesWorker.readFile(Constants.PWDIRECTORY, Constants.DAFAULT_DBFILE_NAME));
+            groupAdapter.refreshEvents(groupsList.getAllPasswords().getPasswordList());
+
         }
 
 
