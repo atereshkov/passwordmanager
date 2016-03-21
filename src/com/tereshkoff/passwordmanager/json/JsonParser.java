@@ -1,4 +1,4 @@
-package com.tereshkoff.passwordmanager;
+package com.tereshkoff.passwordmanager.json;
 
 import com.tereshkoff.passwordmanager.models.Group;
 import com.tereshkoff.passwordmanager.models.GroupsList;

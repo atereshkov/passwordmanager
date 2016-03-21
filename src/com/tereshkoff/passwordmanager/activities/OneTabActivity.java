@@ -11,9 +11,9 @@ import android.widget.AdapterView;
 import android.widget.ImageButton;
 import android.widget.ListView;
 import android.widget.Toast;
-import com.tereshkoff.passwordmanager.Constants;
-import com.tereshkoff.passwordmanager.JsonFilesWorker;
-import com.tereshkoff.passwordmanager.JsonParser;
+import com.tereshkoff.passwordmanager.utils.Constants;
+import com.tereshkoff.passwordmanager.json.JsonFilesWorker;
+import com.tereshkoff.passwordmanager.json.JsonParser;
 import com.tereshkoff.passwordmanager.R;
 import com.tereshkoff.passwordmanager.models.GroupsList;
 import com.tereshkoff.passwordmanager.adapters.PasswordsAdapter;
@@ -51,14 +51,6 @@ public class OneTabActivity extends Fragment {
 
             }
         });
-
-        try {
-            JsonFilesWorker.saveToFile("test.json", groupsList);
-        }
-        catch (IOException e)
-        {
-            e.printStackTrace();
-        }
 
         groupAdapter = new PasswordsAdapter(getActivity(), android.R.layout.simple_list_item_1,
                 groupsList.getAllPasswords().getPasswordList());

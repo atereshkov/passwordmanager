@@ -1,4 +1,4 @@
-package com.tereshkoff.passwordmanager;
+package com.tereshkoff.passwordmanager.AES;
 
 import java.security.NoSuchAlgorithmException;
 

@@ -1,7 +1,5 @@
 package com.tereshkoff.passwordmanager.models;
 
-import com.tereshkoff.passwordmanager.JsonFilesWorker;
-
 import java.util.ArrayList;
 import java.util.List;
 import java.io.Serializable;

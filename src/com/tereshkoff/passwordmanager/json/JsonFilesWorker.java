@@ -1,11 +1,11 @@
-package com.tereshkoff.passwordmanager;
+package com.tereshkoff.passwordmanager.json;
 
 import android.os.Environment;
 import android.util.Log;
+import com.tereshkoff.passwordmanager.utils.Constants;
 import com.tereshkoff.passwordmanager.models.Group;
 import com.tereshkoff.passwordmanager.models.GroupsList;
 import com.tereshkoff.passwordmanager.models.PasswordList;
-import org.json.JSONException;
 import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
 import java.io.*;
