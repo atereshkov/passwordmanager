@@ -34,7 +34,7 @@ public class OneTabActivity extends Fragment {
         floatButton = (ImageButton) V.findViewById(R.id.imageButton);
         listView1 = (ListView) V.findViewById(R.id.listView1);
 
-        JsonFilesWorker.createDefaultBase("database.json");
+        //JsonFilesWorker.createDefaultBase("database.json");
 
         groupsList = JsonParser.getGroupsList(JsonFilesWorker.readFile("/PWManager/", "database.json"));
 
@@ -45,7 +45,7 @@ public class OneTabActivity extends Fragment {
 
                 Intent addPasswordIntent = new Intent(getActivity(), AddPasswordActivity.class);
                 addPasswordIntent.putExtra("groupsList", groupsList);
-                startActivity(addPasswordIntent);
+                startActivityForResult(addPasswordIntent, 101);
 
             }
         });
@@ -80,5 +80,28 @@ public class OneTabActivity extends Fragment {
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+    }
+
+    @Override
+    public void onActivityResult(int requestCode, int resultCode, Intent data) {
+        //super.onActivityResult(requestCode, resultCode, data);
+
+        if (data == null) {return;}
+        //String name = data.getExtra("groupsList");
+
+        groupsList = (GroupsList) data.getExtras().getSerializable("groupsList");
+        if (data != null)
+        {
+            Toast.makeText(getActivity(), "Пароль успешно добавлен!", Toast.LENGTH_SHORT).show();
+        }
+
+        try {
+            JsonFilesWorker.saveToFile("database.json", groupsList);
+        } catch (IOException e)
+        {
+            e.printStackTrace();
+        }
+
+
     }
 }

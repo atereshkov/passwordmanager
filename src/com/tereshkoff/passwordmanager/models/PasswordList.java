@@ -1,9 +1,11 @@
 package com.tereshkoff.passwordmanager.models;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
-public class PasswordList {
+@SuppressWarnings("serial")
+public class PasswordList implements Serializable {
 
     private List<Password> passwordList = new ArrayList<Password>();
     private String name;

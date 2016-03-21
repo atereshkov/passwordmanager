@@ -1,5 +1,7 @@
 package com.tereshkoff.passwordmanager.models;
 
+import com.tereshkoff.passwordmanager.JsonFilesWorker;
+
 import java.util.ArrayList;
 import java.util.List;
 import java.io.Serializable;
@@ -59,6 +61,18 @@ public class GroupsList implements Serializable {
         }
 
         return passwordList;
+    }
+
+    public List<String> getGroupsNames()
+    {
+        List<String> names = new ArrayList<String>();
+
+        for(Group group : groups)
+        {
+            names.add(group.getName());
+        }
+
+        return names;
     }
 
 }

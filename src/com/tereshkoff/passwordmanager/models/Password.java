@@ -1,12 +1,15 @@
 package com.tereshkoff.passwordmanager.models;
 
-public class Password {
+import java.io.Serializable;
+
+@SuppressWarnings("serial")
+public class Password implements Serializable {
 
     private Group group;
     private String password;
     private String username;
 
-    public Password(String password, String username)
+    public Password(String username, String password)
     {
         this.password = password;
         this.username = username;

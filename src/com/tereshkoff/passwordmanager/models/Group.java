@@ -1,6 +1,9 @@
 package com.tereshkoff.passwordmanager.models;
 
-public class Group {
+import java.io.Serializable;
+
+@SuppressWarnings("serial")
+public class Group implements Serializable {
 
     private String name;
     private PasswordList passwordList = new PasswordList();
