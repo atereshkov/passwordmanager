@@ -110,8 +110,8 @@ public class JsonFilesWorker {
             for (int j = 0; j < passwordList.getPasswordList().size(); j++)
             {
                 JSONObject pw = new JSONObject();
-                pw.put("username", passwordList.getPasswordList().get(j).getUsername());
-                pw.put("password", passwordList.getPasswordList().get(j).getPassword());
+                pw.put("username", passwordList.getPasswordList().get(j).getPassword());
+                pw.put("password", passwordList.getPasswordList().get(j).getUsername());
                 pwArray.add(pw);
             }
 
