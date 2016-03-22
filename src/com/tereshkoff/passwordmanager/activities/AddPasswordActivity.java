@@ -11,6 +11,8 @@ import com.tereshkoff.passwordmanager.models.Group;
 import com.tereshkoff.passwordmanager.models.GroupsList;
 import com.tereshkoff.passwordmanager.models.Password;
 import com.tereshkoff.passwordmanager.models.PasswordList;
+import com.tereshkoff.passwordmanager.utils.Constants;
+import com.tereshkoff.passwordmanager.utils.RandomUtils;
 
 import java.util.List;
 
@@ -81,8 +83,14 @@ public class AddPasswordActivity extends Activity{
     {
         password = usernameAddEdit.getText().toString();
         username = passwordAddEdit.getText().toString();
+        Integer randomID = RandomUtils.getRandomNumber(0, Constants.MAX_RANDOM_ID);
 
-        Password newPassword = new Password(username, password);
+        if (groupsList.existsPasswordWithId(randomID))
+        {
+            randomID = RandomUtils.getRandomNumber(0, Constants.MAX_RANDOM_ID); // try to generate new random value
+        }
+
+        Password newPassword = new Password(username, password, selectedGroup, randomID);
 
         Group group = groupsList.getGroupByName(selectedGroup);
         PasswordList pwList = group.getPasswordList();

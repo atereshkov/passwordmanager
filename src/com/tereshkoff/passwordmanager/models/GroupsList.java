@@ -73,4 +73,17 @@ public class GroupsList implements Serializable {
         return names;
     }
 
+    public boolean existsPasswordWithId(Integer id)
+    {
+        PasswordList allPasswords = getAllPasswords();
+
+        for(Password pw : allPasswords.getPasswordList())
+        {
+            if (pw.getId() == id)
+                return true;
+        }
+
+        return false;
+    }
+
 }

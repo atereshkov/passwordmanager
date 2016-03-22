@@ -39,10 +39,12 @@ public class JsonFilesWorker {
                     "    \"passwords\": [\n" +
                     "      {\n" +
                     "        \"username\": \"Weiss\",\n" +
+                    "\t\t\"id\": 15192,\n" +
                     "        \"password\": \"sdfssd11312\"\n" +
                     "      },\n" +
                     "      {\n" +
                     "        \"username\": \"Williams\",\n" +
+                    "\t\t\"id\": 51231,\n" +
                     "        \"password\": \"4e324234\"\n" +
                     "      }\n" +
                     "    ]\n" +
@@ -112,6 +114,7 @@ public class JsonFilesWorker {
                 JSONObject pw = new JSONObject();
                 pw.put("username", passwordList.getPasswordList().get(j).getPassword());
                 pw.put("password", passwordList.getPasswordList().get(j).getUsername());
+                pw.put("id", passwordList.getPasswordList().get(j).getId());
                 pwArray.add(pw);
             }
 

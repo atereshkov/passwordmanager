@@ -36,7 +36,7 @@ public class OneTabActivity extends Fragment {
         floatButton = (ImageButton) V.findViewById(R.id.imageButton);
         listView1 = (ListView) V.findViewById(R.id.listView1);
 
-        //JsonFilesWorker.createDefaultBase("database.json");
+        //JsonFilesWorker.createDefaultBase("database.json");  // TODO: DELETE! THIS IS JUST FOR TEST
 
         groupsList = JsonParser.getGroupsList(JsonFilesWorker.readFile(Constants.PWDIRECTORY, Constants.DAFAULT_DBFILE_NAME));
 
