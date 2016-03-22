@@ -3,6 +3,7 @@ package com.tereshkoff.passwordmanager.activities;
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
+import android.text.method.PasswordTransformationMethod;
 import android.view.View;
 import android.widget.*;
 import com.tereshkoff.passwordmanager.R;
@@ -24,6 +25,8 @@ public class AddPasswordActivity extends Activity{
     private String password;
     private String selectedGroup;
 
+    private CheckBox showPasswordCheckBox;
+
     List<String> groupNames;
 
     @Override
@@ -33,6 +36,7 @@ public class AddPasswordActivity extends Activity{
 
         usernameAddEdit = (EditText) findViewById(R.id.usernameAddEdit);
         passwordAddEdit = (EditText) findViewById(R.id.passwordAddEdit);
+        showPasswordCheckBox = (CheckBox) findViewById(R.id.showPasswordCheckBox);
         spinner = (Spinner) findViewById(R.id.spinner);
 
         Intent i = getIntent();
@@ -53,6 +57,21 @@ public class AddPasswordActivity extends Activity{
 
             }
             public void onNothingSelected(AdapterView<?> parent) {
+            }
+        });
+
+        showPasswordCheckBox.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                if (showPasswordCheckBox.isChecked())
+                {
+                    passwordAddEdit.setTransformationMethod(null);
+                }
+                else
+                {
+                    passwordAddEdit.setTransformationMethod(new PasswordTransformationMethod());
+                }
+                passwordAddEdit.setSelection(passwordAddEdit.getText().length());
             }
         });
 

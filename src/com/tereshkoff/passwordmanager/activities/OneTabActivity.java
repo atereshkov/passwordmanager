@@ -100,7 +100,6 @@ public class OneTabActivity extends Fragment {
 
             groupsList = JsonParser.getGroupsList(JsonFilesWorker.readFile(Constants.PWDIRECTORY, Constants.DAFAULT_DBFILE_NAME));
             groupAdapter.refreshEvents(groupsList.getAllPasswords().getPasswordList());
-
         }
 
 

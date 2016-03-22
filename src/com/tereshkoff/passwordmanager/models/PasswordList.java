@@ -38,4 +38,13 @@ public class PasswordList implements Serializable {
     public Integer getCount() {
         return passwordList.size();
     }
+
+    public void remove(Password password)
+    {
+        if (passwordList.contains(password))
+        {
+            passwordList.remove(password);
+        }
+    }
+
 }
