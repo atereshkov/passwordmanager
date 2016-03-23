@@ -36,14 +36,13 @@ public class OneTabActivity extends Fragment {
         floatButton = (ImageButton) V.findViewById(R.id.imageButton);
         listView1 = (ListView) V.findViewById(R.id.listView1);
 
-        //JsonFilesWorker.createDefaultBase("database.json");  // TODO: DELETE! THIS IS JUST FOR TEST
+        //JsonFilesWorker.createDefaultBase(Constants.DAFAULT_DBFILE_NAME);  // TODO: DELETE! THIS IS JUST FOR TEST
 
         groupsList = JsonParser.getGroupsList(JsonFilesWorker.readFile(Constants.PWDIRECTORY, Constants.DAFAULT_DBFILE_NAME));
 
         floatButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                //Toast.makeText(getActivity(), JsonFilesWorker.readFile("/PWManager/", "database.json"), Toast.LENGTH_LONG).show();
 
                 Intent addPasswordIntent = new Intent(getActivity(), AddPasswordActivity.class);
                 addPasswordIntent.putExtra("groupsList", groupsList);

@@ -47,4 +47,17 @@ public class PasswordList implements Serializable {
         }
     }
 
+    public Password getPasswordById(Integer id)
+    {
+        for (Password pw : passwordList)
+        {
+            if (pw.getId() == id)
+            {
+                return pw;
+            }
+        }
+
+        return null;
+    }
+
 }

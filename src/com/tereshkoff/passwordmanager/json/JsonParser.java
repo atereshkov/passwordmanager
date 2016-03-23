@@ -29,7 +29,7 @@ public class JsonParser {
                 {
                     String groupName = group.getString("name");
                     JSONObject row = jsonPasswords.getJSONObject(z);
-                    String username = row.getString("username");
+                    String username = row.getString("username"); // error
                     String password = row.getString("password");
                     Integer id = row.getInt("id");
                     passwordList.add(new Password(username, password, groupName, id));
