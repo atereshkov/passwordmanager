@@ -5,8 +5,10 @@ import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.util.Log;
+import android.util.SparseBooleanArray;
 import android.view.*;
 import android.widget.*;
+import com.tereshkoff.passwordmanager.models.Password;
 import com.tereshkoff.passwordmanager.utils.Constants;
 import com.tereshkoff.passwordmanager.json.JsonFilesWorker;
 import com.tereshkoff.passwordmanager.json.JsonParser;
@@ -44,7 +46,7 @@ public class OneTabActivity extends Fragment {
 
                 Intent addPasswordIntent = new Intent(getActivity(), AddPasswordActivity.class);
                 addPasswordIntent.putExtra("groupsList", groupsList);
-                startActivityForResult(addPasswordIntent, 101);
+                startActivityForResult(addPasswordIntent, 0);
 
             }
         });
@@ -65,6 +67,15 @@ public class OneTabActivity extends Fragment {
             }
 
             public boolean onActionItemClicked(ActionMode mode, MenuItem item) {
+
+                SparseBooleanArray sbArray = listView1.getCheckedItemPositions();
+                for (int i = 0; i < sbArray.size(); i++) {
+                    int key = sbArray.keyAt(i);
+                    if (sbArray.get(key))
+                        Log.d("KEK", "");
+                        // if checked, do something
+                }
+
                 mode.finish();
                 return false;
             }
@@ -88,6 +99,14 @@ public class OneTabActivity extends Fragment {
                 //intent.putExtra("passwordList", groupsList.getGroupByName(parent.getItemAtPosition(position).toString()));
                 //startActivity(intent);
 
+
+
+                Intent passwordInformIntent = new Intent(getActivity(), PasswordActivity.class);
+                passwordInformIntent.putExtra("password",
+                        groupsList.getAllPasswords().getPasswordById(parent.getItemAtPosition(position).toString()));
+                passwordInformIntent.putExtra("groupsList", groupsList);
+                startActivityForResult(passwordInformIntent, 1);
+
             }
         });
 
@@ -103,28 +122,42 @@ public class OneTabActivity extends Fragment {
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
         //super.onActivityResult(requestCode, resultCode, data);
 
-        if (data == null) {return;}
-        //String name = data.getExtra("groupsList");
-
-        groupsList = (GroupsList) data.getExtras().getSerializable("groupsList");
-
-        if (data != null)
+        switch(requestCode)
         {
-            Toast.makeText(getActivity(), "Пароль успешно добавлен!", Toast.LENGTH_SHORT).show();
+            case 0:
+                if (data == null) {return;}
 
-            try
-            {
-                JsonFilesWorker.saveToFile(Constants.DAFAULT_DBFILE_NAME, groupsList);
-            }
-            catch (IOException e)
-            {
-                e.printStackTrace();
-            }
+                groupsList = (GroupsList) data.getExtras().getSerializable("groupsList");
 
-            groupsList = JsonParser.getGroupsList(JsonFilesWorker.readFile(Constants.PWDIRECTORY, Constants.DAFAULT_DBFILE_NAME));
-            groupAdapter.refreshEvents(groupsList.getAllPasswords().getPasswordList());
+                if (data != null)
+                {
+                    Toast.makeText(getActivity(), "Пароль успешно добавлен!", Toast.LENGTH_SHORT).show();
+
+                    try
+                    {
+                        JsonFilesWorker.saveToFile(Constants.DAFAULT_DBFILE_NAME, groupsList);
+                    }
+                    catch (IOException e)
+                    {
+                        e.printStackTrace();
+                    }
+
+                    groupsList = JsonParser.getGroupsList(JsonFilesWorker.readFile(Constants.PWDIRECTORY, Constants.DAFAULT_DBFILE_NAME));
+                    groupAdapter.refreshEvents(groupsList.getAllPasswords().getPasswordList());
+                }
+
+                break;
+
+            case 1:
+                if (data == null) {return;}
+                Password editedPassword = (Password) data.getExtras().getSerializable("password");
+
+                Toast.makeText(getActivity(), editedPassword.toString(), Toast.LENGTH_LONG).show();
+
+                break;
+
+
         }
-
 
     }
 

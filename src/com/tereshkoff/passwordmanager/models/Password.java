@@ -37,4 +37,13 @@ public class Password implements Serializable {
     public String getPassword() {
         return password;
     }
+
+    @Override
+    public String toString() {
+        return id.toString();
+    }
+
+    public String getGroupName() {
+        return groupName;
+    }
 }

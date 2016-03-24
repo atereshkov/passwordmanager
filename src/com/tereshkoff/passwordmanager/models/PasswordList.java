@@ -60,4 +60,18 @@ public class PasswordList implements Serializable {
         return null;
     }
 
+    public Password getPasswordById(String id)
+    {
+        int intId = Integer.parseInt(id);
+        for (Password pw : passwordList)
+        {
+            if (pw.getId() == intId)
+            {
+                return pw;
+            }
+        }
+
+        return null;
+    }
+
 }
