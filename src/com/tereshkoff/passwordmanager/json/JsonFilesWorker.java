@@ -103,8 +103,8 @@ public class JsonFilesWorker {
             for (int j = 0; j < passwordList.getPasswordList().size(); j++)
             {
                 JSONObject pw = new JSONObject();
-                pw.put("username", passwordList.getPasswordList().get(j).getPassword()); // error
-                pw.put("password", passwordList.getPasswordList().get(j).getUsername());
+                pw.put("username", passwordList.getPasswordList().get(j).getUsername());
+                pw.put("password", passwordList.getPasswordList().get(j).getPassword());
                 pw.put("id", passwordList.getPasswordList().get(j).getId());
                 pwArray.add(pw);
             }
@@ -116,22 +116,10 @@ public class JsonFilesWorker {
         }
         obj.put("groups", groups);
 
-        //FileWriter fileWriter = new FileWriter(file);
-        //fileWriter.write(obj.toJSONString());
-
         FileWriter fw = new FileWriter(file);
         BufferedWriter bw = new BufferedWriter(fw);
         bw.write(obj.toString());
         bw.close();
-    }
-
-    public GroupsList getGroupsFromFile(String str)
-    {
-        GroupsList groupsList = new GroupsList();
-
-
-
-        return groupsList;
     }
 
     public static String readFile(String directory, String filename)  //  /PWManager/

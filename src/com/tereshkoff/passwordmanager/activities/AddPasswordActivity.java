@@ -81,8 +81,8 @@ public class AddPasswordActivity extends Activity{
 
     public void addPassword(View view)
     {
-        password = usernameAddEdit.getText().toString();
-        username = passwordAddEdit.getText().toString();
+        password = passwordAddEdit.getText().toString();
+        username = usernameAddEdit.getText().toString();
         Integer randomID = RandomUtils.getRandomNumber(0, Constants.MAX_RANDOM_ID);
 
         if (groupsList.existsPasswordWithId(randomID))
