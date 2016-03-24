@@ -4,13 +4,9 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
-import android.view.LayoutInflater;
-import android.view.View;
-import android.view.ViewGroup;
-import android.widget.AdapterView;
-import android.widget.ImageButton;
-import android.widget.ListView;
-import android.widget.Toast;
+import android.util.Log;
+import android.view.*;
+import android.widget.*;
 import com.tereshkoff.passwordmanager.utils.Constants;
 import com.tereshkoff.passwordmanager.json.JsonFilesWorker;
 import com.tereshkoff.passwordmanager.json.JsonParser;
@@ -27,6 +23,8 @@ public class OneTabActivity extends Fragment {
     GroupsList groupsList;
 
     PasswordsAdapter groupAdapter;
+
+    ActionMode actionMode;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -54,6 +52,32 @@ public class OneTabActivity extends Fragment {
         groupAdapter = new PasswordsAdapter(getActivity(), android.R.layout.simple_list_item_1,
                 groupsList.getAllPasswords().getPasswordList());
         listView1.setAdapter(groupAdapter);
+
+        listView1.setChoiceMode(ListView.CHOICE_MODE_MULTIPLE_MODAL);
+        listView1.setMultiChoiceModeListener(new AbsListView.MultiChoiceModeListener() {
+            public boolean onCreateActionMode(ActionMode mode, Menu menu) {
+                mode.getMenuInflater().inflate(R.menu.actionmode, menu);
+                return true;
+            }
+
+            public boolean onPrepareActionMode(ActionMode mode, Menu menu) {
+                return false;
+            }
+
+            public boolean onActionItemClicked(ActionMode mode, MenuItem item) {
+                mode.finish();
+                return false;
+            }
+
+            public void onDestroyActionMode(ActionMode mode) {
+            }
+
+            public void onItemCheckedStateChanged(ActionMode mode,
+                                                  int position, long id, boolean checked) {
+                Log.d("LOG", "position = " + position + ", checked = "
+                        + checked);
+            }
+        });
 
         listView1.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             public void onItemClick(AdapterView<?> parent, View view,
@@ -103,4 +127,6 @@ public class OneTabActivity extends Fragment {
 
 
     }
+
+
 }

@@ -4,10 +4,15 @@
     <style name="AppTheme" parent="android:Theme.Holo.Light">
         <item name="android:actionBarStyle">@style/ActionBarTheme</item>
         <item name="android:actionMenuTextColor">@color/menu_item_white</item>
+        <item name="android:actionModeStyle">@style/MyTheme.ActionMode</item>
     </style>
 
     <style name="ActionBarTheme" parent="android:Widget.Holo.Light.ActionBar.Solid.Inverse">
         <item name="android:background">@color/action_bar</item>
+    </style>
+
+    <style name="MyTheme.ActionMode" parent="@android:style/Theme.Holo.Light">
+        <item name="android:actionModeBackground">@color/action_bar</item>
     </style>
 
 </resources>
