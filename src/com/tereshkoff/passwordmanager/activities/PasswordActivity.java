@@ -7,6 +7,7 @@ import android.text.method.PasswordTransformationMethod;
 import android.view.View;
 import android.widget.*;
 import com.tereshkoff.passwordmanager.R;
+import com.tereshkoff.passwordmanager.models.Group;
 import com.tereshkoff.passwordmanager.models.GroupsList;
 import com.tereshkoff.passwordmanager.models.Password;
 
@@ -89,6 +90,12 @@ public class PasswordActivity extends Activity {
 
     public void editPassword(View view)
     {
+        password = passwordAddEdit.getText().toString();
+        username = usernameAddEdit.getText().toString();
+        int oldID = editPassword.getId();
+
+        editPassword = new Password(username, password, selectedGroup, oldID);
+
         Intent intent = new Intent();
         intent.putExtra("password", editPassword);
 

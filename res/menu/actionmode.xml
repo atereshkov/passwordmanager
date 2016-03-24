@@ -4,7 +4,7 @@
     <item
             android:id="@+id/add"
             android:orderInCategory="1"
-            android:title="@string/action_item_edit"
+            android:title="@string/action_item_delete"
             android:showAsAction="always"
             android:actionMenuTextColor="@color/menu_item_white"/>
 

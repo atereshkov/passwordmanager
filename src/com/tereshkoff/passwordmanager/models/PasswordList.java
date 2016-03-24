@@ -74,4 +74,17 @@ public class PasswordList implements Serializable {
         return null;
     }
 
+    public void edit(Password inputPassword)
+    {
+        for (Password pw : passwordList)
+        {
+            if (pw.getId().equals(inputPassword.getId()))
+            {
+                pw = inputPassword;
+                int k = 3;
+                break;
+            }
+        }
+    }
+
 }

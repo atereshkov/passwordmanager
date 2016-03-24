@@ -99,8 +99,6 @@ public class OneTabActivity extends Fragment {
                 //intent.putExtra("passwordList", groupsList.getGroupByName(parent.getItemAtPosition(position).toString()));
                 //startActivity(intent);
 
-
-
                 Intent passwordInformIntent = new Intent(getActivity(), PasswordActivity.class);
                 passwordInformIntent.putExtra("password",
                         groupsList.getAllPasswords().getPasswordById(parent.getItemAtPosition(position).toString()));
@@ -151,8 +149,23 @@ public class OneTabActivity extends Fragment {
             case 1:
                 if (data == null) {return;}
                 Password editedPassword = (Password) data.getExtras().getSerializable("password");
+                //groupsList.getGroupByName(editedPassword.getGroupName()).getPasswordList().edit(editedPassword);
 
-                Toast.makeText(getActivity(), editedPassword.toString(), Toast.LENGTH_LONG).show();
+                // TODO: refactoring for password
+
+                Toast.makeText(getActivity(), "Пароль успешно изменен!", Toast.LENGTH_LONG).show();
+
+                try
+                {
+                    JsonFilesWorker.saveToFile(Constants.DAFAULT_DBFILE_NAME, groupsList);
+                }
+                catch (IOException e)
+                {
+                    e.printStackTrace();
+                }
+
+                groupsList = JsonParser.getGroupsList(JsonFilesWorker.readFile(Constants.PWDIRECTORY, Constants.DAFAULT_DBFILE_NAME));
+                groupAdapter.refreshEvents(groupsList.getAllPasswords().getPasswordList());
 
                 break;
 
