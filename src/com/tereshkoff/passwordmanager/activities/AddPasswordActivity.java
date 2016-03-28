@@ -2,6 +2,7 @@ package com.tereshkoff.passwordmanager.activities;
 
 import android.app.Activity;
 import android.content.Intent;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextWatcher;
@@ -14,6 +15,7 @@ import com.tereshkoff.passwordmanager.models.GroupsList;
 import com.tereshkoff.passwordmanager.models.Password;
 import com.tereshkoff.passwordmanager.models.PasswordList;
 import com.tereshkoff.passwordmanager.passwordUtils.StrengthChecker;
+import com.tereshkoff.passwordmanager.utils.ColorConstants;
 import com.tereshkoff.passwordmanager.utils.Constants;
 import com.tereshkoff.passwordmanager.utils.RandomUtils;
 
@@ -86,10 +88,37 @@ public class AddPasswordActivity extends Activity{
 
             public void afterTextChanged(Editable s) { }
 
-            public void beforeTextChanged(CharSequence s, int start, int count, int after) { }
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+                strengthBar.getProgressDrawable().setColorFilter(
+                        Color.RED, android.graphics.PorterDuff.Mode.SRC_IN);
+            }
 
             public void onTextChanged(CharSequence s, int start, int before, int count) {
                 strengthBar.setProgress(StrengthChecker.getStrength(passwordAddEdit.getText().toString()));
+
+                if (strengthBar.getProgress() > 25)
+                {
+                    strengthBar.getProgressDrawable().setColorFilter(
+                            Color.parseColor(ColorConstants.ORANGE), android.graphics.PorterDuff.Mode.SRC_IN);
+                }
+
+                if (strengthBar.getProgress() > 25)
+                {
+                    strengthBar.getProgressDrawable().setColorFilter(
+                            Color.parseColor(ColorConstants.YELLOW), android.graphics.PorterDuff.Mode.SRC_IN);
+                }
+
+                if (strengthBar.getProgress() > 50)
+                {
+                    strengthBar.getProgressDrawable().setColorFilter(
+                            Color.parseColor(ColorConstants.LIGHT_GREEN), android.graphics.PorterDuff.Mode.SRC_IN);
+                }
+
+                if (strengthBar.getProgress() > 75)
+                {
+                    strengthBar.getProgressDrawable().setColorFilter(
+                            Color.parseColor(ColorConstants.GREEN), android.graphics.PorterDuff.Mode.SRC_IN);
+                }
             }
         });
 

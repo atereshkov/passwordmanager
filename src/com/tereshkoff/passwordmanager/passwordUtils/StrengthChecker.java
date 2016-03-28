@@ -30,7 +30,7 @@ public class StrengthChecker {
             while (m.find())
                 count++;
 
-            score += ((count * (int)entry.getValue())*0.6);
+            score += ((count * (int)entry.getValue())*0.66);
         }
 
         return score;
