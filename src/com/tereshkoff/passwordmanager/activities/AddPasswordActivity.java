@@ -3,6 +3,8 @@ package com.tereshkoff.passwordmanager.activities;
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
+import android.text.Editable;
+import android.text.TextWatcher;
 import android.text.method.PasswordTransformationMethod;
 import android.view.View;
 import android.widget.*;
@@ -11,6 +13,7 @@ import com.tereshkoff.passwordmanager.models.Group;
 import com.tereshkoff.passwordmanager.models.GroupsList;
 import com.tereshkoff.passwordmanager.models.Password;
 import com.tereshkoff.passwordmanager.models.PasswordList;
+import com.tereshkoff.passwordmanager.passwordUtils.StrengthChecker;
 import com.tereshkoff.passwordmanager.utils.Constants;
 import com.tereshkoff.passwordmanager.utils.RandomUtils;
 
@@ -22,6 +25,7 @@ public class AddPasswordActivity extends Activity{
     private EditText usernameAddEdit;
     private EditText passwordAddEdit;
     private Spinner spinner;
+    private ProgressBar strengthBar;
 
     private String username;
     private String password;
@@ -39,6 +43,7 @@ public class AddPasswordActivity extends Activity{
         usernameAddEdit = (EditText) findViewById(R.id.usernameAddEdit);
         passwordAddEdit = (EditText) findViewById(R.id.passwordAddEdit);
         showPasswordCheckBox = (CheckBox) findViewById(R.id.showPasswordCheckBox);
+        strengthBar = (ProgressBar) findViewById(R.id.strengthBar);
         spinner = (Spinner) findViewById(R.id.spinner);
 
         Intent i = getIntent();
@@ -74,6 +79,17 @@ public class AddPasswordActivity extends Activity{
                     passwordAddEdit.setTransformationMethod(new PasswordTransformationMethod());
                 }
                 passwordAddEdit.setSelection(passwordAddEdit.getText().length());
+            }
+        });
+
+        passwordAddEdit.addTextChangedListener(new TextWatcher() {
+
+            public void afterTextChanged(Editable s) { }
+
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) { }
+
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+                strengthBar.setProgress(StrengthChecker.getStrength(passwordAddEdit.getText().toString()));
             }
         });
 
