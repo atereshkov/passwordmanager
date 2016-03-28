@@ -14,6 +14,7 @@ import com.tereshkoff.passwordmanager.R;
 import com.tereshkoff.passwordmanager.models.Group;
 import com.tereshkoff.passwordmanager.models.GroupsList;
 import com.tereshkoff.passwordmanager.models.Password;
+import com.tereshkoff.passwordmanager.utils.Clipboard;
 
 import java.util.List;
 
@@ -169,6 +170,11 @@ public class PasswordActivity extends Activity {
         setResult(RESULT_OK, intent);
 
         finish();
+    }
+
+    public void copyPasswordToClipboard(View view)
+    {
+        Clipboard.setClipboard(this, passwordAddEdit.getText().toString());
     }
 
 }
