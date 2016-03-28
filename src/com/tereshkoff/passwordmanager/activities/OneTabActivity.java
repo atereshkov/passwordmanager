@@ -149,7 +149,11 @@ public class OneTabActivity extends Fragment {
             case 1:
                 if (data == null) {return;}
                 Password editedPassword = (Password) data.getExtras().getSerializable("password");
-                //groupsList.getGroupByName(editedPassword.getGroupName()).getPasswordList().edit(editedPassword);
+                String oldGroup = (String) data.getExtras().getString("oldGroup");
+                groupsList.editPassword(
+                        editedPassword.getGroupName(),
+                        groupsList.getGroupByName(oldGroup).getPasswordList(),
+                        editedPassword);
 
                 // TODO: refactoring for password
 
@@ -168,7 +172,6 @@ public class OneTabActivity extends Fragment {
                 groupAdapter.refreshEvents(groupsList.getAllPasswords().getPasswordList());
 
                 break;
-
 
         }
 

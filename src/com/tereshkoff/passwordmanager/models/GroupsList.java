@@ -86,4 +86,27 @@ public class GroupsList implements Serializable {
         return false;
     }
 
+    public void editPassword(String group, PasswordList passwordList, Password inputPassword)
+    {
+        for (Password pw : passwordList.getPasswordList())
+        {
+            if (pw.getId().equals(inputPassword.getId()))
+            {
+                //pw = inputPassword;
+                passwordList.remove(pw);
+                break;
+            }
+        }
+
+        for (Group checkGroup : groups)
+        {
+            if (checkGroup.getName().equals(group))
+            {
+                PasswordList passwordList1 = checkGroup.getPasswordList();
+                passwordList1.add(inputPassword);
+            }
+        }
+
+    }
+
 }

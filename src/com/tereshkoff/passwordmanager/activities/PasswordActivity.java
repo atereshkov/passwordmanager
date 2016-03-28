@@ -84,8 +84,6 @@ public class PasswordActivity extends Activity {
         usernameAddEdit.setText(editPassword.getUsername());
         passwordAddEdit.setText(editPassword.getPassword());
 
-
-
     }
 
     public void editPassword(View view)
@@ -93,11 +91,13 @@ public class PasswordActivity extends Activity {
         password = passwordAddEdit.getText().toString();
         username = usernameAddEdit.getText().toString();
         int oldID = editPassword.getId();
+        String oldGroup = editPassword.getGroupName();
 
         editPassword = new Password(username, password, selectedGroup, oldID);
 
         Intent intent = new Intent();
         intent.putExtra("password", editPassword);
+        intent.putExtra("oldGroup", oldGroup);
 
         setResult(RESULT_OK, intent);
 
