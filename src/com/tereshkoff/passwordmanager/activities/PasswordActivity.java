@@ -133,10 +133,22 @@ public class PasswordActivity extends Activity {
         alertDialog.setPositiveButton("ДА", new DialogInterface.OnClickListener() {
             public void onClick(DialogInterface dialog,int which) {
                 //Toast.makeText(getApplicationContext(), "ДА", Toast.LENGTH_SHORT).show();
+                removePassword();
             }
         });
 
         alertDialog.show();
+    }
+
+    public void removePassword()
+    {
+        Intent intent = new Intent();
+        intent.putExtra("isToRemove", true);
+        intent.putExtra("password", editPassword);
+
+        setResult(RESULT_OK, intent);
+
+        finish();
     }
 
 }

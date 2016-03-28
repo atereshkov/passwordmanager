@@ -149,13 +149,23 @@ public class OneTabActivity extends Fragment {
             case 1:
                 if (data == null) {return;}
                 Password editedPassword = (Password) data.getExtras().getSerializable("password");
-                String oldGroup = (String) data.getExtras().getString("oldGroup");
-                groupsList.editPassword(
-                        editedPassword.getGroupName(),
-                        groupsList.getGroupByName(oldGroup).getPasswordList(),
-                        editedPassword);
+                String oldGroup = data.getExtras().getString("oldGroup");
+                Boolean toRemove = data.getExtras().getBoolean("isToRemove");
 
-                Toast.makeText(getActivity(), "Пароль успешно изменен!", Toast.LENGTH_LONG).show();
+                if (toRemove)
+                {
+                    groupsList.removePassword(editedPassword);
+                    Toast.makeText(getActivity(), "Пароль успешно удален!", Toast.LENGTH_LONG).show();
+                }
+                else
+                {
+                    groupsList.editPassword(
+                            editedPassword.getGroupName(),
+                            groupsList.getGroupByName(oldGroup).getPasswordList(),
+                            editedPassword);
+
+                    Toast.makeText(getActivity(), "Пароль успешно изменен!", Toast.LENGTH_LONG).show();
+                }
 
                 try
                 {

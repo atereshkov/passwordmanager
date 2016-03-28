@@ -106,7 +106,21 @@ public class GroupsList implements Serializable {
                 passwordList1.add(inputPassword);
             }
         }
+    }
 
+    public void removePassword(Password toRemove)
+    {
+        for (Group group : groups)
+        {
+            for(Password password : group.getPasswordList().getPasswordList())
+            {
+                if (password.getId().equals(toRemove.getId()))
+                {
+                    group.getPasswordList().getPasswordList().remove(password);
+                    break;
+                }
+            }
+        }
     }
 
 }
