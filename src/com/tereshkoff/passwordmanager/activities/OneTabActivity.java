@@ -93,11 +93,7 @@ public class OneTabActivity extends Fragment {
         listView1.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             public void onItemClick(AdapterView<?> parent, View view,
                                     int position, long id) {
-                Toast.makeText(getActivity(), parent.getItemAtPosition(position).toString(), Toast.LENGTH_SHORT).show();
-
-                //Intent intent = new Intent(getApplicationContext(), PasswordActivity.class);
-                //intent.putExtra("passwordList", groupsList.getGroupByName(parent.getItemAtPosition(position).toString()));
-                //startActivity(intent);
+                //Toast.makeText(getActivity(), parent.getItemAtPosition(position).toString(), Toast.LENGTH_SHORT).show();
 
                 Intent passwordInformIntent = new Intent(getActivity(), PasswordActivity.class);
                 passwordInformIntent.putExtra("password",
@@ -114,6 +110,7 @@ public class OneTabActivity extends Fragment {
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
     }
 
     @Override

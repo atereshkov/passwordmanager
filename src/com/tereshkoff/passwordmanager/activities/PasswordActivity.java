@@ -43,6 +43,8 @@ public class PasswordActivity extends Activity {
         showPasswordCheckBox = (CheckBox) findViewById(R.id.showPasswordCheckBox);
         spinner = (Spinner) findViewById(R.id.spinner);
 
+        getActionBar().setDisplayHomeAsUpEnabled(true);
+
         Intent i = getIntent();
         editPassword = (Password) i.getSerializableExtra("password");
         groupsList = (GroupsList) i.getSerializableExtra("groupsList");
@@ -87,10 +89,11 @@ public class PasswordActivity extends Activity {
 
         usernameAddEdit.setText(editPassword.getUsername());
         passwordAddEdit.setText(editPassword.getPassword());
+        usernameAddEdit.setSelection(usernameAddEdit.getText().length());
 
     }
 
-    public void editPassword(View view)
+    public void editPassword()
     {
         password = passwordAddEdit.getText().toString();
         username = usernameAddEdit.getText().toString();
@@ -113,6 +116,23 @@ public class PasswordActivity extends Activity {
         getMenuInflater().inflate(R.menu.password_activity_menu, menu);
 
         return true;
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId()) {
+            case android.R.id.home:
+                editPassword();
+
+                return true;
+            default:
+                return super.onOptionsItemSelected(item);
+        }
+    }
+
+    @Override
+    public void onBackPressed() {
+        editPassword();
     }
 
     public void onRemoveMenuClick(MenuItem item)
