@@ -1,6 +1,8 @@
 package com.tereshkoff.passwordmanager.activities;
 
 import android.app.Activity;
+import android.app.AlertDialog;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.text.method.PasswordTransformationMethod;
@@ -115,7 +117,26 @@ public class PasswordActivity extends Activity {
 
     public void onRemoveMenuClick(MenuItem item)
     {
+        AlertDialog.Builder alertDialog = new AlertDialog.Builder(this);
 
+        alertDialog.setTitle("Подтвердите удаление");
+        alertDialog.setMessage("Вы уверены, что хотите удалить пароль?");
+        alertDialog.setIcon(R.drawable.remove);
+
+        alertDialog.setNegativeButton("НЕТ", new DialogInterface.OnClickListener() {
+            public void onClick(DialogInterface dialog, int which) {
+                //Toast.makeText(getApplicationContext(), "НЕТ", Toast.LENGTH_SHORT).show();
+                dialog.cancel();
+            }
+        });
+
+        alertDialog.setPositiveButton("ДА", new DialogInterface.OnClickListener() {
+            public void onClick(DialogInterface dialog,int which) {
+                //Toast.makeText(getApplicationContext(), "ДА", Toast.LENGTH_SHORT).show();
+            }
+        });
+
+        alertDialog.show();
     }
 
 }
