@@ -155,8 +155,6 @@ public class OneTabActivity extends Fragment {
                         groupsList.getGroupByName(oldGroup).getPasswordList(),
                         editedPassword);
 
-                // TODO: refactoring for password
-
                 Toast.makeText(getActivity(), "Пароль успешно изменен!", Toast.LENGTH_LONG).show();
 
                 try

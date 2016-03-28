@@ -4,6 +4,8 @@ import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.text.method.PasswordTransformationMethod;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.*;
 import com.tereshkoff.passwordmanager.R;
@@ -102,6 +104,18 @@ public class PasswordActivity extends Activity {
         setResult(RESULT_OK, intent);
 
         finish();
+    }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        getMenuInflater().inflate(R.menu.password_activity_menu, menu);
+
+        return true;
+    }
+
+    public void onRemoveMenuClick(MenuItem item)
+    {
+
     }
 
 }
