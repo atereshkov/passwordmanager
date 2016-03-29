@@ -161,7 +161,7 @@ public class OneTabActivity extends Fragment {
                             groupsList.getGroupByName(oldGroup).getPasswordList(),
                             editedPassword);
 
-                    Toast.makeText(getActivity(), "Пароль успешно изменен!", Toast.LENGTH_LONG).show();
+                    Toast.makeText(getActivity(), "Данные успешно сохранены!", Toast.LENGTH_LONG).show();
                 }
 
                 try
