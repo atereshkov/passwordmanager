@@ -148,7 +148,6 @@ public class AddPasswordActivity extends Activity{
             randomID = RandomUtils.getRandomNumber(0, Constants.MAX_RANDOM_ID); // try to generate new random value
         }
 
-        //Password newPassword = new Password(username, password, selectedGroup, randomID);
         Password newPassword = new Password(username, password, selectedGroup, randomID,
                                             site, email, notes);
 

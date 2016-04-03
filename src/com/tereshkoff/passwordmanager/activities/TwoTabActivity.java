@@ -53,9 +53,11 @@ public class TwoTabActivity extends Fragment {
                                     int position, long id) {
                 Toast.makeText(getActivity(), parent.getItemAtPosition(position).toString(), Toast.LENGTH_SHORT).show();
 
-                //Intent intent = new Intent(getApplicationContext(), PasswordActivity.class);
+                Intent intent = new Intent(getActivity(), GroupPasswordsActivity.class);
                 //intent.putExtra("passwordList", groupsList.getGroupByName(parent.getItemAtPosition(position).toString()));
-                //startActivity(intent);
+                intent.putExtra("groupsList", groupsList);
+                intent.putExtra("selectedGroup", groupsList.getGroupByName(parent.getItemAtPosition(position).toString()));
+                startActivity(intent);
 
             }
         });

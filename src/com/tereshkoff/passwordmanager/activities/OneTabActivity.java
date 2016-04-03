@@ -119,7 +119,7 @@ public class OneTabActivity extends Fragment {
 
         switch(requestCode)
         {
-            case 0:
+            case 0: // for addpasword activity
                 if (data == null) {return;}
 
                 groupsList = (GroupsList) data.getExtras().getSerializable("groupsList");
@@ -143,7 +143,7 @@ public class OneTabActivity extends Fragment {
 
                 break;
 
-            case 1:
+            case 1: // for password editing activity
                 if (data == null) {return;}
                 Password editedPassword = (Password) data.getExtras().getSerializable("password");
                 String oldGroup = data.getExtras().getString("oldGroup");
