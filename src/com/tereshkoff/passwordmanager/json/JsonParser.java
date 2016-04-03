@@ -31,8 +31,12 @@ public class JsonParser {
                     JSONObject row = jsonPasswords.getJSONObject(z);
                     String username = row.getString("username");
                     String password = row.getString("password");
+                    String site = row.getString("site");
+                    String notes = row.getString("notes");
+                    String email = row.getString("email");
                     Integer id = row.getInt("id");
-                    passwordList.add(new Password(username, password, groupName, id));
+                    passwordList.add( new Password(username, password, groupName, id,
+                            site, email, notes));
                 }
 
                 groupsList.add(new Group(group.getString("name"), passwordList));

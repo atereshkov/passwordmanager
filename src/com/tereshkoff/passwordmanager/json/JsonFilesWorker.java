@@ -106,6 +106,9 @@ public class JsonFilesWorker {
                 pw.put("username", passwordList.getPasswordList().get(j).getUsername());
                 pw.put("password", passwordList.getPasswordList().get(j).getPassword());
                 pw.put("id", passwordList.getPasswordList().get(j).getId());
+                pw.put("site", passwordList.getPasswordList().get(j).getSite());
+                pw.put("notes", passwordList.getPasswordList().get(j).getNotes());
+                pw.put("email", passwordList.getPasswordList().get(j).getEmail());
                 pwArray.add(pw);
             }
 

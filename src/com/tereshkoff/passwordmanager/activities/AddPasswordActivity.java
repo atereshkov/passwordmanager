@@ -28,9 +28,15 @@ public class AddPasswordActivity extends Activity{
     private EditText passwordAddEdit;
     private Spinner spinner;
     private ProgressBar strengthBar;
+    private EditText siteAddEdit;
+    private EditText notesAddEdit;
+    private EditText emailAddEdit;
 
     private String username;
     private String password;
+    private String notes;
+    private String site;
+    private String email;
     private String selectedGroup;
 
     private CheckBox showPasswordCheckBox;
@@ -47,6 +53,9 @@ public class AddPasswordActivity extends Activity{
         showPasswordCheckBox = (CheckBox) findViewById(R.id.showPasswordCheckBox);
         strengthBar = (ProgressBar) findViewById(R.id.strengthBar);
         spinner = (Spinner) findViewById(R.id.spinner);
+        siteAddEdit = (EditText) findViewById(R.id.siteAddEdit);
+        emailAddEdit = (EditText) findViewById(R.id.emailAddEdit);
+        notesAddEdit = (EditText) findViewById(R.id.notesAddEdit);
 
         Intent i = getIntent();
         groupsList = (GroupsList) i.getSerializableExtra("groupsList");
@@ -128,6 +137,10 @@ public class AddPasswordActivity extends Activity{
     {
         password = passwordAddEdit.getText().toString();
         username = usernameAddEdit.getText().toString();
+        email = emailAddEdit.getText().toString();
+        site = siteAddEdit.getText().toString();
+        notes = notesAddEdit.getText().toString();
+
         Integer randomID = RandomUtils.getRandomNumber(0, Constants.MAX_RANDOM_ID);
 
         if (groupsList.existsPasswordWithId(randomID))
@@ -135,7 +148,9 @@ public class AddPasswordActivity extends Activity{
             randomID = RandomUtils.getRandomNumber(0, Constants.MAX_RANDOM_ID); // try to generate new random value
         }
 
-        Password newPassword = new Password(username, password, selectedGroup, randomID);
+        //Password newPassword = new Password(username, password, selectedGroup, randomID);
+        Password newPassword = new Password(username, password, selectedGroup, randomID,
+                                            site, email, notes);
 
         Group group = groupsList.getGroupByName(selectedGroup);
         PasswordList pwList = group.getPasswordList();

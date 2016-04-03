@@ -22,11 +22,17 @@ public class PasswordActivity extends Activity {
 
     private EditText usernameAddEdit;
     private EditText passwordAddEdit;
+    private EditText notesAddEdit;
+    private EditText emailAddEdit;
+    private EditText siteAddEdit;
     private Spinner spinner;
 
     private String username;
     private String password;
     private String selectedGroup;
+    private String notes;
+    private String email;
+    private String site;
 
     private Password editPassword;
     private CheckBox showPasswordCheckBox;
@@ -43,6 +49,9 @@ public class PasswordActivity extends Activity {
         passwordAddEdit = (EditText) findViewById(R.id.passwordAddEdit);
         showPasswordCheckBox = (CheckBox) findViewById(R.id.showPasswordCheckBox);
         spinner = (Spinner) findViewById(R.id.spinner);
+        notesAddEdit = (EditText) findViewById(R.id.notesAddEdit);
+        siteAddEdit = (EditText) findViewById(R.id.siteAddEdit);
+        emailAddEdit = (EditText) findViewById(R.id.emailAddEdit);
 
         getActionBar().setDisplayHomeAsUpEnabled(true);
 
@@ -66,7 +75,6 @@ public class PasswordActivity extends Activity {
                                        View itemSelected, int selectedItemPosition, long selectedId) {
 
                 selectedGroup = groupNames.get(selectedItemPosition);
-
             }
             public void onNothingSelected(AdapterView<?> parent) {
             }
@@ -91,6 +99,9 @@ public class PasswordActivity extends Activity {
         usernameAddEdit.setText(editPassword.getUsername());
         passwordAddEdit.setText(editPassword.getPassword());
         usernameAddEdit.setSelection(usernameAddEdit.getText().length());
+        notesAddEdit.setText(editPassword.getNotes());
+        emailAddEdit.setText(editPassword.getEmail());
+        siteAddEdit.setText(editPassword.getSite());
 
     }
 
@@ -98,10 +109,15 @@ public class PasswordActivity extends Activity {
     {
         password = passwordAddEdit.getText().toString();
         username = usernameAddEdit.getText().toString();
+        notes = notesAddEdit.getText().toString();
+        site = siteAddEdit.getText().toString();
+        email = emailAddEdit.getText().toString();
+
         int oldID = editPassword.getId();
         String oldGroup = editPassword.getGroupName();
 
-        editPassword = new Password(username, password, selectedGroup, oldID);
+        editPassword = new Password(username, password, selectedGroup, oldID,
+                site, email, notes);
 
         Intent intent = new Intent();
         intent.putExtra("password", editPassword);
@@ -113,7 +129,7 @@ public class PasswordActivity extends Activity {
     }
 
     @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
+    public boolean onCreateOptionsMenu(Menu menu) {  // TODO: PASSWORD ACTIVITY MENU CHANGED WITH COPY TO CLIPBOARD IMPL
         getMenuInflater().inflate(R.menu.password_activity_menu, menu);
 
         return true;

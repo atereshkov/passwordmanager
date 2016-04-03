@@ -53,7 +53,7 @@ public class MyActivity extends FragmentActivity {
         }
         catch (Exception e)
         {
-
+            e.printStackTrace();
         }
 
         Intent intent = new Intent(this, LoginActivity.class);

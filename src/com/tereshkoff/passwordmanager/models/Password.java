@@ -8,6 +8,9 @@ public class Password implements Serializable {
     private String groupName;
     private String password;
     private String username;
+    private String notes;
+    private String site;
+    private String email;
     private Integer id;
 
     public Password(String username, String password)
@@ -22,6 +25,18 @@ public class Password implements Serializable {
         this.groupName = groupName;
         this.username = username;
         this.id = id;
+    }
+
+    public Password(String username, String password, String groupName, Integer id,
+                    String site, String email, String notes)
+    {
+        this.password = password;
+        this.groupName = groupName;
+        this.username = username;
+        this.id = id;
+        this.email = email;
+        this.site = site;
+        this.notes = notes;
     }
 
     public Password() { }
@@ -45,5 +60,17 @@ public class Password implements Serializable {
 
     public String getGroupName() {
         return groupName;
+    }
+
+    public String getEmail() {
+        return email;
+    }
+
+    public String getNotes() {
+        return notes;
+    }
+
+    public String getSite() {
+        return site;
     }
 }
