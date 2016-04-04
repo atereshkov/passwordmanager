@@ -17,11 +17,13 @@ public class AES {
 
     private final String password = "test";
     private String salt;
-    private int pswdIterations = 65536  ;
+    private int pswdIterations = 65536;
     private int keySize = 256;
     private byte[] ivBytes;
 
     public String encrypt(String plainText) throws Exception {
+
+        plainText = plainText.replace("\n", "");
 
         //get salt
         salt = generateSalt();
@@ -51,6 +53,8 @@ public class AES {
 
     @SuppressWarnings("static-access")
     public String decrypt(String encryptedText) throws Exception {
+
+        encryptedText = encryptedText.replace("\n", "");
 
         byte[] saltBytes = salt.getBytes("UTF-8");
         byte[] encryptedTextBytes = Base64.decode(encryptedText, Base64.DEFAULT);

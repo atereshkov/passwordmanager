@@ -3,6 +3,7 @@ package com.tereshkoff.passwordmanager.activities;
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ImageButton;
@@ -34,6 +35,8 @@ public class GroupPasswordsActivity extends Activity {
         listView1 = (ListView) findViewById(R.id.listView1);
 
         //groupsList = JsonParser.getGroupsList(JsonFilesWorker.readFile(Constants.PWDIRECTORY, Constants.DAFAULT_DBFILE_NAME));
+
+        getActionBar().setDisplayHomeAsUpEnabled(true);
 
         Intent i = getIntent();
         groupsList = (GroupsList) i.getSerializableExtra("groupsList");
@@ -69,4 +72,21 @@ public class GroupPasswordsActivity extends Activity {
         });
 
     }
+
+    @Override
+    public void onBackPressed() {
+        finish();
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId()) {
+            case android.R.id.home:
+                finish();
+                return true;
+            default:
+                return super.onOptionsItemSelected(item);
+        }
+    }
+
 }

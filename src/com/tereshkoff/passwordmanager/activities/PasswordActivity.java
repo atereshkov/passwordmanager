@@ -6,15 +6,14 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.text.method.PasswordTransformationMethod;
-import android.view.Menu;
-import android.view.MenuItem;
-import android.view.View;
+import android.view.*;
 import android.widget.*;
 import com.tereshkoff.passwordmanager.R;
 import com.tereshkoff.passwordmanager.models.Group;
 import com.tereshkoff.passwordmanager.models.GroupsList;
 import com.tereshkoff.passwordmanager.models.Password;
 import com.tereshkoff.passwordmanager.utils.Clipboard;
+import com.tereshkoff.passwordmanager.utils.StringUtils;
 
 import java.util.List;
 
@@ -103,6 +102,20 @@ public class PasswordActivity extends Activity {
         emailAddEdit.setText(editPassword.getEmail());
         siteAddEdit.setText(editPassword.getSite());
 
+        final GestureDetector gestureDetector = new GestureDetector(this, new GestureDetector.SimpleOnGestureListener() {
+            public boolean onDoubleTap(MotionEvent e) {
+                Clipboard.setClipboard(getApplicationContext(), StringUtils.removeWhitespaces(passwordAddEdit.getText().toString()));
+                Toast.makeText(getApplicationContext(), "Пароль скопирован в буфер обмена..", Toast.LENGTH_SHORT).show();
+                return true;
+            }
+        });
+
+        passwordAddEdit.setOnTouchListener(new View.OnTouchListener() {
+            public boolean onTouch(View v, MotionEvent event) {
+                return gestureDetector.onTouchEvent(event);
+            }
+        });
+
     }
 
     public void editPassword()
@@ -188,9 +201,14 @@ public class PasswordActivity extends Activity {
         finish();
     }
 
-    public void copyPasswordToClipboard(View view)
+    public void copyPasswordToClipboard(MenuItem item)
     {
         Clipboard.setClipboard(this, passwordAddEdit.getText().toString());
+    }
+
+    public void copyUsernameToClipboard(MenuItem item)
+    {
+        Clipboard.setClipboard(this, usernameAddEdit.getText().toString());
     }
 
 }

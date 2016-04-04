@@ -21,13 +21,13 @@ public class AESEncrypter {
     private Cipher ecipher;
     private Cipher dcipher;
 
-    AESEncrypter(String passPhrase) throws Exception {
+    public AESEncrypter(String passPhrase) throws Exception {
         SecretKeyFactory factory = SecretKeyFactory.getInstance("PBKDF2WithHmacSHA1");
         KeySpec spec = new PBEKeySpec(passPhrase.toCharArray(), SALT, ITERATION_COUNT, KEY_LENGTH);
         SecretKey tmp = factory.generateSecret(spec);
         SecretKey secret = new SecretKeySpec(tmp.getEncoded(), "AES");
 
-        ecipher = Cipher.getInstance("AES/CBC/PKCS5Padding");
+        ecipher = Cipher.getInstance("AES/CBC/PKCS5Padding"); // "AES/CBC/NoPadding"
         ecipher.init(Cipher.ENCRYPT_MODE, secret);
 
         dcipher = Cipher.getInstance("AES/CBC/PKCS5Padding");
@@ -35,7 +35,12 @@ public class AESEncrypter {
         dcipher.init(Cipher.DECRYPT_MODE, secret, new IvParameterSpec(iv));
     }
 
+    // https://toster.ru/q/78500
+    // http://ru.stackoverflow.com/questions/304404/%D0%9A%D0%B0%D0%BA-%D0%B8%D1%81%D0%BF%D1%80%D0%B0%D0%B2%D0%B8%D1%82%D1%8C-%D0%BE%D1%88%D0%B8%D0%B1%D0%BA%D1%83-%D0%BF%D1%80%D0%B8-%D1%80%D0%B0%D1%81%D1%88%D0%B8%D1%84%D1%80%D0%BE%D0%B2%D0%BA%D0%B5-aes
+
     public String encrypt(String encrypt) throws Exception {
+        encrypt = encrypt.replace("\n", "");
+
         byte[] bytes = encrypt.getBytes("UTF8");
         byte[] encrypted = encrypt(bytes);
         return Base64.encodeToString(encrypted, Base64.DEFAULT);
@@ -46,7 +51,8 @@ public class AESEncrypter {
     }
 
     public String decrypt(String encrypt) throws Exception {
-        byte[] bytes = Base64.decode(encrypt, Base64.DEFAULT);;
+        encrypt = encrypt.replace("\n", "");
+        byte[] bytes = Base64.decode(encrypt, Base64.DEFAULT);
         byte[] decrypted = decrypt(bytes);
         return new String(decrypted, "UTF8");
     }

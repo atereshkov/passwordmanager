@@ -4,9 +4,13 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.FragmentActivity;
 import android.support.v4.app.FragmentTabHost;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.*;
+import com.tereshkoff.passwordmanager.AES.AES;
+import com.tereshkoff.passwordmanager.AES.AESEncrypter;
+import com.tereshkoff.passwordmanager.AES.StaticAES;
 import com.tereshkoff.passwordmanager.activities.OneTabActivity;
 import com.tereshkoff.passwordmanager.activities.TwoTabActivity;
 import com.tereshkoff.passwordmanager.login.LoginActivity;
@@ -28,16 +32,15 @@ public class MyActivity extends FragmentActivity {
         //listView1 = (ListView) findViewById(R.id.listView1);
 
         try {
-           /* AES d = new AES();
+
+            /*
+            AES d = new AES();
 
             System.out.println("Encrypted string:" + d.encrypt("Hello"));
             String encryptedText = d.encrypt("Hello");
             System.out.println("Decrypted string:" + d.decrypt(encryptedText));
 
-            textView1.setText("Encrypted string:" + encryptedText);
-            textView2.setText("Decrypted string:" + d.decrypt(encryptedText));*/
-
-            /*String message = "MESSAGE";
+            String message = "MESSAGE";
             String password = "PASSWORD";
 
             AESEncrypter encrypter = new AESEncrypter(password);
@@ -46,9 +49,7 @@ public class MyActivity extends FragmentActivity {
 
             System.out.println("Encrypt(\"" + message + "\", \"" + password + "\") = \"" + encrypted + "\"");
             System.out.println("Decrypt(\"" + encrypted + "\", \"" + password + "\") = \"" + decrypted + "\"");
-
-            textView1.setText("Encrypt(\"" + message + "\", \"" + password + "\") = \"" + encrypted + "\"");
-            textView2.setText("Decrypt(\"" + encrypted + "\", \"" + password + "\") = \"" + decrypted + "\"");*/
+            */
 
         }
         catch (Exception e)
@@ -67,6 +68,7 @@ public class MyActivity extends FragmentActivity {
         mTabHost.addTab(mTabHost.newTabSpec("tab2").setIndicator("По группам"),
                 TwoTabActivity.class, null);
 
+        StaticAES aes = new StaticAES();
 
     }
 
