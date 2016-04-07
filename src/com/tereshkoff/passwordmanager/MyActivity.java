@@ -68,7 +68,7 @@ public class MyActivity extends FragmentActivity {
         mTabHost.addTab(mTabHost.newTabSpec("tab2").setIndicator("По группам"),
                 TwoTabActivity.class, null);
 
-        StaticAES aes = new StaticAES();
+        //StaticAES aes = new StaticAES();
 
     }
 
