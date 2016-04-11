@@ -99,7 +99,7 @@ public class SyncSettings extends Activity implements AsyncResponse {
 
         if (isUserLoggedIn)
         {
-            Files();
+            //Files();
             lastSync.setText("Last sync: " + prefs.getString("lastSync", null));
         }
 
@@ -109,7 +109,7 @@ public class SyncSettings extends Activity implements AsyncResponse {
     public void Files()
     {
         ListFiles listFiles = new ListFiles(dropboxApi, DROPBOX_FILE_DIR, handler);
-        listFiles.execute(); // s
+        listFiles.execute();
     }
 
     public void Upload(View view)
