@@ -12,7 +12,8 @@
             android:id="@+id/settings"
             android:orderInCategory="1"
             android:title="@string/menu_item_settings"
-            android:showAsAction="never"/>
+            android:showAsAction="never"
+            android:onClick="openSettingsActivity"/>
 
     <item
             android:id="@+id/about"

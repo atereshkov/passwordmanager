@@ -122,8 +122,8 @@ public class LoginActivity extends Activity {
 
         //if (username.isEmpty() || !android.util.Patterns.EMAIL_ADDRESS.matcher(username).matches()) {
 
-        if (password.isEmpty() || password.length() < 4 || password.length() > 10) {
-            passwordEditText.setError("between 4 and 10 alphanumeric characters");
+        if (password.isEmpty() || password.length() < 4) {
+            passwordEditText.setError("Минимум 4 символа..");
             valid = false;
         } else {
             passwordEditText.setError(null);

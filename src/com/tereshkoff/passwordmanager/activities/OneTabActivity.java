@@ -1,7 +1,9 @@
 package com.tereshkoff.passwordmanager.activities;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.preference.PreferenceManager;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.util.Log;
@@ -27,6 +29,8 @@ public class OneTabActivity extends Fragment {
     PasswordsAdapter groupAdapter;
 
     ActionMode actionMode;
+
+    SharedPreferences sp; // settings
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,

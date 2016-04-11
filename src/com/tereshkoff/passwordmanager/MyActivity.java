@@ -1,8 +1,10 @@
 package com.tereshkoff.passwordmanager;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
 import android.os.Bundle;
+import android.preference.PreferenceManager;
 import android.support.v4.app.FragmentActivity;
 import android.support.v4.app.FragmentTabHost;
 import android.util.Log;
@@ -13,6 +15,7 @@ import com.tereshkoff.passwordmanager.AES.AES;
 import com.tereshkoff.passwordmanager.AES.AESEncrypter;
 import com.tereshkoff.passwordmanager.AES.StaticAES;
 import com.tereshkoff.passwordmanager.activities.OneTabActivity;
+import com.tereshkoff.passwordmanager.activities.PrefActivity;
 import com.tereshkoff.passwordmanager.activities.TwoTabActivity;
 import com.tereshkoff.passwordmanager.login.LoginActivity;
 import com.tereshkoff.passwordmanager.utils.Dialogs;
@@ -21,11 +24,14 @@ import com.tereshkoff.passwordmanager.utils.Dialogs;
 public class MyActivity extends FragmentActivity {
 
     private FragmentTabHost mTabHost;
+    private SharedPreferences sp;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.main);
+
+        sp = PreferenceManager.getDefaultSharedPreferences(this);
 
         try {
 
@@ -71,6 +77,11 @@ public class MyActivity extends FragmentActivity {
         getMenuInflater().inflate(R.menu.main, menu);
 
         return true;
+    }
+
+    public void openSettingsActivity(MenuItem item){
+        Intent intent = new Intent(this, PrefActivity.class);
+        startActivity(intent);
     }
 
     public void onExitClick(MenuItem item) {

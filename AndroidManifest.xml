@@ -34,6 +34,8 @@
         <activity android:name=".activities.AddGroupActivity" android:theme="@style/AppTheme" />
         <activity android:name=".activities.PasswordActivity" android:theme="@style/AppTheme" />
         <activity android:name=".activities.GroupPasswordsActivity" android:theme="@style/AppTheme" />
+        <activity android:name=".activities.PrefActivity"
+                  android:theme="@style/AppTheme" />
 
     </application>
 
