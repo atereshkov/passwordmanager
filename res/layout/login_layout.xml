@@ -25,7 +25,7 @@
     <Button
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Login"
+            android:text="Войти"
             android:id="@+id/loginButton" android:layout_gravity="center_horizontal"/>
 
     <TextView android:id="@+id/link_signup"
@@ -33,7 +33,7 @@
               android:layout_height="wrap_content"
               android:layout_marginTop="20dp"
               android:layout_marginBottom="24dp"
-              android:text="No account yet? Create one"
+              android:text="Нет аккаунта? Жми сюда!"
               android:gravity="center"
               android:textSize="16dip" android:layout_gravity="center"/>
 

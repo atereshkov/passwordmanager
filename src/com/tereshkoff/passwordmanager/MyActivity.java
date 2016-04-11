@@ -1,6 +1,7 @@
 package com.tereshkoff.passwordmanager;
 
 import android.content.Intent;
+import android.content.pm.PackageManager;
 import android.os.Bundle;
 import android.support.v4.app.FragmentActivity;
 import android.support.v4.app.FragmentTabHost;
@@ -14,12 +15,10 @@ import com.tereshkoff.passwordmanager.AES.StaticAES;
 import com.tereshkoff.passwordmanager.activities.OneTabActivity;
 import com.tereshkoff.passwordmanager.activities.TwoTabActivity;
 import com.tereshkoff.passwordmanager.login.LoginActivity;
+import com.tereshkoff.passwordmanager.utils.Dialogs;
 
 
 public class MyActivity extends FragmentActivity {
-
-    private ListView listView1;
-    private ImageButton floatButton;
 
     private FragmentTabHost mTabHost;
 
@@ -27,9 +26,6 @@ public class MyActivity extends FragmentActivity {
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.main);
-
-        //floatButton = (ImageButton) findViewById(R.id.imageButton);
-        //listView1 = (ListView) findViewById(R.id.listView1);
 
         try {
 
@@ -51,16 +47,14 @@ public class MyActivity extends FragmentActivity {
             System.out.println("Decrypt(\"" + encrypted + "\", \"" + password + "\") = \"" + decrypted + "\"");
             */
 
-        }
-        catch (Exception e)
-        {
+        } catch (Exception e) {
             e.printStackTrace();
         }
 
         Intent intent = new Intent(this, LoginActivity.class);
         startActivity(intent);
 
-        mTabHost = (FragmentTabHost)findViewById(android.R.id.tabhost); // https://code.google.com/p/android/issues/detail?id=78772
+        mTabHost = (FragmentTabHost) findViewById(android.R.id.tabhost); // https://code.google.com/p/android/issues/detail?id=78772
         mTabHost.setup(this, getSupportFragmentManager(), android.R.id.tabcontent);
 
         mTabHost.addTab(mTabHost.newTabSpec("tab1").setIndicator("Все пароли"),
@@ -72,8 +66,6 @@ public class MyActivity extends FragmentActivity {
 
     }
 
-    // (Environment.getExternalStorageDirectory().getAbsolutePath());
-
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         getMenuInflater().inflate(R.menu.main, menu);
@@ -81,8 +73,17 @@ public class MyActivity extends FragmentActivity {
         return true;
     }
 
-    public void onExitClick(MenuItem item){
+    public void onExitClick(MenuItem item) {
         finish();
+    }
+
+    public void onAboutClick(MenuItem item) throws PackageManager.NameNotFoundException {
+        String versionName = getPackageManager().getPackageInfo(getPackageName(), 0).versionName;
+
+        Dialogs.makeAlertDialog(this, "О приложении",
+                "Автор: Александр Терешков\n" +
+                        "Версия: " +versionName+"",
+                "Закрыть");
     }
 
 }

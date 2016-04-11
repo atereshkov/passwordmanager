@@ -29,17 +29,18 @@ public class TwoTabActivity extends Fragment {
                              Bundle savedInstanceState) {
         View V = inflater.inflate(R.layout.tab_two, container, false);
 
-        floatButton = (ImageButton) V.findViewById(R.id.imageButton);
+        //floatButton = (ImageButton) V.findViewById(R.id.imageButton);
         listView1 = (ListView) V.findViewById(R.id.listView1);
 
-        floatButton.setOnClickListener(new View.OnClickListener() {
+        // TODO: GROUP ADD IMPLEMENTATION
+        /*floatButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
 
                 Intent intent = new Intent(getActivity(), AddGroupActivity.class);
                 startActivity(intent);
             }
-        });
+        });*/
 
         //JsonFilesWorker.createDefaultBase("database.json");
 

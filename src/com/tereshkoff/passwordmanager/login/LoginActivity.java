@@ -32,8 +32,6 @@ public class LoginActivity extends Activity {
         loginButton = (Button) findViewById(R.id.loginButton);
         signupLink = (TextView) findViewById(R.id.link_signup);
 
-        passwordEditText.requestFocus();
-
         loginButton.setOnClickListener(new View.OnClickListener() {
 
             @Override
@@ -51,6 +49,8 @@ public class LoginActivity extends Activity {
             }
         });
 
+        passwordEditText.requestFocus();
+
     }
 
     public void login() {
@@ -66,7 +66,7 @@ public class LoginActivity extends Activity {
         final ProgressDialog progressDialog = new ProgressDialog(LoginActivity.this,
                 R.style.AppTheme);
         progressDialog.setIndeterminate(true);
-        progressDialog.setMessage("Authenticating...");
+        progressDialog.setMessage("Авторизация...");
         progressDialog.show();
 
        // String email = usernameEditText.getText().toString();
