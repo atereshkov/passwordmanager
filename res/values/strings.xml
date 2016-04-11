@@ -2,6 +2,7 @@
 <resources>
     <string name="app_name">Менеджер паролей</string>
     <string name="menu_item_add">Поиск</string>
+    <string name="menu_item_syncsettings">Синхронизация</string>
     <string name="menu_item_settings">Настройки</string>
     <string name="menu_item_about">О приложении</string>
     <string name="menu_item_exit">Выход</string>

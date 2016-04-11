@@ -16,6 +16,7 @@ import com.tereshkoff.passwordmanager.AES.AESEncrypter;
 import com.tereshkoff.passwordmanager.AES.StaticAES;
 import com.tereshkoff.passwordmanager.activities.OneTabActivity;
 import com.tereshkoff.passwordmanager.activities.PrefActivity;
+import com.tereshkoff.passwordmanager.activities.SyncSettings;
 import com.tereshkoff.passwordmanager.activities.TwoTabActivity;
 import com.tereshkoff.passwordmanager.login.LoginActivity;
 import com.tereshkoff.passwordmanager.utils.Dialogs;
@@ -97,4 +98,10 @@ public class MyActivity extends FragmentActivity {
                 "Закрыть");
     }
 
+    public void openSyncSettingsActivity(MenuItem item) {
+
+        Intent intent = new Intent(this, SyncSettings.class);
+        startActivity(intent);
+
+    }
 }

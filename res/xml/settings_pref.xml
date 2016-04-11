@@ -17,6 +17,11 @@
             android:summary="Описание..."
             android:title="Чекбокс 2">
     </CheckBoxPreference>
+    <CheckBoxPreference
+            android:key="getDeviceAdmin"
+            android:summary=""
+            android:title="Запомнить мастер-пароль">
+        </CheckBoxPreference>
     </PreferenceCategory>
 
 </PreferenceScreen>
