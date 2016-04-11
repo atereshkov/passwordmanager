@@ -89,19 +89,15 @@ public class SyncSettings extends Activity implements AsyncResponse {
             AccessTokenPair token = new AccessTokenPair(key, secret);
             session = new AndroidAuthSession(appKeyPair, ACCESS_TYPE, token);
             isAuthView.setText("Авторизация успешна.");
+            lastSync.setText("Последняя синхронизация: " + prefs.getString("lastSync", null));
             loggedIn(true);
         } else {
             session = new AndroidAuthSession(appKeyPair, ACCESS_TYPE);
-            isAuthView.setText("Авторизуйтесь, используя кнопку выше.");
+            isAuthView.setText("Авторизуйтесь, нажав на кнопку.");
+            lastSync.setText("Последняя синхронизация: " + prefs.getString("lastSync", null));
             loggedIn(false);
         }
         dropboxApi = new DropboxAPI<AndroidAuthSession>(session);
-
-        if (isUserLoggedIn)
-        {
-            //Files();
-            lastSync.setText("Last sync: " + prefs.getString("lastSync", null));
-        }
 
 
     }
@@ -132,7 +128,7 @@ public class SyncSettings extends Activity implements AsyncResponse {
             SharedPreferences.Editor editor = prefs.edit();
             editor.putString("lastSync", TimeUtils.getCurrentTimeInString());
             editor.commit();
-            lastSync.setText("Last sync: " + prefs.getString("lastSync", null));
+            lastSync.setText("Последняя синхронизация: " + prefs.getString("lastSync", null));
         }
     }
 
@@ -177,12 +173,9 @@ public class SyncSettings extends Activity implements AsyncResponse {
 
     public void loggedIn(boolean userLoggedIn) {
         isUserLoggedIn = userLoggedIn;
-        /*uploadFileBtn.setEnabled(userLoggedIn);
-        uploadFileBtn.setBackgroundColor(userLoggedIn ? Color.BLUE : Color.GRAY);
-        listFilesBtn.setEnabled(userLoggedIn);
-        listFilesBtn.setBackgroundColor(userLoggedIn ? Color.BLUE : Color.GRAY);
-        downloadFileBtn.setEnabled(userLoggedIn);
-        downloadFileBtn.setBackgroundColor(userLoggedIn ? Color.BLUE : Color.GRAY);*/
+        loginBtn.setEnabled(!userLoggedIn);
+        downloadButton.setEnabled(userLoggedIn);
+        uploadButton.setEnabled(userLoggedIn);
     }
 
     public boolean isDropboxLinked() {

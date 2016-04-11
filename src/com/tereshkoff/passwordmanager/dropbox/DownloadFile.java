@@ -40,7 +40,7 @@ public class DownloadFile extends AsyncTask<Void, Void, Boolean> {
             return true;
         } catch (Exception e) {
             System.out.println("Something went wrong: " + e);
-            Toast.makeText(context, "Failed to download file Something went wrong", Toast.LENGTH_LONG)
+            Toast.makeText(context, "Ошибка! Отсутствует интернет соединение или на сервере нет бэкапа.", Toast.LENGTH_LONG)
                     .show();
         } finally {
             if (outputStream != null) {
@@ -57,11 +57,9 @@ public class DownloadFile extends AsyncTask<Void, Void, Boolean> {
     protected void onPostExecute(Boolean result) {
         delegate.processFinish(result);
         if (result) {
-            Toast.makeText(context, "База успешно обновлена!",
-                    Toast.LENGTH_LONG).show();
+            Toast.makeText(context, "База успешно обновлена!", Toast.LENGTH_LONG).show();
         } else {
-            Toast.makeText(context, "Failed to download file", Toast.LENGTH_LONG)
-                    .show();
+            //Toast.makeText(context, "Failed to download file", Toast.LENGTH_LONG).show();
         }
     }
 
