@@ -19,6 +19,7 @@ public class UploadFile extends AsyncTask<Void, Void, Boolean> {
     private String path;
     private Context context;
     private String filename;
+    public AsyncResponse delegate = null;
 
     public UploadFile(Context context, DropboxAPI<?> dropbox,
                                String path, String filename) {
@@ -48,6 +49,7 @@ public class UploadFile extends AsyncTask<Void, Void, Boolean> {
 
     @Override
     protected void onPostExecute(Boolean result) {
+        delegate.processFinish(result);
         if (result) {
             Toast.makeText(context, "File Uploaded Sucesfully!",
                     Toast.LENGTH_LONG).show();

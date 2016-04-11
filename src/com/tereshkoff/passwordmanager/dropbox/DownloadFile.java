@@ -17,6 +17,7 @@ public class DownloadFile extends AsyncTask<Void, Void, Boolean> {
     private String path;
     private Context context;
     private String filename;
+    public AsyncResponse delegate = null;
 
     public DownloadFile(Context context, DropboxAPI<?> dropbox, String path, String filename)
     {
@@ -29,7 +30,6 @@ public class DownloadFile extends AsyncTask<Void, Void, Boolean> {
     @Override
     protected Boolean doInBackground(Void... params) {
         final File direct = new File(Environment.getExternalStorageDirectory().getAbsolutePath()+ Constants.PWDIRECTORY);
-
 
         FileOutputStream outputStream = null;
         try {
@@ -55,8 +55,9 @@ public class DownloadFile extends AsyncTask<Void, Void, Boolean> {
 
     @Override
     protected void onPostExecute(Boolean result) {
+        delegate.processFinish(result);
         if (result) {
-            Toast.makeText(context, "File Downloaded Sucesfully!",
+            Toast.makeText(context, "База успешно обновлена!",
                     Toast.LENGTH_LONG).show();
         } else {
             Toast.makeText(context, "Failed to download file", Toast.LENGTH_LONG)

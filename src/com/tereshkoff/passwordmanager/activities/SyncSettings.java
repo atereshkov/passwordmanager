@@ -19,14 +19,16 @@ import com.dropbox.client2.session.AppKeyPair;
 import com.dropbox.client2.session.Session;
 import com.dropbox.client2.session.TokenPair;
 import com.tereshkoff.passwordmanager.R;
+import com.tereshkoff.passwordmanager.dropbox.AsyncResponse;
 import com.tereshkoff.passwordmanager.dropbox.DownloadFile;
 import com.tereshkoff.passwordmanager.dropbox.ListFiles;
 import com.tereshkoff.passwordmanager.dropbox.UploadFile;
 import com.tereshkoff.passwordmanager.utils.Constants;
+import com.tereshkoff.passwordmanager.utils.TimeUtils;
 
 import java.util.ArrayList;
 
-public class SyncSettings extends Activity {
+public class SyncSettings extends Activity implements AsyncResponse {
 
     private LinearLayout container;
     private DropboxAPI<AndroidAuthSession> dropboxApi;
@@ -35,12 +37,14 @@ public class SyncSettings extends Activity {
     private Button downloadButton;
     private Button uploadButton;
     private TextView isAuthView;
+    private TextView lastSync;
 
     private final static String DROPBOX_FILE_DIR = "/HPassword/";
     private final static String DROPBOX_NAME = "dropbox_prefs";
     private final static String ACCESS_KEY = "9w8m73yj04vho5l";
     private final static String ACCESS_SECRET = "xtlw9ot6sgse4kg";
     private final static Session.AccessType ACCESS_TYPE = Session.AccessType.DROPBOX;
+    private SharedPreferences prefs;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -52,6 +56,7 @@ public class SyncSettings extends Activity {
         container = (LinearLayout) findViewById(R.id.container_files);
         downloadButton = (Button) findViewById(R.id.downloadButton);
         uploadButton = (Button) findViewById(R.id.uploadButton);
+        lastSync = (TextView) findViewById(R.id.lastSync);
 
         //noinspection ConstantConditions
         getActionBar().setDisplayHomeAsUpEnabled(true);
@@ -76,7 +81,7 @@ public class SyncSettings extends Activity {
         AppKeyPair appKeyPair = new AppKeyPair(ACCESS_KEY, ACCESS_SECRET);
 
         AndroidAuthSession session;
-        SharedPreferences prefs = getSharedPreferences(DROPBOX_NAME, 0);
+        prefs = getSharedPreferences(DROPBOX_NAME, 0);
         String key = prefs.getString(ACCESS_KEY, null);
         String secret = prefs.getString(ACCESS_SECRET, null);
 
@@ -87,14 +92,17 @@ public class SyncSettings extends Activity {
             loggedIn(true);
         } else {
             session = new AndroidAuthSession(appKeyPair, ACCESS_TYPE);
-            isAuthView.setText("NULL");
+            isAuthView.setText("Авторизуйтесь, используя кнопку выше.");
             loggedIn(false);
         }
         dropboxApi = new DropboxAPI<AndroidAuthSession>(session);
+
         if (isUserLoggedIn)
         {
             Files();
+            lastSync.setText("Last sync: " + prefs.getString("lastSync", null));
         }
+
 
     }
 
@@ -107,13 +115,25 @@ public class SyncSettings extends Activity {
     public void Upload(View view)
     {
         UploadFile uploadFile = new UploadFile(this, dropboxApi, DROPBOX_FILE_DIR, Constants.DAFAULT_DBFILE_NAME);
+        uploadFile.delegate = this;
         uploadFile.execute();
     }
 
     public void Download(View view)
     {
         DownloadFile downloadFile = new DownloadFile(this, dropboxApi, DROPBOX_FILE_DIR, Constants.DAFAULT_DBFILE_NAME);
+        downloadFile.delegate = this;
         downloadFile.execute();
+    }
+
+    public void processFinish(Boolean output){
+        if (output)
+        {
+            SharedPreferences.Editor editor = prefs.edit();
+            editor.putString("lastSync", TimeUtils.getCurrentTimeInString());
+            editor.commit();
+            lastSync.setText("Last sync: " + prefs.getString("lastSync", null));
+        }
     }
 
     @Override

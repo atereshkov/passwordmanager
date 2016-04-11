@@ -118,6 +118,13 @@ public class OneTabActivity extends Fragment {
     }
 
     @Override
+    public void onResume() {
+        super.onResume();
+        groupsList = JsonParser.getGroupsList(JsonFilesWorker.readFile(Constants.PWDIRECTORY, Constants.DAFAULT_DBFILE_NAME));
+        groupAdapter.refreshEvents(groupsList.getAllPasswords().getPasswordList());
+    }
+
+    @Override
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
         //super.onActivityResult(requestCode, resultCode, data);
 
