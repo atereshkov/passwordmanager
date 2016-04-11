@@ -52,10 +52,9 @@ public class TwoTabActivity extends Fragment {
         listView1.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             public void onItemClick(AdapterView<?> parent, View view,
                                     int position, long id) {
-                Toast.makeText(getActivity(), parent.getItemAtPosition(position).toString(), Toast.LENGTH_SHORT).show();
+                //Toast.makeText(getActivity(), parent.getItemAtPosition(position).toString(), Toast.LENGTH_SHORT).show();
 
                 Intent intent = new Intent(getActivity(), GroupPasswordsActivity.class);
-                //intent.putExtra("passwordList", groupsList.getGroupByName(parent.getItemAtPosition(position).toString()));
                 intent.putExtra("groupsList", groupsList);
                 intent.putExtra("selectedGroup", groupsList.getGroupByName(parent.getItemAtPosition(position).toString()));
                 startActivity(intent);

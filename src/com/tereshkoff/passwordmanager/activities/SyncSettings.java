@@ -19,7 +19,10 @@ import com.dropbox.client2.session.AppKeyPair;
 import com.dropbox.client2.session.Session;
 import com.dropbox.client2.session.TokenPair;
 import com.tereshkoff.passwordmanager.R;
+import com.tereshkoff.passwordmanager.dropbox.DownloadFile;
 import com.tereshkoff.passwordmanager.dropbox.ListFiles;
+import com.tereshkoff.passwordmanager.dropbox.UploadFile;
+import com.tereshkoff.passwordmanager.utils.Constants;
 
 import java.util.ArrayList;
 
@@ -29,9 +32,8 @@ public class SyncSettings extends Activity {
     private DropboxAPI<AndroidAuthSession> dropboxApi;
     private boolean isUserLoggedIn;
     private Button loginBtn;
-    private Button uploadFileBtn;
-    private Button listFilesBtn;
-    private Button downloadFileBtn;
+    private Button downloadButton;
+    private Button uploadButton;
     private TextView isAuthView;
 
     private final static String DROPBOX_FILE_DIR = "/HPassword/";
@@ -48,6 +50,11 @@ public class SyncSettings extends Activity {
         loginBtn = (Button) findViewById(R.id.loginBtn);
         isAuthView = (TextView) findViewById(R.id.isAuthView);
         container = (LinearLayout) findViewById(R.id.container_files);
+        downloadButton = (Button) findViewById(R.id.downloadButton);
+        uploadButton = (Button) findViewById(R.id.uploadButton);
+
+        //noinspection ConstantConditions
+        getActionBar().setDisplayHomeAsUpEnabled(true);
 
         loginBtn.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -66,11 +73,6 @@ public class SyncSettings extends Activity {
             }
         });
 
-        /*if (!isDropboxLinked())
-            loggedIn(false);
-        else
-            loggedIn(true);*/
-
         AppKeyPair appKeyPair = new AppKeyPair(ACCESS_KEY, ACCESS_SECRET);
 
         AndroidAuthSession session;
@@ -81,7 +83,7 @@ public class SyncSettings extends Activity {
         if (key != null && secret != null) {
             AccessTokenPair token = new AccessTokenPair(key, secret);
             session = new AndroidAuthSession(appKeyPair, ACCESS_TYPE, token);
-            isAuthView.setText("KEY != NULL +++");
+            isAuthView.setText("Авторизация успешна.");
             loggedIn(true);
         } else {
             session = new AndroidAuthSession(appKeyPair, ACCESS_TYPE);
@@ -99,7 +101,19 @@ public class SyncSettings extends Activity {
     public void Files()
     {
         ListFiles listFiles = new ListFiles(dropboxApi, DROPBOX_FILE_DIR, handler);
-        listFiles.execute();
+        listFiles.execute(); // s
+    }
+
+    public void Upload(View view)
+    {
+        UploadFile uploadFile = new UploadFile(this, dropboxApi, DROPBOX_FILE_DIR, Constants.DAFAULT_DBFILE_NAME);
+        uploadFile.execute();
+    }
+
+    public void Download(View view)
+    {
+        DownloadFile downloadFile = new DownloadFile(this, dropboxApi, DROPBOX_FILE_DIR, Constants.DAFAULT_DBFILE_NAME);
+        downloadFile.execute();
     }
 
     @Override

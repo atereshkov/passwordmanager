@@ -34,6 +34,8 @@ public class MyActivity extends FragmentActivity {
 
         sp = PreferenceManager.getDefaultSharedPreferences(this);
 
+        showLoginActivity();
+
         try {
 
             /*
@@ -57,9 +59,6 @@ public class MyActivity extends FragmentActivity {
         } catch (Exception e) {
             e.printStackTrace();
         }
-
-        Intent intent = new Intent(this, LoginActivity.class);
-        startActivity(intent);
 
         mTabHost = (FragmentTabHost) findViewById(android.R.id.tabhost); // https://code.google.com/p/android/issues/detail?id=78772
         mTabHost.setup(this, getSupportFragmentManager(), android.R.id.tabcontent);
@@ -104,4 +103,25 @@ public class MyActivity extends FragmentActivity {
         startActivity(intent);
 
     }
+
+    public void showLoginActivity()
+    {
+        Boolean masterpw = false;
+        if (sp != null)
+        {
+            masterpw = sp.getBoolean("rememberMasterPassword", false);
+        }
+        else
+        {
+            Intent intent = new Intent(this, LoginActivity.class);
+            startActivity(intent);
+        }
+
+        if (!masterpw)
+        {
+            Intent intent = new Intent(this, LoginActivity.class);
+            startActivity(intent);
+        }
+    }
+
 }

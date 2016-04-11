@@ -22,5 +22,15 @@
             android:layout_height="wrap_content"
             android:orientation="vertical" >
     </LinearLayout>
+    <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Download"
+            android:id="@+id/downloadButton" android:layout_gravity="center_horizontal" android:onClick="Download"/>
+    <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Upload"
+            android:id="@+id/uploadButton" android:layout_gravity="center_horizontal" android:onClick="Upload"/>
 
 </LinearLayout>

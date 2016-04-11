@@ -6,6 +6,7 @@ import android.os.Environment;
 import android.widget.Toast;
 import com.dropbox.client2.DropboxAPI;
 import com.dropbox.client2.exception.DropboxException;
+import com.tereshkoff.passwordmanager.utils.Constants;
 
 import java.io.File;
 import java.io.FileInputStream;
@@ -17,25 +18,24 @@ public class UploadFile extends AsyncTask<Void, Void, Boolean> {
     private DropboxAPI<?> dropbox;
     private String path;
     private Context context;
+    private String filename;
 
     public UploadFile(Context context, DropboxAPI<?> dropbox,
-                               String path) {
+                               String path, String filename) {
         this.context = context.getApplicationContext();
         this.dropbox = dropbox;
         this.path = path;
+        this.filename = filename;
     }
 
     @Override
     protected Boolean doInBackground(Void... params) {
-        final File tempDir = context.getCacheDir();
-        File tempFile;
-        FileWriter fr;
-        File direct = new File(Environment.getExternalStorageDirectory().getAbsolutePath()+ "/PWManager/");
-        File file = new File(direct, "database.json");
+        File direct = new File(Environment.getExternalStorageDirectory().getAbsolutePath()+ Constants.PWDIRECTORY);
+        File file = new File(direct, filename);
         try {
             FileInputStream fileInputStream = new FileInputStream(file);
-            dropbox.putFile(path + "database.json", fileInputStream,
-                    file.length(), null, null);
+            dropbox.putFileOverwrite(path + filename, fileInputStream,
+                    file.length(), null);
             return true;
         } catch (IOException e) {
             e.printStackTrace();
