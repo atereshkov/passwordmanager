@@ -39,6 +39,8 @@ public class PasswordActivity extends Activity {
     List<String> groupNames;
     private GroupsList groupsList;
 
+    // TODO: ADD OPEN PASSWORD URL IN BROWSER
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
