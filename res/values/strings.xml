@@ -8,4 +8,32 @@
     <string name="menu_item_exit">Выход</string>
 
     <string name="action_item_delete">Удалить</string>
+
+    <string-array name="firstLogin">
+        <item>Добро пожаловать в Менеджер паролей HPassword!</item>
+        <item>Ваши данные надежно хранятся в зашифрованном виде.</item>
+        <item>Запомните 1 пароль вместо сотни.</item>
+        <item>Ваши данные синхронизируются на сервере.</item>
+        <item>У нас нет рекламы! Приятного пользования :)</item>
+    </string-array>
+
+    <!--
+    <integer-array name="pwIcons">
+        <item></item>
+        <item></item>
+        <item></item>
+        <item></item>
+        <item></item>
+    </integer-array>
+    -->
+
+    <array name="firstLoginImages">
+        <item>@drawable/firstlogin1</item>
+        <item>@drawable/firstlogin2</item>
+        <item>@drawable/firstlogin3</item>
+        <item>@drawable/firstlogin4</item>
+        <item>@drawable/firstlogin5</item>
+    </array>
+
+
 </resources>

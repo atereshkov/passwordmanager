@@ -67,9 +67,6 @@ public class MyActivity extends FragmentActivity {
 
         //StaticAES aes = new StaticAES();
 
-        Intent intent = new Intent(this, FirstLoginActivity.class);
-        startActivity(intent);
-
     }
 
     @Override
@@ -122,6 +119,21 @@ public class MyActivity extends FragmentActivity {
             Intent intent = new Intent(this, LoginActivity.class);
             startActivity(intent);
         }
+
+        // SHOW FIRSTLOGIN ACTIVITY IF NOT VISITED BEFORE
+        SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(this);
+        boolean hasVisited = preferences.getBoolean("hasVisited", false);
+
+        if (!hasVisited)
+        {
+            Intent intent = new Intent(this, FirstLoginActivity.class);
+            startActivity(intent);
+        }
+
+        //SharedPreferences.Editor e = preferences.edit(); // for test
+        //e.putBoolean("hasVisited", false);
+        //e.commit();
+
     }
 
 }

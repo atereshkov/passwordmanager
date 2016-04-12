@@ -5,6 +5,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
+import android.widget.ImageView;
 import android.widget.TextView;
 import com.tereshkoff.passwordmanager.R;
 import com.tereshkoff.passwordmanager.models.Password;
@@ -42,6 +43,12 @@ public class PasswordsAdapter extends ArrayAdapter<Password> {
         {
             TextView tt1 = (TextView) v.findViewById(R.id.pwTitle);
             TextView tt2 = (TextView) v.findViewById(R.id.pwPass); // change
+            ImageView imgView = (ImageView) v.findViewById(R.id.ivImage); //  TODO: GET IMAGE FROM PASSWORD
+
+            if (imgView != null)
+            {
+               //imgView.setImageResource(); load from list
+            }
 
             if (tt1 != null)
             {
