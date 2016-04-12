@@ -164,5 +164,13 @@ public class AddPasswordActivity extends Activity{
 
     }
 
+    public void generateRandomPassword(View view)
+    {
+        passwordAddEdit.setText(RandomUtils.getRandomPassword(12));
+        showPasswordCheckBox.setChecked(true);
+        passwordAddEdit.setTransformationMethod(null);
+        passwordAddEdit.setSelection(passwordAddEdit.getText().length());
+    }
+
 
 }
