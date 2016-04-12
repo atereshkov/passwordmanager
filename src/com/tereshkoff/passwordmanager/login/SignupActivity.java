@@ -61,7 +61,7 @@ public class SignupActivity extends Activity {
         final ProgressDialog progressDialog = new ProgressDialog(SignupActivity.this,
                 R.style.AppTheme);
         progressDialog.setIndeterminate(true);
-        progressDialog.setMessage("Creating Account...");
+        progressDialog.setMessage("Создание аккаунта...");
         progressDialog.show();
 
         //String name = usernameEditText2.getText().toString();

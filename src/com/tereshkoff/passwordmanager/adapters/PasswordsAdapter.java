@@ -42,7 +42,7 @@ public class PasswordsAdapter extends ArrayAdapter<Password> {
         if (p != null)
         {
             TextView tt1 = (TextView) v.findViewById(R.id.pwTitle);
-            TextView tt2 = (TextView) v.findViewById(R.id.pwPass); // change to site or category
+            TextView tt2 = (TextView) v.findViewById(R.id.pwPass);
             ImageView imgView = (ImageView) v.findViewById(R.id.ivImage); //  TODO: GET IMAGE FROM PASSWORD
 
             if (imgView != null)
@@ -57,7 +57,7 @@ public class PasswordsAdapter extends ArrayAdapter<Password> {
 
             if (tt2 != null)
             {
-                tt2.setText(p.getPassword());
+                tt2.setText(p.getSite());
             }
         }
 

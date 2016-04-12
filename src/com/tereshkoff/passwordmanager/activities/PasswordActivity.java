@@ -4,6 +4,7 @@ import android.app.Activity;
 import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
 import android.text.method.PasswordTransformationMethod;
 import android.view.*;
@@ -117,6 +118,21 @@ public class PasswordActivity extends Activity {
                 return gestureDetector.onTouchEvent(event);
             }
         });
+
+        final GestureDetector gestureDetector2 = new GestureDetector(this, new GestureDetector.SimpleOnGestureListener() {
+            public boolean onDoubleTap(MotionEvent e) {
+                Intent intent= new Intent(Intent.ACTION_VIEW, Uri.parse(siteAddEdit.getText().toString()));
+                startActivity(intent);
+                return true;
+            }
+        });
+
+        siteAddEdit.setOnTouchListener(new View.OnTouchListener() {
+            public boolean onTouch(View v, MotionEvent event) {
+                return gestureDetector2.onTouchEvent(event);
+            }
+        });
+
 
     }
 
