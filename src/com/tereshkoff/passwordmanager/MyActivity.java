@@ -89,6 +89,7 @@ public class MyActivity extends FragmentActivity {
         String versionName = getPackageManager().getPackageInfo(getPackageName(), 0).versionName;
 
         Dialogs.makeAlertDialog(this, "О приложении",
+                "Менеджер паролей HPassword" +
                 "Автор: Александр Терешков\n" +
                         "Версия: " +versionName+"",
                 "Закрыть");

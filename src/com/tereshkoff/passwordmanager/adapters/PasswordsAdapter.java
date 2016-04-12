@@ -42,12 +42,12 @@ public class PasswordsAdapter extends ArrayAdapter<Password> {
         if (p != null)
         {
             TextView tt1 = (TextView) v.findViewById(R.id.pwTitle);
-            TextView tt2 = (TextView) v.findViewById(R.id.pwPass); // change
+            TextView tt2 = (TextView) v.findViewById(R.id.pwPass); // change to site or category
             ImageView imgView = (ImageView) v.findViewById(R.id.ivImage); //  TODO: GET IMAGE FROM PASSWORD
 
             if (imgView != null)
             {
-               //imgView.setImageResource(); load from list
+               //imgView.setImageResource(); load from list (resources like in firstLoginActivity)
             }
 
             if (tt1 != null)
