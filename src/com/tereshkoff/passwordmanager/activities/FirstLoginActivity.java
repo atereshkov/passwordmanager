@@ -19,4 +19,12 @@ public class FirstLoginActivity extends FragmentActivity {
         pager.setAdapter(new FirstLoginAdapter(getSupportFragmentManager()));
 
     }
+
+    @Override
+    public void onBackPressed() {
+        // disable going back to the MainActivity
+        moveTaskToBack(true);
+    }
+
+
 }

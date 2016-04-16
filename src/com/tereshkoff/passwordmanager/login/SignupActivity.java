@@ -3,14 +3,19 @@ package com.tereshkoff.passwordmanager.login;
 
 import android.app.Activity;
 import android.app.ProgressDialog;
+import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.preference.PreferenceManager;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
+import com.tereshkoff.passwordmanager.AES.UtilsEncryption;
 import com.tereshkoff.passwordmanager.R;
+import com.tereshkoff.passwordmanager.json.JsonFilesWorker;
+import com.tereshkoff.passwordmanager.utils.Constants;
 
 public class SignupActivity extends Activity {
 
@@ -29,7 +34,7 @@ public class SignupActivity extends Activity {
         //usernameEditText2 = (EditText) findViewById(R.id.usernameEditText2);
         passwordEditText2 = (EditText) findViewById(R.id.passwordEditText2);
         signupButton = (Button) findViewById(R.id.signupButton);
-        loginLink = (TextView) findViewById(R.id.link_login);
+        //loginLink = (TextView) findViewById(R.id.link_login);
 
         signupButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -38,14 +43,16 @@ public class SignupActivity extends Activity {
             }
         });
 
-        loginLink.setOnClickListener(new View.OnClickListener() {
+        /*loginLink.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 // Finish the registration screen and return to the Login activity
                 finish();
             }
-        });
+        });*/
 
+        passwordEditText2.setTransformationMethod(null);
+        passwordEditText2.setSelection(passwordEditText2.getText().length());
     }
 
     public void signup() {
@@ -64,18 +71,20 @@ public class SignupActivity extends Activity {
         progressDialog.setMessage("Создание аккаунта...");
         progressDialog.show();
 
-        //String name = usernameEditText2.getText().toString();
         String password = passwordEditText2.getText().toString();
 
-        // TODO: Implement your own signup logic here.
+        JsonFilesWorker.writeToFile(Constants.MPW_FILENAME, UtilsEncryption.encrypt(password));
 
         new android.os.Handler().postDelayed(
                 new Runnable() {
                     public void run() {
                         // On complete call either onSignupSuccess or onSignupFailed
                         // depending on success
-                        onSignupSuccess();
-                        // onSignupFailed();
+                        if (validate())
+                        {
+                            onSignupSuccess();
+                        }
+
                         progressDialog.dismiss();
                     }
                 }, 700);
@@ -85,23 +94,34 @@ public class SignupActivity extends Activity {
     public void onSignupSuccess() {
         signupButton.setEnabled(true);
         setResult(RESULT_OK, null);
+
+        SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(this); // if login success
+        SharedPreferences.Editor e = preferences.edit(); // for test
+        e.putBoolean("hasVisited", true);
+        e.commit();
+
         finish();
     }
 
     public void onSignupFailed() {
-        Toast.makeText(getBaseContext(), "Login failed", Toast.LENGTH_LONG).show();
+        Toast.makeText(getBaseContext(), "Ошибка при регистрации.", Toast.LENGTH_LONG).show();
 
         signupButton.setEnabled(true);
+    }
+
+    @Override
+    public void onBackPressed() {
+        // disable going back to the MainActivity
+        moveTaskToBack(true);
     }
 
     public boolean validate() {
         boolean valid = true;
 
-        //String name = usernameEditText2.getText().toString();
         String password = passwordEditText2.getText().toString();
 
         if (password.isEmpty() || password.length() < 4 || password.length() > 10) {
-            passwordEditText2.setError("between 4 and 10 alphanumeric characters");
+            passwordEditText2.setError("Пароль должен быть от 1 до 10 символов!");
             valid = false;
         } else {
             passwordEditText2.setError(null);

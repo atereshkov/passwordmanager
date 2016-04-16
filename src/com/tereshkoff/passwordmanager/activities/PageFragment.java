@@ -14,6 +14,7 @@ import android.widget.ImageView;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 import com.tereshkoff.passwordmanager.R;
+import com.tereshkoff.passwordmanager.login.SignupActivity;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -62,10 +63,15 @@ public class PageFragment extends Fragment {
             @Override
             public void onClick(View v) {
 
-                SharedPreferences.Editor e = preferences.edit();
+                /*SharedPreferences.Editor e = preferences.edit();
                 e.putBoolean("hasVisited", true);
                 e.commit();
-                getActivity().onBackPressed();
+                getActivity().onBackPressed();*/
+
+                getActivity().finish();
+                Intent intent = new Intent(getActivity(), SignupActivity.class);
+                startActivity(intent);
+
             }
         });
 
@@ -101,5 +107,7 @@ public class PageFragment extends Fragment {
             e.commit();
         }
     }
+
+    // TODO: BACKPRESSED DENY!
 
 }

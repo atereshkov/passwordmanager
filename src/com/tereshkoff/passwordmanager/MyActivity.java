@@ -104,31 +104,33 @@ public class MyActivity extends FragmentActivity {
 
     public void showLoginActivity()
     {
-        Boolean masterpw = false;
-        if (sp != null)
-        {
-            masterpw = sp.getBoolean("rememberMasterPassword", false);
-        }
-        else
-        {
-            Intent intent = new Intent(this, LoginActivity.class);
-            startActivity(intent);
-        }
-
-        if (!masterpw)
-        {
-            Intent intent = new Intent(this, LoginActivity.class);
-            startActivity(intent);
-        }
-
         // SHOW FIRSTLOGIN ACTIVITY IF NOT VISITED BEFORE
         SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(this);
         boolean hasVisited = preferences.getBoolean("hasVisited", false);
 
-        if (!hasVisited)
+        if (!hasVisited) // if first one
         {
             Intent intent = new Intent(this, FirstLoginActivity.class);
             startActivity(intent);
+        }
+        else // if NOT first one visited
+        {
+            Boolean masterpw = false;
+            if (sp != null)
+            {
+                masterpw = sp.getBoolean("rememberMasterPassword", false);
+            }
+            else
+            {
+                Intent intent = new Intent(this, LoginActivity.class);
+                startActivity(intent);
+            }
+
+            if (!masterpw)
+            {
+                Intent intent = new Intent(this, LoginActivity.class);
+                startActivity(intent);
+            }
         }
 
         //SharedPreferences.Editor e = preferences.edit(); // for test

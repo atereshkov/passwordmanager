@@ -13,28 +13,31 @@
     <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:textAppearance="?android:attr/textAppearanceSmall"
+            android:text="Придумайте пароль, который Вам будет легко запомнить. Его длина должна быть от 4 до 10 символов. Он будет надежно зашифрован."
+            android:id="@+id/textView13" android:layout_gravity="center_horizontal" android:layout_margin="6dp"/>
+    <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
             android:textAppearance="?android:attr/textAppearanceLarge"
             android:text="Пароль:"
-            android:id="@+id/textView3"/>
+            android:id="@+id/textView3" android:layout_marginLeft="5dp" android:layout_marginRight="5dp"/>
     <EditText
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:inputType="textPassword"
             android:ems="10"
-            android:id="@+id/passwordEditText2"/>
+            android:id="@+id/passwordEditText2" android:layout_marginLeft="5dp" android:layout_marginRight="5dp"/>
+    <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textAppearance="?android:attr/textAppearanceSmall"
+            android:text="ВНИМАНИЕ! Изменить или восстановить пароль, если Вы его забудете, невозможно!"
+            android:id="@+id/textView14" android:layout_gravity="center_horizontal" android:layout_margin="5dp"/>
     <Button
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Создать"
             android:id="@+id/signupButton" android:layout_gravity="center_horizontal"/>
-
-    <TextView android:id="@+id/link_login"
-              android:layout_width="fill_parent"
-              android:layout_height="wrap_content"
-              android:layout_marginTop="10dp"
-              android:layout_marginBottom="24dp"
-              android:text="Уже есть пароль? Войти."
-              android:gravity="center"
-              android:textSize="16dip"/>
 
 </LinearLayout>

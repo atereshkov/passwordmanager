@@ -3,14 +3,19 @@ package com.tereshkoff.passwordmanager.login;
 import android.app.Activity;
 import android.app.ProgressDialog;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.preference.PreferenceManager;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
+import com.tereshkoff.passwordmanager.AES.UtilsEncryption;
 import com.tereshkoff.passwordmanager.R;
+import com.tereshkoff.passwordmanager.json.JsonFilesWorker;
+import com.tereshkoff.passwordmanager.utils.Constants;
 
 public class LoginActivity extends Activity {
 
@@ -30,7 +35,7 @@ public class LoginActivity extends Activity {
         //usernameEditText = (EditText) findViewById(R.id.usernameEditText);
         passwordEditText = (EditText) findViewById(R.id.passwordEditText);
         loginButton = (Button) findViewById(R.id.loginButton);
-        signupLink = (TextView) findViewById(R.id.link_signup);
+        //signupLink = (TextView) findViewById(R.id.link_signup);
 
         loginButton.setOnClickListener(new View.OnClickListener() {
 
@@ -40,14 +45,14 @@ public class LoginActivity extends Activity {
             }
         });
 
-        signupLink.setOnClickListener(new View.OnClickListener() {
+        /*signupLink.setOnClickListener(new View.OnClickListener() {
 
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(getApplicationContext(), SignupActivity.class);
                 startActivityForResult(intent, REQUEST_SIGNUP);
             }
-        });
+        });*/
 
         passwordEditText.requestFocus();
 
@@ -109,7 +114,7 @@ public class LoginActivity extends Activity {
     }
 
     public void onLoginFailed() {
-        Toast.makeText(getBaseContext(), "Login failed", Toast.LENGTH_LONG).show();
+        Toast.makeText(getBaseContext(), "Ошибка при входе. Проверьте пароль!", Toast.LENGTH_LONG).show();
 
         loginButton.setEnabled(true);
     }
@@ -129,7 +134,20 @@ public class LoginActivity extends Activity {
             passwordEditText.setError(null);
         }
 
+        if (!password.equals(UtilsEncryption.decrypt(JsonFilesWorker.readFile(Constants.PWDIRECTORY, Constants.MPW_FILENAME)))) // check if password ==
+        {
+            valid = false;
+        }
+
         return valid;
+    }
+
+    public void firstLogin(View view)
+    {
+        SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(this);
+        SharedPreferences.Editor e = preferences.edit(); // for test
+        e.putBoolean("hasVisited", false);
+        e.commit();
     }
 
 }

@@ -167,4 +167,30 @@ public class JsonFilesWorker {
         return text.toString();
     }
 
+    public static void writeToFile(String filename, String text)
+    {
+        File direct = new File(Environment.getExternalStorageDirectory().getAbsolutePath() + Constants.PWDIRECTORY);
+
+        if(!direct.exists())
+        {
+            direct.mkdir();
+        }
+
+        File file = new File(direct, filename);
+
+        try {
+            FileOutputStream f = new FileOutputStream(file);
+            PrintWriter pw = new PrintWriter(f);
+            pw.println(text);
+            pw.flush();
+            pw.close();
+            f.close();
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+            Log.i("Error", "******* File not found.");
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
 }

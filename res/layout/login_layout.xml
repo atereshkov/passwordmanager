@@ -15,27 +15,25 @@
             android:layout_height="wrap_content"
             android:textAppearance="?android:attr/textAppearanceLarge"
             android:text="Пароль:"
-            android:id="@+id/textView3"/>
+            android:id="@+id/textView3" android:layout_marginLeft="5dp" android:layout_marginRight="5dp"
+            android:layout_marginTop="5dp"/>
     <EditText
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:inputType="textPassword"
             android:ems="10"
-            android:id="@+id/passwordEditText"/>
+            android:id="@+id/passwordEditText" android:layout_marginLeft="5dp" android:layout_marginRight="5dp"/>
     <Button
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Войти"
             android:id="@+id/loginButton" android:layout_gravity="center_horizontal"/>
 
-    <TextView android:id="@+id/link_signup"
-              android:layout_width="fill_parent"
-              android:layout_height="wrap_content"
-              android:layout_marginTop="20dp"
-              android:layout_marginBottom="24dp"
-              android:text="Нет аккаунта? Жми сюда!"
-              android:gravity="center"
-              android:textSize="16dip" android:layout_gravity="center"/>
+    <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="FirstLogin"
+            android:id="@+id/button2" android:layout_gravity="center_horizontal" android:onClick="firstLogin"/>
 
 
 </LinearLayout>
