@@ -22,6 +22,8 @@ public class PageFragment extends Fragment {
     private ImageView firstLoginImageView;
     private Button skipButton;
     //private ProgressBar progressBar;
+    private ImageView arrowImageView;
+    private TextView nextTextView;
 
     SharedPreferences preferences;
     String[] pagesText;
@@ -53,6 +55,8 @@ public class PageFragment extends Fragment {
         skipButton = (Button) result.findViewById(R.id.skipButton);
         firstLoginImageView = (ImageView) result.findViewById(R.id.firstLoginImageView);
         //progressBar = (ProgressBar) result.findViewById(R.id.progressBar);
+        arrowImageView = (ImageView) result.findViewById(R.id.imageView2);
+        nextTextView = (TextView) result.findViewById(R.id.textView15);
 
         preferences = PreferenceManager.getDefaultSharedPreferences(getActivity());
 
@@ -88,6 +92,8 @@ public class PageFragment extends Fragment {
         if (pageNumber+1 == 5)
         {
             skipButton.setText("Начать работу..");
+            arrowImageView.setVisibility(View.GONE);
+            nextTextView.setVisibility(View.GONE);
         }
 
         setVisited();  // if fragment the last one

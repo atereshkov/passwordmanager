@@ -15,7 +15,9 @@ import com.tereshkoff.passwordmanager.AES.AES;
 import com.tereshkoff.passwordmanager.AES.AESEncrypter;
 import com.tereshkoff.passwordmanager.AES.StaticAES;
 import com.tereshkoff.passwordmanager.activities.*;
+import com.tereshkoff.passwordmanager.json.JsonFilesWorker;
 import com.tereshkoff.passwordmanager.login.LoginActivity;
+import com.tereshkoff.passwordmanager.utils.Constants;
 import com.tereshkoff.passwordmanager.utils.Dialogs;
 
 
@@ -112,6 +114,7 @@ public class MyActivity extends FragmentActivity {
         {
             Intent intent = new Intent(this, FirstLoginActivity.class);
             startActivity(intent);
+            JsonFilesWorker.createDefaultBase(Constants.DAFAULT_DBFILE_NAME);
         }
         else // if NOT first one visited
         {

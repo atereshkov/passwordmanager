@@ -38,7 +38,6 @@ public class InputValidation {
         if (m.find())
         {
             isUrl = true;
-
         }
 
         return isUrl;
