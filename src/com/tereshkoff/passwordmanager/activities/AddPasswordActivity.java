@@ -3,6 +3,7 @@ package com.tereshkoff.passwordmanager.activities;
 import android.app.Activity;
 import android.content.Intent;
 import android.graphics.Color;
+import android.graphics.PorterDuff;
 import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextWatcher;
@@ -17,6 +18,7 @@ import com.tereshkoff.passwordmanager.models.PasswordList;
 import com.tereshkoff.passwordmanager.passwordUtils.StrengthChecker;
 import com.tereshkoff.passwordmanager.utils.ColorConstants;
 import com.tereshkoff.passwordmanager.utils.Constants;
+import com.tereshkoff.passwordmanager.utils.InputValidation;
 import com.tereshkoff.passwordmanager.utils.RandomUtils;
 
 import java.util.List;
@@ -131,6 +133,50 @@ public class AddPasswordActivity extends Activity{
             }
         });
 
+        emailAddEdit.addTextChangedListener(new TextWatcher() {
+
+            @Override
+            public void afterTextChanged(Editable s) { }
+
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) { }
+
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+
+                if(!InputValidation.isEmailValid(emailAddEdit.getText().toString()))
+                {
+                    emailAddEdit.getBackground().setColorFilter(Color.RED, PorterDuff.Mode.SRC_ATOP);
+                }
+                else
+                {
+                    emailAddEdit.getBackground().setColorFilter(Color.DKGRAY, PorterDuff.Mode.SRC_ATOP);
+                }
+            }
+        });
+
+        siteAddEdit.addTextChangedListener(new TextWatcher() {
+
+            @Override
+            public void afterTextChanged(Editable s) { }
+
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) { }
+
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+
+                if(!InputValidation.isUrlValid(siteAddEdit.getText().toString()))
+                {
+                    siteAddEdit.getBackground().setColorFilter(Color.RED, PorterDuff.Mode.SRC_ATOP);
+                }
+                else
+                {
+                    siteAddEdit.getBackground().setColorFilter(Color.DKGRAY, PorterDuff.Mode.SRC_ATOP);
+                }
+            }
+        });
+
     }
 
     public void addPassword(View view)
@@ -140,6 +186,19 @@ public class AddPasswordActivity extends Activity{
         email = emailAddEdit.getText().toString();
         site = siteAddEdit.getText().toString();
         notes = notesAddEdit.getText().toString();
+
+        if (!InputValidation.isEmailValid(email))
+        {
+            Toast.makeText(this, "Email is not valid!", Toast.LENGTH_SHORT).show();
+
+            return;
+        }
+
+        if (!InputValidation.isUrlValid(site))
+        {
+            Toast.makeText(this, "URL is not valid!", Toast.LENGTH_SHORT).show();
+            return;
+        }
 
         Integer randomID = RandomUtils.getRandomNumber(0, Constants.MAX_RANDOM_ID);
 

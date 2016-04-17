@@ -20,7 +20,7 @@
     <CheckBoxPreference
             android:key="rememberMasterPassword"
             android:summary=""
-            android:title="Запомнить мастер-пароль">
+            android:title="Не запрашивать мастер-пароль">
         </CheckBoxPreference>
     </PreferenceCategory>
 
