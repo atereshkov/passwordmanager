@@ -9,10 +9,7 @@ import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Button;
-import android.widget.ImageView;
-import android.widget.ProgressBar;
-import android.widget.TextView;
+import android.widget.*;
 import com.tereshkoff.passwordmanager.R;
 import com.tereshkoff.passwordmanager.login.SignupActivity;
 
@@ -24,7 +21,7 @@ public class PageFragment extends Fragment {
     private int pageNumber;
     private ImageView firstLoginImageView;
     private Button skipButton;
-    private ProgressBar progressBar;
+    //private ProgressBar progressBar;
 
     SharedPreferences preferences;
     String[] pagesText;
@@ -55,7 +52,7 @@ public class PageFragment extends Fragment {
 
         skipButton = (Button) result.findViewById(R.id.skipButton);
         firstLoginImageView = (ImageView) result.findViewById(R.id.firstLoginImageView);
-        progressBar = (ProgressBar) result.findViewById(R.id.progressBar);
+        //progressBar = (ProgressBar) result.findViewById(R.id.progressBar);
 
         preferences = PreferenceManager.getDefaultSharedPreferences(getActivity());
 
@@ -85,8 +82,8 @@ public class PageFragment extends Fragment {
         firstLoginImageView.setImageResource(pagesImg.get(pageNumber));
         pageHeader.setText(pagesText[pageNumber]); // set text from strings massive
 
-        progressBar.setMax(5);
-        progressBar.setProgress(pageNumber+1);
+        //progressBar.setMax(5);
+        //progressBar.setProgress(pageNumber+1);
 
         if (pageNumber+1 == 5)
         {
@@ -107,7 +104,4 @@ public class PageFragment extends Fragment {
             e.commit();
         }
     }
-
-    // TODO: BACKPRESSED DENY!
-
 }
