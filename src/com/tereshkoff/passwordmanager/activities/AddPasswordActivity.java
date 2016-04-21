@@ -8,6 +8,7 @@ import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextWatcher;
 import android.text.method.PasswordTransformationMethod;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.*;
 import com.tereshkoff.passwordmanager.R;
@@ -63,6 +64,8 @@ public class AddPasswordActivity extends Activity{
         groupsList = (GroupsList) i.getSerializableExtra("groupsList");
 
         groupNames = groupsList.getGroupsNames();
+
+        getActionBar().setDisplayHomeAsUpEnabled(true);
 
         ArrayAdapter<?> adapter = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_item, groupNames);
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
@@ -229,6 +232,19 @@ public class AddPasswordActivity extends Activity{
         showPasswordCheckBox.setChecked(true);
         passwordAddEdit.setTransformationMethod(null);
         passwordAddEdit.setSelection(passwordAddEdit.getText().length());
+    }
+
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId()) {
+            case android.R.id.home:
+                finish();
+
+                return true;
+            default:
+                return super.onOptionsItemSelected(item);
+        }
     }
 
 

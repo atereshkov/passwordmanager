@@ -24,6 +24,8 @@ public class TwoTabActivity extends Fragment {
     private ImageButton floatButton;
     GroupsList groupsList;
 
+    GroupAdapter groupAdapter;
+
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
@@ -46,7 +48,7 @@ public class TwoTabActivity extends Fragment {
 
         groupsList = JsonParser.getGroupsList(JsonFilesWorker.readFile(Constants.PWDIRECTORY, Constants.DAFAULT_DBFILE_NAME));
 
-        GroupAdapter groupAdapter = new GroupAdapter(getActivity(), android.R.layout.simple_list_item_1, groupsList.getGroups());
+        groupAdapter = new GroupAdapter(getActivity(), android.R.layout.simple_list_item_1, groupsList.getGroups());
         listView1.setAdapter(groupAdapter);
 
         listView1.setOnItemClickListener(new AdapterView.OnItemClickListener() {
@@ -65,4 +67,12 @@ public class TwoTabActivity extends Fragment {
         return V;
     }
 
+    @Override
+    public void onResume() {
+        super.onResume();
+
+        groupsList = JsonParser.getGroupsList(JsonFilesWorker.readFile(Constants.PWDIRECTORY, Constants.DAFAULT_DBFILE_NAME));
+        groupAdapter.refreshEvents(groupsList.getGroups());
+
+    }
 }

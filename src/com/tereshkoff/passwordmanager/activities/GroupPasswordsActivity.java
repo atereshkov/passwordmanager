@@ -8,6 +8,7 @@ import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ImageButton;
 import android.widget.ListView;
+import android.widget.Toast;
 import com.tereshkoff.passwordmanager.R;
 import com.tereshkoff.passwordmanager.adapters.PasswordsAdapter;
 import com.tereshkoff.passwordmanager.json.JsonFilesWorker;
@@ -16,6 +17,8 @@ import com.tereshkoff.passwordmanager.models.Group;
 import com.tereshkoff.passwordmanager.models.GroupsList;
 import com.tereshkoff.passwordmanager.models.Password;
 import com.tereshkoff.passwordmanager.utils.Constants;
+
+import java.io.IOException;
 
 public class GroupPasswordsActivity extends Activity {
 
@@ -42,16 +45,17 @@ public class GroupPasswordsActivity extends Activity {
         groupsList = (GroupsList) i.getSerializableExtra("groupsList");
         selectedGroup = (Group) i.getSerializableExtra("selectedGroup");
 
-        /*floatButton.setOnClickListener(new View.OnClickListener() {
+        floatButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
 
-                Intent addPasswordIntent = new Intent(this, AddPasswordActivity.class);
+                Intent addPasswordIntent = new Intent(getApplicationContext(), AddPasswordActivity.class);
                 addPasswordIntent.putExtra("groupsList", groupsList);
+
                 startActivityForResult(addPasswordIntent, 0);
 
             }
-        });*/
+        });
 
         groupAdapter = new PasswordsAdapter(this, android.R.layout.simple_list_item_1,
                 selectedGroup.getPasswordList().getPasswordList());
@@ -88,5 +92,80 @@ public class GroupPasswordsActivity extends Activity {
                 return super.onOptionsItemSelected(item);
         }
     }
+
+    @Override
+    public void onActivityResult(int requestCode, int resultCode, Intent data) {
+        //super.onActivityResult(requestCode, resultCode, data);
+
+        switch(requestCode)
+        {
+            case 0: // for addpasword activity
+                if (data == null) {return;}
+
+                groupsList = (GroupsList) data.getExtras().getSerializable("groupsList");
+
+                if (data != null)
+                {
+                    Toast.makeText(getApplicationContext(), "Пароль успешно добавлен в группу " + selectedGroup.getName(),
+                            Toast.LENGTH_SHORT).show();
+
+                    try
+                    {
+                        JsonFilesWorker.saveToFile(Constants.DAFAULT_DBFILE_NAME, groupsList);
+                    }
+                    catch (IOException e)
+                    {
+                        e.printStackTrace();
+                    }
+
+                    groupsList = JsonParser.getGroupsList(JsonFilesWorker.readFile(Constants.PWDIRECTORY, Constants.DAFAULT_DBFILE_NAME));
+                    groupAdapter.refreshEvents(selectedGroup.getPasswordList().getPasswordList());
+                    //groupAdapter = new PasswordsAdapter(this, android.R.layout.simple_list_item_1,
+                            //selectedGroup.getPasswordList().getPasswordList());
+                    finish();
+                }
+
+                break;
+
+            case 1: // for password editing activity (if del)
+                if (data == null) {return;}
+                Password editedPassword = (Password) data.getExtras().getSerializable("password");
+                String oldGroup = data.getExtras().getString("oldGroup");
+                Boolean toRemove = data.getExtras().getBoolean("isToRemove");
+
+                if (toRemove)
+                {
+                    groupsList.removePassword(editedPassword);
+                    Toast.makeText(getApplicationContext(), "Пароль успешно удален!", Toast.LENGTH_LONG).show();
+                }
+                else
+                {
+                    groupsList.editPassword(
+                            editedPassword.getGroupName(),
+                            groupsList.getGroupByName(oldGroup).getPasswordList(),
+                            editedPassword);
+
+                    //Toast.makeText(getActivity(), "Пароль изменен!", Toast.LENGTH_SHORT).show();
+                }
+
+                try
+                {
+                    JsonFilesWorker.saveToFile(Constants.DAFAULT_DBFILE_NAME, groupsList);
+                }
+                catch (IOException e)
+                {
+                    e.printStackTrace();
+                }
+
+                groupsList = JsonParser.getGroupsList(JsonFilesWorker.readFile(Constants.PWDIRECTORY, Constants.DAFAULT_DBFILE_NAME));
+                groupAdapter.refreshEvents(groupsList.getAllPasswords().getPasswordList());
+                finish();
+
+                break;
+
+        }
+
+    }
+
 
 }

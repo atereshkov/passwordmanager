@@ -14,12 +14,15 @@ import java.util.List;
 
 public class GroupAdapter extends ArrayAdapter<Group> {
 
+    List<Group> items;
+
     public GroupAdapter(Context context, int textViewResourceId) {
         super(context, textViewResourceId);
     }
 
     public GroupAdapter(Context context, int resource, List<Group> items) {
         super(context, resource, items);
+        this.items = items;
     }
 
     @Override
@@ -54,6 +57,13 @@ public class GroupAdapter extends ArrayAdapter<Group> {
         }
 
         return v;
+    }
+
+    public void refreshEvents(List<Group> items)
+    {
+        this.items.clear();
+        this.items.addAll(items);
+        notifyDataSetChanged();
     }
 
 }
