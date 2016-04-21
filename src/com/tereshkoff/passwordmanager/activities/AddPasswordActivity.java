@@ -41,6 +41,7 @@ public class AddPasswordActivity extends Activity{
     private String site;
     private String email;
     private String selectedGroup;
+    private String addToGroup;
 
     private CheckBox showPasswordCheckBox;
 
@@ -62,6 +63,7 @@ public class AddPasswordActivity extends Activity{
 
         Intent i = getIntent();
         groupsList = (GroupsList) i.getSerializableExtra("groupsList");
+        addToGroup = i.getStringExtra("addToGroup");
 
         groupNames = groupsList.getGroupsNames();
 
@@ -71,6 +73,8 @@ public class AddPasswordActivity extends Activity{
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
 
         spinner.setAdapter(adapter);
+
+        spinner.setSelection(groupNames.indexOf(addToGroup));
 
         spinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             public void onItemSelected(AdapterView<?> parent,

@@ -51,7 +51,7 @@ public class GroupPasswordsActivity extends Activity {
 
                 Intent addPasswordIntent = new Intent(getApplicationContext(), AddPasswordActivity.class);
                 addPasswordIntent.putExtra("groupsList", groupsList);
-
+                addPasswordIntent.putExtra("addToGroup", selectedGroup.toString());
                 startActivityForResult(addPasswordIntent, 0);
 
             }
