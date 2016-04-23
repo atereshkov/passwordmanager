@@ -2,12 +2,14 @@ package com.tereshkoff.passwordmanager.login;
 
 import android.app.Activity;
 import android.app.ProgressDialog;
+import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
 import android.util.Log;
 import android.view.View;
+import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
@@ -56,6 +58,24 @@ public class LoginActivity extends Activity {
 
         passwordEditText.requestFocus();
 
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+
+        passwordEditText.requestFocus();
+
+        passwordEditText.postDelayed(new Runnable() {
+
+            @Override
+            public void run() {
+                // TODO Auto-generated method stub
+                InputMethodManager keyboard = (InputMethodManager)
+                        getSystemService(Context.INPUT_METHOD_SERVICE);
+                keyboard.showSoftInput(passwordEditText, 0);
+            }
+        }, 200);
     }
 
     public void login() {

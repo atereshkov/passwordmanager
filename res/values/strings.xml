@@ -35,5 +35,16 @@
         <item>@drawable/firstlogin5</item>
     </array>
 
+    <array name="groupImages">
+        <item>@drawable/social_group</item>
+        <item>@drawable/email_group</item>
+        <item>@drawable/sites_group</item>
+        <item>@drawable/pc_group</item>
+        <item>@drawable/pin_group</item>
+        <item>@drawable/wifi_group</item>
+        <item>@drawable/other_group</item>
+    </array>
+
+
 
 </resources>

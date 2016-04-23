@@ -7,6 +7,7 @@ public class Group implements Serializable {
 
     private String name;
     private PasswordList passwordList = new PasswordList();
+    private Integer imageIndex;
 
     public Group(String name) {
         this.name = name;
@@ -35,5 +36,13 @@ public class Group implements Serializable {
 
     public PasswordList getPasswordList() {
         return passwordList;
+    }
+
+    public Integer getImageIndex() {
+        return imageIndex;
+    }
+
+    public void setImageIndex(Integer imageIndex) {
+        this.imageIndex = imageIndex;
     }
 }

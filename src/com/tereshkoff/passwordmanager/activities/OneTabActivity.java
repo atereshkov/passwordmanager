@@ -108,6 +108,8 @@ public class OneTabActivity extends Fragment {
             }
         });
 
+        groupsList.setImageIndexes();
+
         return V;
     }
 

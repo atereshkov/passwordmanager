@@ -123,4 +123,15 @@ public class GroupsList implements Serializable {
         }
     }
 
+    public void setImageIndexes()
+    {
+        Integer g = 0;
+        for(Group group : groups)
+        {
+            group.setImageIndex(g);
+            g++;
+        }
+
+    }
+
 }

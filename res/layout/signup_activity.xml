@@ -20,7 +20,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:textAppearance="?android:attr/textAppearanceLarge"
-            android:text="Пароль:"
+            android:text="Пароль на вход в приложение:"
             android:id="@+id/textView3" android:layout_marginLeft="5dp" android:layout_marginRight="5dp"/>
     <EditText
             android:layout_width="match_parent"

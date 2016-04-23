@@ -27,7 +27,7 @@
             </intent-filter>
         </activity>
 
-        <activity android:name=".login.LoginActivity" android:theme="@style/AppTheme" />
+        <activity android:name=".login.LoginActivity" android:theme="@style/AppTheme"  />
         <activity android:name=".login.SignupActivity" android:theme="@style/AppTheme" />
         // TODO: need a tabs fragment activities?
         <activity android:name=".activities.AddPasswordActivity" android:theme="@style/AppTheme" />
