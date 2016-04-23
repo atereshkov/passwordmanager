@@ -24,6 +24,7 @@ import com.tereshkoff.passwordmanager.dropbox.AsyncResponse;
 import com.tereshkoff.passwordmanager.dropbox.DownloadFile;
 import com.tereshkoff.passwordmanager.dropbox.ListFiles;
 import com.tereshkoff.passwordmanager.dropbox.UploadFile;
+import com.tereshkoff.passwordmanager.utils.ConnectionDetector;
 import com.tereshkoff.passwordmanager.utils.Constants;
 import com.tereshkoff.passwordmanager.utils.TimeUtils;
 
@@ -122,16 +123,34 @@ public class SyncSettings extends Activity implements AsyncResponse {
 
     public void Upload(View view)
     {
-        UploadFile uploadFile = new UploadFile(this, dropboxApi, DROPBOX_FILE_DIR, Constants.DAFAULT_DBFILE_NAME);
-        uploadFile.delegate = this;
-        uploadFile.execute();
+        ConnectionDetector connectionDetector = new ConnectionDetector(this);
+
+        if (connectionDetector.checkInternetConnection())
+        {
+            UploadFile uploadFile = new UploadFile(this, dropboxApi, DROPBOX_FILE_DIR, Constants.DAFAULT_DBFILE_NAME);
+            uploadFile.delegate = this;
+            uploadFile.execute();
+        }
+        else {
+            Toast.makeText(this, "Проверьте соединение с интернетом!",
+                    Toast.LENGTH_SHORT).show();
+        }
     }
 
     public void Download(View view)
     {
-        DownloadFile downloadFile = new DownloadFile(this, dropboxApi, DROPBOX_FILE_DIR, Constants.DAFAULT_DBFILE_NAME);
-        downloadFile.delegate = this;
-        downloadFile.execute();
+        ConnectionDetector connectionDetector = new ConnectionDetector(this);
+
+        if (connectionDetector.checkInternetConnection())
+        {
+            DownloadFile downloadFile = new DownloadFile(this, dropboxApi, DROPBOX_FILE_DIR, Constants.DAFAULT_DBFILE_NAME);
+            downloadFile.delegate = this;
+            downloadFile.execute();
+        }
+        else {
+            Toast.makeText(this, "Проверьте соединение с интернетом!",
+                    Toast.LENGTH_SHORT).show();
+        }
     }
 
     public void processFinish(Boolean output){

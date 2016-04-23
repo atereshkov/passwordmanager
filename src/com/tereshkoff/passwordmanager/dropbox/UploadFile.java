@@ -51,7 +51,7 @@ public class UploadFile extends AsyncTask<Void, Void, Boolean> {
     protected void onPostExecute(Boolean result) {
         delegate.processFinish(result);
         if (result) {
-            Toast.makeText(context, "File Uploaded Sucesfully!",
+            Toast.makeText(context, "База успешно загружена на сервер!",
                     Toast.LENGTH_LONG).show();
         } else {
             Toast.makeText(context, "Failed to upload file", Toast.LENGTH_LONG)
