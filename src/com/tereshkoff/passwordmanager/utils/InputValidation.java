@@ -20,7 +20,11 @@ public class InputValidation {
         if (m.find())
         {
             isEmail = true;
+        }
 
+        if (emailAddress.isEmpty())
+        {
+            return true;
         }
 
         return isEmail;
@@ -38,6 +42,11 @@ public class InputValidation {
         if (m.find())
         {
             isUrl = true;
+        }
+
+        if (URL.isEmpty())
+        {
+            return true;
         }
 
         return isUrl;

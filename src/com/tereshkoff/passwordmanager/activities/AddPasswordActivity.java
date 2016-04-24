@@ -34,6 +34,9 @@ public class AddPasswordActivity extends Activity{
     private EditText siteAddEdit;
     private EditText notesAddEdit;
     private EditText emailAddEdit;
+    private TextView notesTextView;
+    private TextView emailTextView;
+    private TextView siteTextView;
 
     private String username;
     private String password;
@@ -60,6 +63,9 @@ public class AddPasswordActivity extends Activity{
         siteAddEdit = (EditText) findViewById(R.id.siteAddEdit);
         emailAddEdit = (EditText) findViewById(R.id.emailAddEdit);
         notesAddEdit = (EditText) findViewById(R.id.notesAddEdit);
+        notesTextView = (TextView) findViewById(R.id.notesTextView);
+        siteTextView = (TextView) findViewById(R.id.siteTextView);
+        emailTextView = (TextView) findViewById(R.id.emailTextView);
 
         Intent i = getIntent();
         groupsList = (GroupsList) i.getSerializableExtra("groupsList");
@@ -81,6 +87,8 @@ public class AddPasswordActivity extends Activity{
                                        View itemSelected, int selectedItemPosition, long selectedId) {
 
                 selectedGroup = groupNames.get(selectedItemPosition);
+
+                hideElements(selectedItemPosition);
 
             }
             public void onNothingSelected(AdapterView<?> parent) {
@@ -196,14 +204,14 @@ public class AddPasswordActivity extends Activity{
 
         if (!InputValidation.isEmailValid(email))
         {
-            Toast.makeText(this, "Email is not valid!", Toast.LENGTH_SHORT).show();
+            Toast.makeText(this, "Проверьте правильность введенного Email", Toast.LENGTH_SHORT).show();
 
             return;
         }
 
         if (!InputValidation.isUrlValid(site))
         {
-            Toast.makeText(this, "URL is not valid!", Toast.LENGTH_SHORT).show();
+            Toast.makeText(this, "Проверьте правильность ссылки на сайт", Toast.LENGTH_SHORT).show();
             return;
         }
 
@@ -236,6 +244,56 @@ public class AddPasswordActivity extends Activity{
         showPasswordCheckBox.setChecked(true);
         passwordAddEdit.setTransformationMethod(null);
         passwordAddEdit.setSelection(passwordAddEdit.getText().length());
+    }
+
+    private void hideElements(int selectedItemPosition)
+    {
+        switch(selectedItemPosition)
+        {
+            case 0: // Social
+                siteAddEdit.setVisibility(View.VISIBLE);
+                emailAddEdit.setVisibility(View.VISIBLE);
+                siteTextView.setVisibility(View.VISIBLE);
+                emailTextView.setVisibility(View.VISIBLE);
+                break;
+            case 1: // Email
+                siteAddEdit.setVisibility(View.VISIBLE);
+                emailAddEdit.setVisibility(View.VISIBLE);
+                siteTextView.setVisibility(View.VISIBLE);
+                emailTextView.setVisibility(View.VISIBLE);
+                break;
+            case 2: // WebSites
+                siteAddEdit.setVisibility(View.VISIBLE);
+                emailAddEdit.setVisibility(View.VISIBLE);
+                siteTextView.setVisibility(View.VISIBLE);
+                emailTextView.setVisibility(View.VISIBLE);
+                break;
+            case 3: // PC
+                siteAddEdit.setVisibility(View.GONE);
+                emailAddEdit.setVisibility(View.GONE);
+                siteTextView.setVisibility(View.GONE);
+                emailTextView.setVisibility(View.GONE);
+                break;
+            case 4: // PIN-CODE
+                siteAddEdit.setVisibility(View.GONE);
+                emailAddEdit.setVisibility(View.GONE);
+                siteTextView.setVisibility(View.GONE);
+                emailTextView.setVisibility(View.GONE);
+
+                break;
+            case 5: // Wi-Fi
+                siteAddEdit.setVisibility(View.GONE);
+                emailAddEdit.setVisibility(View.GONE);
+                siteTextView.setVisibility(View.GONE);
+                emailTextView.setVisibility(View.GONE);
+                break;
+            case 6: // Other
+                siteAddEdit.setVisibility(View.VISIBLE);
+                emailAddEdit.setVisibility(View.VISIBLE);
+                siteTextView.setVisibility(View.VISIBLE);
+                emailTextView.setVisibility(View.VISIBLE);
+                break;
+        }
     }
 
 

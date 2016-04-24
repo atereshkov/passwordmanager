@@ -4,6 +4,7 @@ import android.app.Activity;
 import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.media.Image;
 import android.net.Uri;
 import android.os.Bundle;
 import android.text.method.PasswordTransformationMethod;
@@ -26,6 +27,11 @@ public class PasswordActivity extends Activity {
     private EditText emailAddEdit;
     private EditText siteAddEdit;
     private Spinner spinner;
+    private TextView notesTextView;
+    private TextView emailTextView;
+    private TextView siteTextView;
+    private ImageView emailImageView;
+    private ImageView siteImageView;
 
     private String username;
     private String password;
@@ -54,6 +60,11 @@ public class PasswordActivity extends Activity {
         notesAddEdit = (EditText) findViewById(R.id.notesAddEdit);
         siteAddEdit = (EditText) findViewById(R.id.siteAddEdit);
         emailAddEdit = (EditText) findViewById(R.id.emailAddEdit);
+        notesTextView = (TextView) findViewById(R.id.notesTextView2);
+        siteTextView = (TextView) findViewById(R.id.siteTextView2);
+        emailTextView = (TextView) findViewById(R.id.emailTextView2);
+        emailImageView = (ImageView) findViewById(R.id.emailImageView);
+        siteImageView = (ImageView) findViewById(R.id.siteImageView);
 
         getActionBar().setDisplayHomeAsUpEnabled(true);
 
@@ -77,6 +88,9 @@ public class PasswordActivity extends Activity {
                                        View itemSelected, int selectedItemPosition, long selectedId) {
 
                 selectedGroup = groupNames.get(selectedItemPosition);
+
+                hideElements(selectedItemPosition);
+
             }
             public void onNothingSelected(AdapterView<?> parent) {
             }
@@ -227,6 +241,69 @@ public class PasswordActivity extends Activity {
     public void copyUsernameToClipboard(MenuItem item)
     {
         Clipboard.setClipboard(this, usernameAddEdit.getText().toString());
+    }
+
+    private void hideElements(int selectedItemPosition)
+    {
+        switch(selectedItemPosition)
+        {
+            case 0: // Social
+                siteAddEdit.setVisibility(View.VISIBLE);
+                emailAddEdit.setVisibility(View.VISIBLE);
+                siteTextView.setVisibility(View.VISIBLE);
+                emailTextView.setVisibility(View.VISIBLE);
+                emailImageView.setVisibility(View.VISIBLE);
+                siteImageView.setVisibility(View.VISIBLE);
+                break;
+            case 1: // Email
+                siteAddEdit.setVisibility(View.VISIBLE);
+                emailAddEdit.setVisibility(View.VISIBLE);
+                siteTextView.setVisibility(View.VISIBLE);
+                emailTextView.setVisibility(View.VISIBLE);
+                emailImageView.setVisibility(View.VISIBLE);
+                siteImageView.setVisibility(View.VISIBLE);
+                break;
+            case 2: // WebSites
+                siteAddEdit.setVisibility(View.VISIBLE);
+                emailAddEdit.setVisibility(View.VISIBLE);
+                siteTextView.setVisibility(View.VISIBLE);
+                emailTextView.setVisibility(View.VISIBLE);
+                emailImageView.setVisibility(View.VISIBLE);
+                siteImageView.setVisibility(View.VISIBLE);
+                break;
+            case 3: // PC
+                siteAddEdit.setVisibility(View.GONE);
+                emailAddEdit.setVisibility(View.GONE);
+                siteTextView.setVisibility(View.GONE);
+                emailTextView.setVisibility(View.GONE);
+                emailImageView.setVisibility(View.GONE);
+                siteImageView.setVisibility(View.GONE);
+                break;
+            case 4: // PIN-CODE
+                siteAddEdit.setVisibility(View.GONE);
+                emailAddEdit.setVisibility(View.GONE);
+                siteTextView.setVisibility(View.GONE);
+                emailTextView.setVisibility(View.GONE);
+                emailImageView.setVisibility(View.GONE);
+                siteImageView.setVisibility(View.GONE);
+                break;
+            case 5: // Wi-Fi
+                siteAddEdit.setVisibility(View.GONE);
+                emailAddEdit.setVisibility(View.GONE);
+                siteTextView.setVisibility(View.GONE);
+                emailTextView.setVisibility(View.GONE);
+                emailImageView.setVisibility(View.GONE);
+                siteImageView.setVisibility(View.GONE);
+                break;
+            case 6: // Other
+                siteAddEdit.setVisibility(View.VISIBLE);
+                emailAddEdit.setVisibility(View.VISIBLE);
+                siteTextView.setVisibility(View.VISIBLE);
+                emailTextView.setVisibility(View.VISIBLE);
+                emailImageView.setVisibility(View.VISIBLE);
+                siteImageView.setVisibility(View.VISIBLE);
+                break;
+        }
     }
 
 }
