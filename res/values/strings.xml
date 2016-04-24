@@ -45,6 +45,10 @@
         <item>@drawable/other_group</item>
     </array>
 
-
+    <array name="iconImages">
+        <item>@drawable/pw_email</item>
+        <item>@drawable/pw_pc</item>
+        <item>@drawable/pw_wifi</item>
+    </array>
 
 </resources>

@@ -12,6 +12,7 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.*;
 import com.tereshkoff.passwordmanager.R;
+import com.tereshkoff.passwordmanager.adapters.IconAdapter;
 import com.tereshkoff.passwordmanager.models.Group;
 import com.tereshkoff.passwordmanager.models.GroupsList;
 import com.tereshkoff.passwordmanager.models.Password;
@@ -50,6 +51,8 @@ public class AddPasswordActivity extends Activity{
 
     List<String> groupNames;
 
+    private Spinner iconSpinner;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -66,6 +69,7 @@ public class AddPasswordActivity extends Activity{
         notesTextView = (TextView) findViewById(R.id.notesTextView);
         siteTextView = (TextView) findViewById(R.id.siteTextView);
         emailTextView = (TextView) findViewById(R.id.emailTextView);
+        iconSpinner = (Spinner) findViewById(R.id.iconSpinner);
 
         Intent i = getIntent();
         groupsList = (GroupsList) i.getSerializableExtra("groupsList");
@@ -191,6 +195,13 @@ public class AddPasswordActivity extends Activity{
                 }
             }
         });
+
+        // icon spinner:
+
+        String[] strings = {"CoderzHeaven","Google",
+                "Microsoft"};
+
+        iconSpinner.setAdapter(new IconAdapter(this, R.layout.icon_row, strings)); // need to add iconNumber in pw model
 
     }
 
