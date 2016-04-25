@@ -11,6 +11,7 @@ import android.text.method.PasswordTransformationMethod;
 import android.view.*;
 import android.widget.*;
 import com.tereshkoff.passwordmanager.R;
+import com.tereshkoff.passwordmanager.adapters.IconAdapter;
 import com.tereshkoff.passwordmanager.models.Group;
 import com.tereshkoff.passwordmanager.models.GroupsList;
 import com.tereshkoff.passwordmanager.models.Password;
@@ -32,6 +33,7 @@ public class PasswordActivity extends Activity {
     private TextView siteTextView;
     private ImageView emailImageView;
     private ImageView siteImageView;
+    private Spinner iconSpinner2;
 
     private String username;
     private String password;
@@ -39,6 +41,7 @@ public class PasswordActivity extends Activity {
     private String notes;
     private String email;
     private String site;
+    private int iconID;
 
     private Password editPassword;
     private CheckBox showPasswordCheckBox;
@@ -65,6 +68,7 @@ public class PasswordActivity extends Activity {
         emailTextView = (TextView) findViewById(R.id.emailTextView2);
         emailImageView = (ImageView) findViewById(R.id.emailImageView);
         siteImageView = (ImageView) findViewById(R.id.siteImageView);
+        iconSpinner2 = (Spinner) findViewById(R.id.iconSpinner2);
 
         getActionBar().setDisplayHomeAsUpEnabled(true);
 
@@ -147,6 +151,27 @@ public class PasswordActivity extends Activity {
             }
         });
 
+        // icon spinner:
+
+        String[] strings = {"CoderzHeaven","Google",
+                "Microsoft"};
+
+        iconSpinner2.setAdapter(new IconAdapter(this, R.layout.icon_row, strings)); // need to add iconNumber in pw model
+
+        iconSpinner2.setSelection(editPassword.getIconID());
+
+        iconSpinner2.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            public void onItemSelected(AdapterView<?> parent,
+                                       View itemSelected, int selectedItemPosition, long selectedId) {
+
+                iconID = selectedItemPosition;
+
+                //hideElements(selectedItemPosition);
+
+            }
+            public void onNothingSelected(AdapterView<?> parent) {
+            }
+        });
 
     }
 
@@ -162,7 +187,7 @@ public class PasswordActivity extends Activity {
         String oldGroup = editPassword.getGroupName();
 
         editPassword = new Password(username, password, selectedGroup, oldID,
-                site, email, notes, 0); // TODO: CHANGE 0, ADD ICONSPINNER TO THIS ACTIVITY
+                site, email, notes, iconID);
 
         Intent intent = new Intent();
         intent.putExtra("password", editPassword);
