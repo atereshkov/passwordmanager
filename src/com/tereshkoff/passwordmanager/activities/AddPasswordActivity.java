@@ -46,6 +46,7 @@ public class AddPasswordActivity extends Activity{
     private String email;
     private String selectedGroup;
     private String addToGroup;
+    private int iconID;
 
     private CheckBox showPasswordCheckBox;
 
@@ -203,6 +204,19 @@ public class AddPasswordActivity extends Activity{
 
         iconSpinner.setAdapter(new IconAdapter(this, R.layout.icon_row, strings)); // need to add iconNumber in pw model
 
+        iconSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            public void onItemSelected(AdapterView<?> parent,
+                                       View itemSelected, int selectedItemPosition, long selectedId) {
+
+                iconID = selectedItemPosition;
+
+                //hideElements(selectedItemPosition);
+
+            }
+            public void onNothingSelected(AdapterView<?> parent) {
+            }
+        });
+
     }
 
     public void addPassword(View view)
@@ -213,7 +227,7 @@ public class AddPasswordActivity extends Activity{
         site = siteAddEdit.getText().toString();
         notes = notesAddEdit.getText().toString();
 
-        if (!InputValidation.isEmailValid(email))
+        if (!InputValidation.isEmailValid(email)) // TODO: выбрали группы (там где нет таких полей) ... то не проверяем на валидность
         {
             Toast.makeText(this, "Проверьте правильность введенного Email", Toast.LENGTH_SHORT).show();
 
@@ -234,7 +248,7 @@ public class AddPasswordActivity extends Activity{
         }
 
         Password newPassword = new Password(username, password, selectedGroup, randomID,
-                                            site, email, notes);
+                                            site, email, notes, iconID);
 
         Group group = groupsList.getGroupByName(selectedGroup);
         PasswordList pwList = group.getPasswordList();

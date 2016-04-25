@@ -162,7 +162,7 @@ public class PasswordActivity extends Activity {
         String oldGroup = editPassword.getGroupName();
 
         editPassword = new Password(username, password, selectedGroup, oldID,
-                site, email, notes);
+                site, email, notes, 0); // TODO: CHANGE 0, ADD ICONSPINNER TO THIS ACTIVITY
 
         Intent intent = new Intent();
         intent.putExtra("password", editPassword);

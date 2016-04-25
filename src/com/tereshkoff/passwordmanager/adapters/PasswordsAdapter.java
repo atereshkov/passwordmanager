@@ -21,6 +21,7 @@ public class PasswordsAdapter extends ArrayAdapter<Password> {
     private List<Password> items;
 
     List<Integer> pagesImg = new ArrayList<>();
+    List<Integer> iconImg = new ArrayList<>();
 
     public PasswordsAdapter(Context context, int textViewResourceId) {
         super(context, textViewResourceId);
@@ -61,6 +62,12 @@ public class PasswordsAdapter extends ArrayAdapter<Password> {
                 pagesImg.add(ar.getResourceId(i, 0));
             }
 
+            TypedArray arIcon = v.getResources().obtainTypedArray(R.array.iconImages);
+            for (int i = 0; i < arIcon.length(); i++)
+            {
+                iconImg.add(arIcon.getResourceId(i, 0));
+            }
+
             ImageView imageView9 = (ImageView) v.findViewById(R.id.imageView9);
 
             imageView9.setImageResource(pagesImg.get(groupStr.indexOf(p.getGroupName())));
@@ -71,7 +78,7 @@ public class PasswordsAdapter extends ArrayAdapter<Password> {
 
             if (imgView != null)
             {
-               //imgView.setImageResource(); load from list (resources like in firstLoginActivity)
+               imgView.setImageResource(iconImg.get(p.getIconID()));
             }
 
             if (tt1 != null)

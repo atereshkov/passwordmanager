@@ -122,6 +122,7 @@ public class JsonFilesWorker {
                     pw.put("site", passwordList.getPasswordList().get(j).getSite());
                     pw.put("notes", passwordList.getPasswordList().get(j).getNotes());
                     pw.put("email", passwordList.getPasswordList().get(j).getEmail());
+                    pw.put("iconID", passwordList.getPasswordList().get(j).getIconID());
                     pwArray.add(pw);
                 }
 

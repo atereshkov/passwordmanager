@@ -46,8 +46,9 @@ public class JsonParser {
                         String notes = row.getString("notes");
                         String email = row.getString("email");
                         Integer id = row.getInt("id");
+                        Integer iconID = row.getInt("iconID");
                         passwordList.add(new Password(username, password, groupName, id,
-                                site, email, notes));
+                                site, email, notes, iconID));
                     }
 
                     groupsList.add(new Group(group.getString("name"), passwordList));
