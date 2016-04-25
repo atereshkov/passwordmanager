@@ -47,6 +47,7 @@ public class AddPasswordActivity extends Activity{
     private String selectedGroup;
     private String addToGroup;
     private int iconID;
+    private boolean checkSiteEmail;
 
     private CheckBox showPasswordCheckBox;
 
@@ -77,6 +78,8 @@ public class AddPasswordActivity extends Activity{
         addToGroup = i.getStringExtra("addToGroup");
 
         groupNames = groupsList.getGroupsNames();
+
+        checkSiteEmail = true;
 
         getActionBar().setDisplayHomeAsUpEnabled(true);
 
@@ -227,17 +230,20 @@ public class AddPasswordActivity extends Activity{
         site = siteAddEdit.getText().toString();
         notes = notesAddEdit.getText().toString();
 
-        if (!InputValidation.isEmailValid(email)) // TODO: выбрали группы (там где нет таких полей) ... то не проверяем на валидность
+        if (checkSiteEmail)
         {
-            Toast.makeText(this, "Проверьте правильность введенного Email", Toast.LENGTH_SHORT).show();
+            if (!InputValidation.isEmailValid(email))
+            {
+                Toast.makeText(this, "Проверьте правильность введенного Email", Toast.LENGTH_SHORT).show();
 
-            return;
-        }
+                return;
+            }
 
-        if (!InputValidation.isUrlValid(site))
-        {
-            Toast.makeText(this, "Проверьте правильность ссылки на сайт", Toast.LENGTH_SHORT).show();
-            return;
+            if (!InputValidation.isUrlValid(site))
+            {
+                Toast.makeText(this, "Проверьте правильность ссылки на сайт", Toast.LENGTH_SHORT).show();
+                return;
+            }
         }
 
         Integer randomID = RandomUtils.getRandomNumber(0, Constants.MAX_RANDOM_ID);
@@ -280,43 +286,49 @@ public class AddPasswordActivity extends Activity{
                 emailAddEdit.setVisibility(View.VISIBLE);
                 siteTextView.setVisibility(View.VISIBLE);
                 emailTextView.setVisibility(View.VISIBLE);
+                checkSiteEmail = true;
                 break;
             case 1: // Email
                 siteAddEdit.setVisibility(View.VISIBLE);
                 emailAddEdit.setVisibility(View.VISIBLE);
                 siteTextView.setVisibility(View.VISIBLE);
                 emailTextView.setVisibility(View.VISIBLE);
+                checkSiteEmail = true;
                 break;
             case 2: // WebSites
                 siteAddEdit.setVisibility(View.VISIBLE);
                 emailAddEdit.setVisibility(View.VISIBLE);
                 siteTextView.setVisibility(View.VISIBLE);
                 emailTextView.setVisibility(View.VISIBLE);
+                checkSiteEmail = true;
                 break;
             case 3: // PC
                 siteAddEdit.setVisibility(View.GONE);
                 emailAddEdit.setVisibility(View.GONE);
                 siteTextView.setVisibility(View.GONE);
                 emailTextView.setVisibility(View.GONE);
+                checkSiteEmail = false;
                 break;
             case 4: // PIN-CODE
                 siteAddEdit.setVisibility(View.GONE);
                 emailAddEdit.setVisibility(View.GONE);
                 siteTextView.setVisibility(View.GONE);
                 emailTextView.setVisibility(View.GONE);
-
+                checkSiteEmail = false;
                 break;
             case 5: // Wi-Fi
                 siteAddEdit.setVisibility(View.GONE);
                 emailAddEdit.setVisibility(View.GONE);
                 siteTextView.setVisibility(View.GONE);
                 emailTextView.setVisibility(View.GONE);
+                checkSiteEmail = false;
                 break;
             case 6: // Other
                 siteAddEdit.setVisibility(View.VISIBLE);
                 emailAddEdit.setVisibility(View.VISIBLE);
                 siteTextView.setVisibility(View.VISIBLE);
                 emailTextView.setVisibility(View.VISIBLE);
+                checkSiteEmail = true;
                 break;
         }
     }
