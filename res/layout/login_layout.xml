@@ -33,7 +33,8 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="FirstLogin"
-            android:id="@+id/button2" android:layout_gravity="center_horizontal" android:onClick="firstLogin"/>
+            android:id="@+id/button2" android:layout_gravity="center_horizontal" android:onClick="firstLogin"
+            android:visibility="gone"/>
 
 
 </LinearLayout>

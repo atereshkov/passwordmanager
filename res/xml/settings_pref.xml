@@ -6,7 +6,7 @@
     <CheckBoxPreference
             android:key="offMusic"
             android:summary=""
-            android:title="Чекбокс 1">
+            android:title="В новом обновлении">
     </CheckBoxPreference>
     </PreferenceCategory>
 
@@ -15,7 +15,7 @@
     <CheckBoxPreference
             android:key="getDeviceAdmin"
             android:summary="Описание..."
-            android:title="Чекбокс 2">
+            android:title="В новом обновлении">
     </CheckBoxPreference>
     <CheckBoxPreference
             android:key="rememberMasterPassword"
