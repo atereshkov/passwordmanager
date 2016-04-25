@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
           package="com.tereshkoff.passwordmanager"
-          android:versionCode="1"
-          android:versionName="1.0">
+          android:versionCode="2"
+          android:versionName="1.0.1">
     <uses-sdk android:minSdkVersion="14" android:targetSdkVersion="23"/>
     <application android:label="@string/app_name" android:icon="@drawable/ic_launcher">
 
@@ -27,17 +27,35 @@
             </intent-filter>
         </activity>
 
-        <activity android:name=".login.LoginActivity" android:theme="@style/AppTheme"  />
-        <activity android:name=".login.SignupActivity" android:theme="@style/AppTheme" />
+        <activity android:name=".login.LoginActivity" android:theme="@style/AppTheme"
+                  android:screenOrientation="portrait"
+                  android:configChanges="orientation" />
+
+        <activity android:name=".login.SignupActivity" android:theme="@style/AppTheme"
+                  android:screenOrientation="portrait"
+                  android:configChanges="orientation"/>
+
         // TODO: need a tabs fragment activities?
-        <activity android:name=".activities.AddPasswordActivity" android:theme="@style/AppTheme" />
-        <activity android:name=".activities.AddGroupActivity" android:theme="@style/AppTheme" />
-        <activity android:name=".activities.PasswordActivity" android:theme="@style/AppTheme" />
-        <activity android:name=".activities.GroupPasswordsActivity" android:theme="@style/AppTheme" />
+        <activity android:name=".activities.AddPasswordActivity" android:theme="@style/AppTheme"
+                  android:screenOrientation="portrait"
+                  android:configChanges="orientation" />
+        <activity android:name=".activities.AddGroupActivity" android:theme="@style/AppTheme"
+                  android:screenOrientation="portrait"
+                  android:configChanges="orientation" />
+        <activity android:name=".activities.PasswordActivity" android:theme="@style/AppTheme"
+                  android:screenOrientation="portrait"
+                  android:configChanges="orientation" />
+        <activity android:name=".activities.GroupPasswordsActivity" android:theme="@style/AppTheme"
+                  android:screenOrientation="portrait"
+                  android:configChanges="orientation"/>
         <activity android:name=".activities.PrefActivity"
                   android:theme="@style/AppTheme" />
-        <activity android:name=".activities.SyncSettings" android:theme="@style/AppTheme" />
-        <activity android:name=".activities.FirstLoginActivity" android:theme="@style/AppTheme" />
+        <activity android:name=".activities.SyncSettings" android:theme="@style/AppTheme"
+                  android:screenOrientation="portrait"
+                  android:configChanges="orientation" />
+        <activity android:name=".activities.FirstLoginActivity" android:theme="@style/AppTheme"
+                  android:screenOrientation="portrait"
+                  android:configChanges="orientation" />
 
     </application>
 
