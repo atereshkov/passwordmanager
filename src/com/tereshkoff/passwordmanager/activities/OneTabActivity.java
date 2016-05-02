@@ -2,6 +2,7 @@ package com.tereshkoff.passwordmanager.activities;
 
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.content.res.Configuration;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
 import android.support.annotation.Nullable;
@@ -124,6 +125,18 @@ public class OneTabActivity extends Fragment {
         super.onResume();
         groupsList = JsonParser.getGroupsList(JsonFilesWorker.readFile(Constants.PWDIRECTORY, Constants.DAFAULT_DBFILE_NAME));
         groupAdapter.refreshEvents(groupsList.getAllPasswords().getPasswordList());
+    }
+
+    @Override
+    public void onConfigurationChanged(Configuration newConfig) {
+        super.onConfigurationChanged(newConfig);
+
+        if (newConfig.orientation == Configuration.ORIENTATION_LANDSCAPE) {
+            Toast.makeText(getContext(), "landscape", Toast.LENGTH_SHORT).show();
+        } else if (newConfig.orientation == Configuration.ORIENTATION_PORTRAIT){
+            Toast.makeText(getContext(), "portrait", Toast.LENGTH_SHORT).show();
+        }
+
     }
 
     @Override
