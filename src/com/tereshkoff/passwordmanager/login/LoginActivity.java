@@ -7,6 +7,8 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
+import android.text.Editable;
+import android.text.TextWatcher;
 import android.util.Log;
 import android.view.View;
 import android.view.inputmethod.InputMethodManager;
@@ -43,7 +45,13 @@ public class LoginActivity extends Activity {
 
             @Override
             public void onClick(View v) {
-                login();
+                if (!validate())
+                {
+                    Toast.makeText(getBaseContext(), "Ошибка при входе. Проверьте пароль!", Toast.LENGTH_LONG).show();
+                }
+                else {
+
+                }
             }
         });
 
@@ -57,6 +65,28 @@ public class LoginActivity extends Activity {
         });*/
 
         passwordEditText.requestFocus();
+
+        passwordEditText.addTextChangedListener(new TextWatcher() {
+
+            @Override
+            public void afterTextChanged(Editable s) {
+                // TODO Auto-generated method stub
+
+            }
+
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+                // TODO Auto-generated method stub
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+                login();
+
+            }
+
+        });
 
     }
 
@@ -134,7 +164,7 @@ public class LoginActivity extends Activity {
     }
 
     public void onLoginFailed() {
-        Toast.makeText(getBaseContext(), "Ошибка при входе. Проверьте пароль!", Toast.LENGTH_LONG).show();
+        //Toast.makeText(getBaseContext(), "Ошибка при входе. Проверьте пароль!", Toast.LENGTH_LONG).show();
 
         loginButton.setEnabled(true);
     }
