@@ -9,10 +9,7 @@ import android.os.Handler;
 import android.os.Message;
 import android.view.MenuItem;
 import android.view.View;
-import android.widget.Button;
-import android.widget.LinearLayout;
-import android.widget.TextView;
-import android.widget.Toast;
+import android.widget.*;
 import com.dropbox.client2.DropboxAPI;
 import com.dropbox.client2.android.AndroidAuthSession;
 import com.dropbox.client2.session.AccessTokenPair;
@@ -40,6 +37,7 @@ public class SyncSettings extends Activity implements AsyncResponse {
     private Button uploadButton;
     private TextView isAuthView;
     private TextView lastSync;
+    private ProgressBar progressBar1;
 
     private final static String DROPBOX_FILE_DIR = "/HPassword/";
     private final static String DROPBOX_NAME = "dropbox_prefs";
@@ -59,6 +57,8 @@ public class SyncSettings extends Activity implements AsyncResponse {
         downloadButton = (Button) findViewById(R.id.downloadButton);
         uploadButton = (Button) findViewById(R.id.uploadButton);
         lastSync = (TextView) findViewById(R.id.lastSync);
+        progressBar1 = (ProgressBar) findViewById(R.id.progressBar2);
+        progressBar1.setVisibility(ProgressBar.GONE);
 
         //noinspection ConstantConditions
         getActionBar().setDisplayHomeAsUpEnabled(true);
@@ -130,6 +130,7 @@ public class SyncSettings extends Activity implements AsyncResponse {
             UploadFile uploadFile = new UploadFile(this, dropboxApi, DROPBOX_FILE_DIR, Constants.DAFAULT_DBFILE_NAME);
             uploadFile.delegate = this;
             uploadFile.execute();
+            progressBar1.setVisibility(ProgressBar.VISIBLE);
         }
         else {
             Toast.makeText(this, "Проверьте соединение с интернетом!",
@@ -146,6 +147,7 @@ public class SyncSettings extends Activity implements AsyncResponse {
             DownloadFile downloadFile = new DownloadFile(this, dropboxApi, DROPBOX_FILE_DIR, Constants.DAFAULT_DBFILE_NAME);
             downloadFile.delegate = this;
             downloadFile.execute();
+            progressBar1.setVisibility(ProgressBar.VISIBLE);
         }
         else {
             Toast.makeText(this, "Проверьте соединение с интернетом!",
@@ -160,6 +162,7 @@ public class SyncSettings extends Activity implements AsyncResponse {
             editor.putString("lastSync", TimeUtils.getCurrentTimeInString());
             editor.commit();
             lastSync.setText("Последняя синхронизация: " + prefs.getString("lastSync", null));
+            progressBar1.setVisibility(ProgressBar.GONE);
         }
     }
 

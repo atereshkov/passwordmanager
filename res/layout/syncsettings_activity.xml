@@ -57,5 +57,10 @@
             android:layout_height="wrap_content"
             android:orientation="vertical" >
     </LinearLayout>
+    <ProgressBar
+            style="?android:attr/progressBarStyleLarge"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/progressBar2" android:layout_gravity="center_horizontal"/>
 
 </LinearLayout>
