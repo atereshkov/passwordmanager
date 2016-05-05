@@ -6,26 +6,36 @@ import android.content.pm.PackageManager;
 import android.content.res.Configuration;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
+import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentActivity;
 import android.support.v4.app.FragmentTabHost;
+import android.support.v4.view.ViewPager;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
 import android.widget.*;
 import com.tereshkoff.passwordmanager.AES.AES;
 import com.tereshkoff.passwordmanager.AES.AESEncrypter;
 import com.tereshkoff.passwordmanager.AES.StaticAES;
 import com.tereshkoff.passwordmanager.activities.*;
+import com.tereshkoff.passwordmanager.adapters.MyPagerAdapter;
 import com.tereshkoff.passwordmanager.json.JsonFilesWorker;
 import com.tereshkoff.passwordmanager.login.LoginActivity;
 import com.tereshkoff.passwordmanager.utils.Constants;
 import com.tereshkoff.passwordmanager.utils.Dialogs;
+
+import java.util.List;
+import java.util.Vector;
 
 
 public class MyActivity extends FragmentActivity {
 
     private FragmentTabHost mTabHost;
     private SharedPreferences sp;
+
+    private ViewPager pager;
+    private MyPagerAdapter adapter;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -60,6 +70,14 @@ public class MyActivity extends FragmentActivity {
             e.printStackTrace();
         }
 
+        pager = (ViewPager) findViewById(R.id.viewpager);
+        List<Fragment> fragments = new Vector<Fragment>();
+        fragments.add(Fragment.instantiate(this, OneTabActivity.class.getName()));
+        fragments.add(Fragment.instantiate(this, TwoTabActivity.class.getName()));
+        adapter = new MyPagerAdapter(getSupportFragmentManager(), fragments);
+
+        pager.setAdapter(adapter);
+
         mTabHost = (FragmentTabHost) findViewById(android.R.id.tabhost); // https://code.google.com/p/android/issues/detail?id=78772
         mTabHost.setup(this, getSupportFragmentManager(), android.R.id.tabcontent);
 
@@ -67,6 +85,45 @@ public class MyActivity extends FragmentActivity {
                 OneTabActivity.class, null);
         mTabHost.addTab(mTabHost.newTabSpec("tab2").setIndicator("По группам"),
                 TwoTabActivity.class, null);
+
+        pager.setOnPageChangeListener(new ViewPager.OnPageChangeListener() {
+
+            @Override
+            public void onPageSelected(int arg0) {
+                // TODO Auto-generated method stub
+                mTabHost.setCurrentTab(arg0);
+            }
+
+            @Override
+            public void onPageScrolled(int arg0, float arg1, int arg2) {
+                // TODO Auto-generated method stub
+
+            }
+
+            @Override
+            public void onPageScrollStateChanged(int arg0) {
+                // TODO Auto-generated method stub
+
+            }
+        });
+
+        mTabHost.getTabWidget().getChildAt(0).setOnClickListener(new View.OnClickListener() {
+
+            public void onClick(View v) {
+
+                mTabHost.setCurrentTab(0);
+                pager.setCurrentItem(0);
+            }
+        });
+
+        mTabHost.getTabWidget().getChildAt(1).setOnClickListener(new View.OnClickListener() {
+
+            public void onClick(View v) {
+
+                mTabHost.setCurrentTab(1);
+                pager.setCurrentItem(1);
+            }
+        });
 
         //StaticAES aes = new StaticAES();
 

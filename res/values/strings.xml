@@ -51,7 +51,7 @@
         <item>@drawable/pw_wifi</item>
     </array>
 
-    <string name="dropbox_about">Dropbox синхронизация позволняет хранить базу с паролями
+    <string name="dropbox_about">Dropbox синхронизация позволяет хранить базу с паролями
     в вашем Dropbox аккаунте. Это обеспечивает надежную защиту. Вы можете в любой момент восстановить все ваши пароли.</string>
 
 </resources>
