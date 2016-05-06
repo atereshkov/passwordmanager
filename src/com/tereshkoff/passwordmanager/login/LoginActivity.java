@@ -5,6 +5,7 @@ import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.content.res.Configuration;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
 import android.text.Editable;
@@ -103,6 +104,9 @@ public class LoginActivity extends Activity {
                 // TODO Auto-generated method stub
                 InputMethodManager keyboard = (InputMethodManager)
                         getSystemService(Context.INPUT_METHOD_SERVICE);
+
+                //passwordEditText.setRawInputType(Configuration.KEYBOARD_12KEY); // NUMERIC KEYBOARD
+
                 keyboard.showSoftInput(passwordEditText, 0);
             }
         }, 200);

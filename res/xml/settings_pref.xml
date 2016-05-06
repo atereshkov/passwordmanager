@@ -2,7 +2,14 @@
 <PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android">
 
     <PreferenceCategory
-            android:title="Категория 1" >
+            android:title="Генератор паролей" >
+        <ListPreference
+                android:entries="@array/random_length"
+                android:entryValues="@array/random_length_values"
+                android:key="random_length"
+                android:summary=""
+                android:title="Длина пароля">
+        </ListPreference>
     <CheckBoxPreference
             android:key="offMusic"
             android:summary=""
@@ -11,17 +18,17 @@
     </PreferenceCategory>
 
     <PreferenceCategory
-            android:title="Категория 2" >
+            android:title="Вход в приложение" >
+        <CheckBoxPreference
+                android:key="rememberMasterPassword"
+                android:summary=""
+                android:title="Не запрашивать мастер-пароль">
+        </CheckBoxPreference>
     <CheckBoxPreference
             android:key="getDeviceAdmin"
             android:summary="Описание..."
             android:title="В новом обновлении">
     </CheckBoxPreference>
-    <CheckBoxPreference
-            android:key="rememberMasterPassword"
-            android:summary=""
-            android:title="Не запрашивать мастер-пароль">
-        </CheckBoxPreference>
     </PreferenceCategory>
 
 </PreferenceScreen>

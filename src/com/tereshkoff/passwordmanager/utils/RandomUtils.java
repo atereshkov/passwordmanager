@@ -17,8 +17,10 @@ public class RandomUtils {
         SecureRandom rnd = new SecureRandom();
 
         StringBuilder sb = new StringBuilder(length);
-        for( int i = 0; i < length; i++ )
+        for(int i = 0; i < length; i++)
+        {
             sb.append(Constants.RANDOM_PW_SYMBOLS.charAt(rnd.nextInt(Constants.RANDOM_PW_SYMBOLS.length())));
+        }
 
         return sb.toString();
     }

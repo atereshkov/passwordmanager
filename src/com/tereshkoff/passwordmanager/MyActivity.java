@@ -45,10 +45,14 @@ public class MyActivity extends FragmentActivity {
     ActionBarDrawerToggle mDrawerToggle;
     String mTitle = "";
 
+    private ListView drawer_list;
+
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.main);
+
+        drawer_list = (ListView) findViewById(R.id.drawer_list);
 
         sp = PreferenceManager.getDefaultSharedPreferences(this);
 
@@ -172,6 +176,8 @@ public class MyActivity extends FragmentActivity {
             }
 
         });
+
+        //drawer_list.setBackgroundResource(R.drawable.folder_blue);
 
     }
 

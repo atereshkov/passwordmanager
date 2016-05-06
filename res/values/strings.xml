@@ -17,16 +17,6 @@
         <item>У нас нет рекламы! Приятного пользования :)</item>
     </string-array>
 
-    <!--
-    <integer-array name="pwIcons">
-        <item></item>
-        <item></item>
-        <item></item>
-        <item></item>
-        <item></item>
-    </integer-array>
-    -->
-
     <array name="firstLoginImages">
         <item>@drawable/firstlogin1</item>
         <item>@drawable/firstlogin2</item>
@@ -55,16 +45,43 @@
     в вашем Dropbox аккаунте. Это обеспечивает надежную защиту. Вы можете в любой момент восстановить все ваши пароли.</string>
 
     <string-array name="navdraw">
-        <item>One</item>
-        <item>Two</item>
-        <item>Three</item>
-        <item>Four</item>
-        <item>Five</item>
-        <item>Six</item>
-        <item>Seven</item>
+        <item>Скоро :)</item>
+        <item>Скоро :)</item>
+        <item>Скоро :)</item>
+        <item>Скоро :)</item>
+        <item>Скоро :)</item>
+        <item>Скоро :)</item>
+        <item>Скоро :)</item>
     </string-array>
 
     <string name="drawer_close">Close navigation drawer</string>
     <string name="drawer_open">Open navigation drawer</string>
+
+    <string-array name="random_length">
+        <item>6</item>
+        <item>7</item>
+        <item>8</item>
+        <item>9</item>
+        <item>10</item>
+        <item>11</item>
+        <item>12</item>
+        <item>13</item>
+        <item>14</item>
+        <item>15</item>
+        <item>16</item>
+    </string-array>
+    <string-array name="random_length_values">
+        <item>6</item>
+        <item>7</item>
+        <item>8</item>
+        <item>9</item>
+        <item>10</item>
+        <item>11</item>
+        <item>12</item>
+        <item>13</item>
+        <item>14</item>
+        <item>15</item>
+        <item>16</item>
+    </string-array>
 
 </resources>

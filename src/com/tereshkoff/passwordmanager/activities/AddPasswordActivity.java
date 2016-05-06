@@ -2,9 +2,11 @@ package com.tereshkoff.passwordmanager.activities;
 
 import android.app.Activity;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.graphics.Color;
 import android.graphics.PorterDuff;
 import android.os.Bundle;
+import android.preference.PreferenceManager;
 import android.text.Editable;
 import android.text.TextWatcher;
 import android.text.method.PasswordTransformationMethod;
@@ -52,6 +54,8 @@ public class AddPasswordActivity extends Activity{
     private CheckBox showPasswordCheckBox;
 
     List<String> groupNames;
+
+    SharedPreferences sp;
 
     private Spinner iconSpinner;
 
@@ -271,7 +275,12 @@ public class AddPasswordActivity extends Activity{
 
     public void generateRandomPassword(View view)
     {
-        passwordAddEdit.setText(RandomUtils.getRandomPassword(12));
+        sp = PreferenceManager.getDefaultSharedPreferences(this);
+
+        String randomValue = sp.getString("random_length", "12");
+        Integer intRandomLength = Integer.parseInt(randomValue);
+
+        passwordAddEdit.setText(RandomUtils.getRandomPassword(intRandomLength));
         showPasswordCheckBox.setChecked(true);
         passwordAddEdit.setTransformationMethod(null);
         passwordAddEdit.setSelection(passwordAddEdit.getText().length());
