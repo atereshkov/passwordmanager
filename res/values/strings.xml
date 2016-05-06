@@ -54,4 +54,17 @@
     <string name="dropbox_about">Dropbox синхронизация позволяет хранить базу с паролями
     в вашем Dropbox аккаунте. Это обеспечивает надежную защиту. Вы можете в любой момент восстановить все ваши пароли.</string>
 
+    <string-array name="navdraw">
+        <item>One</item>
+        <item>Two</item>
+        <item>Three</item>
+        <item>Four</item>
+        <item>Five</item>
+        <item>Six</item>
+        <item>Seven</item>
+    </string-array>
+
+    <string name="drawer_close">Close navigation drawer</string>
+    <string name="drawer_open">Open navigation drawer</string>
+
 </resources>
