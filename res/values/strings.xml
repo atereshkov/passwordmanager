@@ -45,13 +45,11 @@
     в вашем Dropbox аккаунте. Это обеспечивает надежную защиту. Вы можете в любой момент восстановить все ваши пароли.</string>
 
     <string-array name="navdraw">
-        <item>Скоро :)</item>
-        <item>Скоро :)</item>
-        <item>Скоро :)</item>
-        <item>Скоро :)</item>
-        <item>Скоро :)</item>
-        <item>Скоро :)</item>
-        <item>Скоро :)</item>
+        <item>Главная</item>
+        <item>Синхронизация</item>
+        <item>Настройки</item>
+        <item>О приложении</item>
+        <item>Выход</item>
     </string-array>
 
     <string name="drawer_close">Close navigation drawer</string>

@@ -9,7 +9,9 @@ import android.content.res.Configuration;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
 import android.text.Editable;
+import android.text.InputType;
 import android.text.TextWatcher;
+import android.text.method.PasswordTransformationMethod;
 import android.util.Log;
 import android.view.View;
 import android.view.inputmethod.InputMethodManager;
@@ -31,6 +33,8 @@ public class LoginActivity extends Activity {
     private EditText passwordEditText;
     private Button loginButton;
     private TextView signupLink;
+
+    SharedPreferences sp;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -106,6 +110,14 @@ public class LoginActivity extends Activity {
                         getSystemService(Context.INPUT_METHOD_SERVICE);
 
                 //passwordEditText.setRawInputType(Configuration.KEYBOARD_12KEY); // NUMERIC KEYBOARD
+
+                sp = PreferenceManager.getDefaultSharedPreferences(getApplicationContext());
+                Boolean numericKeyboard = sp.getBoolean("numericKeyboard", false);
+
+                if (numericKeyboard)
+                {
+                    passwordEditText.setInputType(InputType.TYPE_CLASS_NUMBER | InputType.TYPE_NUMBER_VARIATION_PASSWORD);
+                }
 
                 keyboard.showSoftInput(passwordEditText, 0);
             }

@@ -10,11 +10,6 @@
                 android:summary=""
                 android:title="Длина пароля">
         </ListPreference>
-    <CheckBoxPreference
-            android:key="offMusic"
-            android:summary=""
-            android:title="В новом обновлении">
-    </CheckBoxPreference>
     </PreferenceCategory>
 
     <PreferenceCategory
@@ -25,9 +20,9 @@
                 android:title="Не запрашивать мастер-пароль">
         </CheckBoxPreference>
     <CheckBoxPreference
-            android:key="getDeviceAdmin"
-            android:summary="Описание..."
-            android:title="В новом обновлении">
+            android:key="numericKeyboard"
+            android:summary=""
+            android:title="Числовая клавиатура">
     </CheckBoxPreference>
     </PreferenceCategory>
 

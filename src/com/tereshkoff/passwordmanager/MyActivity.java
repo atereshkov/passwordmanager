@@ -24,12 +24,15 @@ import com.tereshkoff.passwordmanager.activities.*;
 import com.tereshkoff.passwordmanager.adapters.MyPagerAdapter;
 import com.tereshkoff.passwordmanager.json.JsonFilesWorker;
 import com.tereshkoff.passwordmanager.login.LoginActivity;
+import com.tereshkoff.passwordmanager.navbar.*;
 import com.tereshkoff.passwordmanager.utils.Constants;
 import com.tereshkoff.passwordmanager.utils.Dialogs;
 
 import android.support.v4.widget.DrawerLayout;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.Vector;
 
 public class MyActivity extends FragmentActivity {
@@ -130,7 +133,7 @@ public class MyActivity extends FragmentActivity {
 
             @Override
             public void onDrawerOpened(View drawerView) {
-                getActionBar().setTitle("Select");
+                getActionBar().setTitle("Менеджер паролей");
                 invalidateOptionsMenu();
             }
         };
@@ -146,31 +149,40 @@ public class MyActivity extends FragmentActivity {
 
         getActionBar().setDisplayHomeAsUpEnabled(true);
 
+        Map<Integer, ICommand> commandMap = new HashMap<Integer, ICommand>();
+        commandMap.put(0, new MainCommand(this));
+        commandMap.put(1, new SyncCommand(this));
+        commandMap.put(2, new SettingsCommand(this));
+        commandMap.put(3, new AboutCommand(this));
+        commandMap.put(4, new ExitCommand(this));
+
         mDrawerList.setOnItemClickListener(new AdapterView.OnItemClickListener() {
 
             @Override
-            public void onItemClick(AdapterView<?> parent, View view, int position,
-                                    long id) {
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
 
                 String[] rivers = getResources().getStringArray(R.array.navdraw);
-
                 mTitle = rivers[position];
 
+                try {
+                    ICommand command = commandMap.get(position);
+                    command.execute();
+                }
+                catch (NullPointerException e)
+                {
+                    e.printStackTrace();
+                }
+
+                /*
                 RiverFragment rFragment = new RiverFragment();
-
                 Bundle data = new Bundle();
-
                 data.putInt("position", position);
-
-/*                rFragment.setArguments(data);
-
+                rFragment.setArguments(data);
                 android.app.FragmentManager fragmentManager = getFragmentManager();
-
                 FragmentTransaction ft = fragmentManager.beginTransaction();
-
                 ft.replace(R.id.content_frame, rFragment);
-
-                ft.commit();*/
+                ft.commit();
+                */
 
                 mDrawerLayout.closeDrawer(mDrawerList);
             }
@@ -234,7 +246,6 @@ public class MyActivity extends FragmentActivity {
 
         Intent intent = new Intent(this, SyncSettings.class);
         startActivity(intent);
-
     }
 
     public void showLoginActivity()
