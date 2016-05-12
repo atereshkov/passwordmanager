@@ -242,12 +242,23 @@ public class AddPasswordActivity extends Activity{
         site = siteAddEdit.getText().toString();
         notes = notesAddEdit.getText().toString();
 
+        if (isEmpty(usernameAddEdit))
+        {
+            Toast.makeText(this, "Вы не ввели логин!", Toast.LENGTH_SHORT).show();
+            return;
+        }
+
+        if (isEmpty(passwordAddEdit))
+        {
+            Toast.makeText(this, "Вы не ввели пароль!", Toast.LENGTH_SHORT).show();
+            return;
+        }
+
         if (checkSiteEmail)
         {
             if (!InputValidation.isEmailValid(email))
             {
                 Toast.makeText(this, "Проверьте правильность введенного Email", Toast.LENGTH_SHORT).show();
-
                 return;
             }
 
