@@ -7,7 +7,7 @@
             android:title="@string/menu_item_add"
             android:showAsAction="always"
             android:icon="@android:drawable/ic_menu_search"
-            android:actionMenuTextColor="@color/menu_item_white"/>
+            android:actionMenuTextColor="@color/menu_item_white" />
 
     <item
             android:id="@+id/syncSettings"

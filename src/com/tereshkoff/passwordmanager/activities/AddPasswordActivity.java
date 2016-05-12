@@ -5,6 +5,7 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.graphics.Color;
 import android.graphics.PorterDuff;
+import android.media.Image;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
 import android.text.Editable;
@@ -51,7 +52,8 @@ public class AddPasswordActivity extends Activity{
     private int iconID;
     private boolean checkSiteEmail;
 
-    private CheckBox showPasswordCheckBox;
+    private ImageView showPasswordImageView;
+    private Boolean showPassword;
 
     List<String> groupNames;
 
@@ -66,7 +68,7 @@ public class AddPasswordActivity extends Activity{
 
         usernameAddEdit = (EditText) findViewById(R.id.usernameAddEdit);
         passwordAddEdit = (EditText) findViewById(R.id.passwordAddEdit);
-        showPasswordCheckBox = (CheckBox) findViewById(R.id.showPasswordCheckBox);
+        showPasswordImageView = (ImageView) findViewById(R.id.showPasswordImageView);
         strengthBar = (ProgressBar) findViewById(R.id.strengthBar);
         spinner = (Spinner) findViewById(R.id.spinner);
         siteAddEdit = (EditText) findViewById(R.id.siteAddEdit);
@@ -107,18 +109,24 @@ public class AddPasswordActivity extends Activity{
             }
         });
 
-        showPasswordCheckBox.setOnClickListener(new View.OnClickListener() {
+        showPasswordImageView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                if (showPasswordCheckBox.isChecked())
+                if (!isEmpty(passwordAddEdit))
                 {
-                    passwordAddEdit.setTransformationMethod(null);
+                    showPassword = !showPassword;
+                    if (showPassword)
+                    {
+                        passwordAddEdit.setTransformationMethod(null);
+                        showPasswordImageView.setImageResource(R.drawable.noeye);
+                    }
+                    else
+                    {
+                        passwordAddEdit.setTransformationMethod(new PasswordTransformationMethod());
+                        showPasswordImageView.setImageResource(R.drawable.eye);
+                    }
+                    passwordAddEdit.setSelection(passwordAddEdit.getText().length());
                 }
-                else
-                {
-                    passwordAddEdit.setTransformationMethod(new PasswordTransformationMethod());
-                }
-                passwordAddEdit.setSelection(passwordAddEdit.getText().length());
             }
         });
 
@@ -281,7 +289,10 @@ public class AddPasswordActivity extends Activity{
         Integer intRandomLength = Integer.parseInt(randomValue);
 
         passwordAddEdit.setText(RandomUtils.getRandomPassword(intRandomLength));
-        showPasswordCheckBox.setChecked(true);
+
+        showPasswordImageView.setImageResource(R.drawable.noeye);
+        showPassword = true;
+
         passwordAddEdit.setTransformationMethod(null);
         passwordAddEdit.setSelection(passwordAddEdit.getText().length());
     }
@@ -355,5 +366,11 @@ public class AddPasswordActivity extends Activity{
         }
     }
 
+    private boolean isEmpty(EditText etText) {
+        if (etText.getText().toString().trim().length() > 0)
+            return false;
+
+        return true;
+    }
 
 }

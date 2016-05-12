@@ -1,6 +1,8 @@
 package com.tereshkoff.passwordmanager;
 
 import android.app.FragmentTransaction;
+import android.app.SearchManager;
+import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
@@ -162,7 +164,7 @@ public class MyActivity extends FragmentActivity {
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
 
                 String[] rivers = getResources().getStringArray(R.array.navdraw);
-                mTitle = rivers[position];
+                //mTitle = rivers[position];
 
                 try {
                     ICommand command = commandMap.get(position);
@@ -172,17 +174,6 @@ public class MyActivity extends FragmentActivity {
                 {
                     e.printStackTrace();
                 }
-
-                /*
-                RiverFragment rFragment = new RiverFragment();
-                Bundle data = new Bundle();
-                data.putInt("position", position);
-                rFragment.setArguments(data);
-                android.app.FragmentManager fragmentManager = getFragmentManager();
-                FragmentTransaction ft = fragmentManager.beginTransaction();
-                ft.replace(R.id.content_frame, rFragment);
-                ft.commit();
-                */
 
                 mDrawerLayout.closeDrawer(mDrawerList);
             }

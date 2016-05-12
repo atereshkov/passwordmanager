@@ -44,7 +44,9 @@ public class PasswordActivity extends Activity {
     private int iconID;
 
     private Password editPassword;
-    private CheckBox showPasswordCheckBox;
+
+    private ImageView showPasswordState;
+    private Boolean showPassword;
 
     List<String> groupNames;
     private GroupsList groupsList;
@@ -58,7 +60,6 @@ public class PasswordActivity extends Activity {
 
         usernameAddEdit = (EditText) findViewById(R.id.usernameAddEdit);
         passwordAddEdit = (EditText) findViewById(R.id.passwordAddEdit);
-        showPasswordCheckBox = (CheckBox) findViewById(R.id.showPasswordCheckBox);
         spinner = (Spinner) findViewById(R.id.spinner);
         notesAddEdit = (EditText) findViewById(R.id.notesAddEdit);
         siteAddEdit = (EditText) findViewById(R.id.siteAddEdit);
@@ -69,6 +70,8 @@ public class PasswordActivity extends Activity {
         emailImageView = (ImageView) findViewById(R.id.emailImageView);
         siteImageView = (ImageView) findViewById(R.id.siteImageView);
         iconSpinner2 = (Spinner) findViewById(R.id.iconSpinner2);
+        showPasswordState = (ImageView) findViewById(R.id.showPasswordState);
+        showPassword = false;
 
         getActionBar().setDisplayHomeAsUpEnabled(true);
 
@@ -100,21 +103,24 @@ public class PasswordActivity extends Activity {
             }
         });
 
-
-        showPasswordCheckBox.setOnClickListener(new View.OnClickListener() {
+        showPasswordState.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                if (showPasswordCheckBox.isChecked())
+                if (!isEmpty(passwordAddEdit))
                 {
-                    passwordAddEdit.setTransformationMethod(null);
+                    showPassword = !showPassword;
+                    if (showPassword) {
+                        passwordAddEdit.setTransformationMethod(null);
+                        showPasswordState.setImageResource(R.drawable.noeye);
+                    } else {
+                        passwordAddEdit.setTransformationMethod(new PasswordTransformationMethod());
+                        showPasswordState.setImageResource(R.drawable.eye);
+                    }
+                    passwordAddEdit.setSelection(passwordAddEdit.getText().length());
                 }
-                else
-                {
-                    passwordAddEdit.setTransformationMethod(new PasswordTransformationMethod());
-                }
-                passwordAddEdit.setSelection(passwordAddEdit.getText().length());
             }
         });
+
 
         usernameAddEdit.setText(editPassword.getUsername());
         passwordAddEdit.setText(editPassword.getPassword());
@@ -330,5 +336,13 @@ public class PasswordActivity extends Activity {
                 break;
         }
     }
+
+    private boolean isEmpty(EditText etText) {
+        if (etText.getText().toString().trim().length() > 0)
+            return false;
+
+        return true;
+    }
+
 
 }
