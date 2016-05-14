@@ -1,6 +1,8 @@
 package com.tereshkoff.passwordmanager.activities;
 
 import android.app.Activity;
+import android.app.ProgressDialog;
+import android.content.Context;
 import android.os.Bundle;
 import android.view.MenuItem;
 import android.view.View;
@@ -8,8 +10,21 @@ import android.widget.*;
 import com.tereshkoff.passwordmanager.AES.UtilsEncryption;
 import com.tereshkoff.passwordmanager.R;
 import com.tereshkoff.passwordmanager.json.JsonFilesWorker;
+import com.tereshkoff.passwordmanager.mail.RetreiveMailTask;
 import com.tereshkoff.passwordmanager.utils.ConnectionDetector;
 import com.tereshkoff.passwordmanager.utils.Constants;
+
+import java.util.Properties;
+
+import javax.mail.Address;
+import javax.mail.Authenticator;
+import javax.mail.Message;
+import javax.mail.MessagingException;
+import javax.mail.PasswordAuthentication;
+import javax.mail.Session;
+import javax.mail.Transport;
+import javax.mail.internet.InternetAddress;
+import javax.mail.internet.MimeMessage;
 
 public class MasterPasswordActivity extends Activity {
 
@@ -19,6 +34,11 @@ public class MasterPasswordActivity extends Activity {
     private CheckBox sendEmailCheckBox;
     private EditText emailEdit;
     private Button changePasswordButton;
+
+    Session session = null;
+    ProgressDialog pdialog = null;
+    Context context = this;
+    String rec, subject, textMessage;
 
     private boolean sendEmail;
 
@@ -38,6 +58,8 @@ public class MasterPasswordActivity extends Activity {
 
         emailEdit.setVisibility(View.GONE);
         sendEmail = false;
+        emailEdit.setEnabled(false);
+        sendEmailCheckBox.setEnabled(false);
 
         sendEmailCheckBox.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
 
@@ -72,6 +94,7 @@ public class MasterPasswordActivity extends Activity {
                                     UtilsEncryption.encrypt(newPasswordEdit.getText().toString()));
 
                             Toast.makeText(getApplicationContext(), "Пароль успешно изменен!", Toast.LENGTH_LONG).show();
+                            finish();
                         }
                         else
                         {
@@ -88,18 +111,47 @@ public class MasterPasswordActivity extends Activity {
                     Toast.makeText(getApplicationContext(), "Вы не заполнили данные!", Toast.LENGTH_LONG).show();
                 }
 
+                /*
                 if (sendEmailCheckBox.isChecked())
                 {
-                    ConnectionDetector connectionDetector = new ConnectionDetector(getApplicationContext());
-
-                    if (connectionDetector.checkInternetConnection())
+                    if (!isEmpty(emailEdit))
                     {
-                        // send email
+                        ConnectionDetector connectionDetector = new ConnectionDetector(getApplicationContext());
+
+                        if (connectionDetector.checkInternetConnection())
+                        {
+                            rec = emailEdit.getText().toString();
+                            subject = "HPassword master-password";
+                            textMessage = newPasswordEdit.getText().toString();
+
+                            Properties props = new Properties();
+                            props.put("mail.smtp.host", "smtp.gmail.com");
+                            props.put("mail.smtp.socketFactory.port", "465");
+                            props.put("mail.smtp.socketFactory.class", "javax.net.ssl.SSLSocketFactory");
+                            props.put("mail.smtp.auth", "true");
+                            props.put("mail.smtp.port", "465");
+
+                            session = Session.getDefaultInstance(props, new Authenticator() {
+                                protected PasswordAuthentication getPasswordAuthentication() {
+                                    return new PasswordAuthentication("testfrom3541@gmail.com", "p1234p1234");
+                                }
+                            });
+
+                            //pdialog = ProgressDialog.show(context, "", "Отправка...", true);
+
+                            RetreiveMailTask task = new RetreiveMailTask(session, pdialog, context, rec, subject, textMessage);
+                            task.execute();
+                        }
+                        else {
+                            Toast.makeText(getApplicationContext(), "Проверьте соединение с интернетом!", Toast.LENGTH_LONG).show();
+                        }
                     }
-                    else {
-                        Toast.makeText(getApplicationContext(), "Проверьте соединение с интернетом!", Toast.LENGTH_LONG).show();
+                    else
+                    {
+                        Toast.makeText(getApplicationContext(), "E-mail адрес пуст!", Toast.LENGTH_LONG).show();
                     }
                 }
+                */
 
             }
         });
