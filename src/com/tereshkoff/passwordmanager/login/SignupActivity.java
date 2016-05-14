@@ -141,7 +141,7 @@ public class SignupActivity extends Activity {
         String password = passwordEditText2.getText().toString();
 
         if (password.isEmpty() || password.length() < 4 || password.length() > 10) {
-            passwordEditText2.setError("Пароль должен быть от 1 до 10 символов!");
+            passwordEditText2.setError("Пароль должен быть от 4 до 10 символов!");
             valid = false;
         } else {
             passwordEditText2.setError(null);

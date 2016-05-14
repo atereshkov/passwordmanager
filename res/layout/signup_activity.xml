@@ -32,7 +32,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:textAppearance="?android:attr/textAppearanceSmall"
-            android:text="ВНИМАНИЕ! Изменить или восстановить пароль, если Вы его забудете, невозможно!"
+            android:text="ВНИМАНИЕ! Восстановить пароль, если Вы его забудете, невозможно!"
             android:id="@+id/textView14" android:layout_gravity="center_horizontal" android:layout_margin="5dp"/>
     <Button
             android:layout_width="wrap_content"

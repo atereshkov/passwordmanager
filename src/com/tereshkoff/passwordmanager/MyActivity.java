@@ -155,8 +155,9 @@ public class MyActivity extends FragmentActivity {
         commandMap.put(0, new MainCommand(this));
         commandMap.put(1, new SyncCommand(this));
         commandMap.put(2, new SettingsCommand(this));
-        commandMap.put(3, new AboutCommand(this));
-        commandMap.put(4, new ExitCommand(this));
+        commandMap.put(3, new MasterPasswordCommand(this));
+        commandMap.put(4, new AboutCommand(this));
+        commandMap.put(5, new ExitCommand(this));
 
         mDrawerList.setOnItemClickListener(new AdapterView.OnItemClickListener() {
 
@@ -236,6 +237,12 @@ public class MyActivity extends FragmentActivity {
     public void openSyncSettingsActivity(MenuItem item) {
 
         Intent intent = new Intent(this, SyncSettings.class);
+        startActivity(intent);
+    }
+
+    public void openMasterPasswordActivity(MenuItem item) {
+
+        Intent intent = new Intent(this, MasterPasswordActivity.class);
         startActivity(intent);
     }
 

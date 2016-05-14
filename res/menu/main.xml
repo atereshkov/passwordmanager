@@ -24,6 +24,13 @@
             android:onClick="openSettingsActivity"/>
 
     <item
+            android:id="@+id/masterpassword"
+            android:orderInCategory="1"
+            android:title="@string/menu_item_masterpassword"
+            android:showAsAction="never"
+            android:onClick="openMasterPasswordActivity"/>
+
+    <item
             android:id="@+id/about"
             android:orderInCategory="1"
             android:title="@string/menu_item_about"

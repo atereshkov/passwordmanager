@@ -4,6 +4,7 @@
     <string name="menu_item_add">Поиск</string>
     <string name="menu_item_syncsettings">Синхронизация</string>
     <string name="menu_item_settings">Настройки</string>
+    <string name="menu_item_masterpassword">Мастер-пароль</string>
     <string name="menu_item_about">О приложении</string>
     <string name="menu_item_exit">Выход</string>
 
@@ -48,9 +49,14 @@
         <item>Главная</item>
         <item>Синхронизация</item>
         <item>Настройки</item>
+        <item>Мастер-пароль</item>
         <item>О приложении</item>
         <item>Выход</item>
     </string-array>
+
+    <string name="change_master_password">ВАЖНО! Вам нужно запомнить этот пароль: без него войти в приложение невозможно!
+    В целях безопасности не предусмотрено возможности восстановления/сброса пароля. Вы можете отправить пароль себе на электронную
+    почту, если всё-таки опасаетесь, что потеряете его.</string>
 
     <string name="drawer_close">Close navigation drawer</string>
     <string name="drawer_open">Open navigation drawer</string>
