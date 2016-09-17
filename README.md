@@ -1,5 +1,4 @@
-# passwordmanager
-Password Manager App for Android
+# Password Manager App for Android
 
 Password Manager is an application where you can safely store your passwords and some other data. Now you do not have to remember dozens of different passwords, just remember one password to access the application and use as needed.
 
